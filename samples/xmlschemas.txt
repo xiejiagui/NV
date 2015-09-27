@@ -1,0 +1,5 @@
+../xsd/eppcom-1.0.xsd
+../xsd/epp-1.0.xsd
+../xsd/xmldsig-core-schema.xsd
+../xsd/verificationCode-1.0.xsd
+../xsd/nv-1.0.xsd

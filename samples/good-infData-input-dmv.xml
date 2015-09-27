@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <response>
+    <result code="1000">
+      <msg>Command completed successfully</msg>
+    </result>
+    <resData>
+      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+        <nv:input>
+         <nv:dnv>
+           <nv:name>example</nv:name>
+         </nv:dnv>
+         <nv:authInfo>
+           <nv:pw>2fooBAR</nv:pw>
+         </nv:authInfo>
+       </nv:input>
+      </nv:infData>
+    </resData>
+    <trID>
+      <clTRID>ABC-12345</clTRID>
+      <svTRID>54322-XYZ</svTRID>
+    </trID>
+  </response>
+</epp>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <command>
+    <info>
+      <nv:info xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"
+        type="signedCode">
+        <nv:code>abc-123</nv:code>
+        <nv:authInfo>
+          <nv:pw>2fooBAR</nv:pw>
+        </nv:authInfo>
+      </nv:info>
+    </info>
+    <clTRID>ABC-12345</clTRID>
+  </command>
+</epp>      

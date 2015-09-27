@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <command>
+    <check>
+      <nv:check xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+        <nv:name>example1</nv:name>
+        <nv:name>example2</nv:name>
+        <nv:name>example3</nv:name>
+      </nv:check>
+    </check>
+    <clTRID>ABC-12345</clTRID>
+  </command>
+</epp>

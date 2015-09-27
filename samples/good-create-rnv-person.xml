@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <command>
+    <create>
+     <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"> 
+       <nv:rnv role="person">
+         <nv:name>John Xie</nv:name>
+         <nv:num>1234567890</nv:num>
+         <nv:proofType>poe</nv:proofType>   
+         <nv:document>
+           <nv:fileType>jpg</nv:fileType>
+           <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
+           </nv:fileContent>
+         </nv:document>
+       </nv:rnv>
+       <nv:authInfo>
+         <nv:pw>2fooBAR</nv:pw>
+       </nv:authInfo>
+      </nv:create>
+    </create>
+    <clTRID>ABC-12345</clTRID>
+  </command>
+</epp>
+  
