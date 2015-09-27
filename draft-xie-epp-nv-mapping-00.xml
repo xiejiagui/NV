@@ -1,0 +1,1783 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC3688 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3688.xml">
+<!ENTITY RFC5730 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5730.xml">
+]>
+
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+<?rfc strict="yes"?>
+<?rfc toc="yes"?>
+<?rfc tocdepth="4"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes" ?>
+<?rfc compact="yes" ?>
+<?rfc subcompact="no" ?>
+
+<rfc category="info" docName="draft-xie-epp-nv-mapping-00" ipr="pre5378Trust200902">
+  <!-- category values: std, bcp, info, exp, and historic -->
+
+  <front>
+    <title abbrev="EPP NV Mapping">
+Extensible Provisioning Protocol (EPP) China Name Verification Mapping
+    </title>
+
+    <author fullname="Xie Jiagui" initials="X" surname="Jiagui">
+      <organization>Teleinfo</organization>
+      <address>
+      <postal>
+        <street>1#-21,gaolizhang Street,Haidian District</street>
+        <city>Beijing</city>
+        <region>Beijing</region>
+        <code>100095</code>
+        <country>China</country>
+      </postal>
+      <phone>+86 10 5884 6931</phone>
+      <email>xiejiagui@teleinfo.cn</email>
+      </address>
+    </author>
+	
+	<author fullname="James Gould" initials="J" surname="Gould">
+      <organization>VeriSign, Inc.</organization>
+      <address>
+      <postal>
+        <street>12061 Bluemont Way</street>
+        <city>Reston</city>
+        <region>VA</region>
+        <code>20190</code>
+        <country>USA</country>
+      </postal>
+      <phone></phone>
+      <email>jgould@verisign.com</email>
+      </address>
+    </author>
+	
+    <author fullname="Liu Hongyan" initials="L" surname="Hongyan">
+      <organization>Teleinfo</organization>
+      <address>
+      <postal>
+        <street>1#-21,gaolizhang Street,Haidian District</street>
+        <city>Beijing</city>
+        <region>Beijing</region>
+        <code>100095</code>
+        <country>China</country>
+      </postal>
+      <phone>+86 10 5884 6931</phone>
+      <email>liuhongyan@teleinfo.cn</email>
+      </address>
+    </author>       
+               
+    <date month="September" year="2015" />
+
+    <area>Internet</area>
+
+    <workgroup>Internet Engineering Task Force</workgroup>
+
+    <keyword>epp name verification mapping</keyword>
+
+    <abstract>
+      <t>
+This document describes an Extensible Provisioning Protocol (EPP)
+for the provisioning and management of Name Verification (NV) stored in a shared
+central repository.  Specified in XML, the mapping defines EPP command 
+syntax and semantics as applied to name verification.
+      </t>
+    </abstract>
+  </front>
+
+  <middle>
+    <section title="Introduction">
+      <t>
+When creating a domain name which will be stored in a shared central
+repository, some registry administrative organizations require the 
+verification of the domain name and the real name based on legal or policy
+requirements.
+      </t>
+      <t>
+The domain name verification, means to verify the domain label is in
+compliance with laws, rules and regulations.  The real name
+verification, means to verify that the registrant really exists and is authorized to register a domain name.			
+      </t>
+      <t>
+In order to meet above requirements of the domain name registration, this document describes the 
+Extensible Provisioning Protocol (EPP) Name Verification (NV) Mapping. This document is specified 
+using the Extensible Markup Language (XML) 1.0 as described in 
+<xref target="W3C.REC-xml-20040204"></xref> and XML Schema notation as described in 
+<xref target="W3C.REC-xmlschema-1-20041028"></xref> and 
+<xref target="W3C.REC-xmlschema-2-20041028"></xref>. 							
+      </t>
+      <t>
+The EPP core protocol specification <xref target="RFC5730"></xref> provides a complete description 
+of EPP command and response structures. A thorough understanding of the base protocol specification 
+is necessary to understand the mapping described in this document.  					
+      </t>     
+    </section>
+
+    <section title="Terminology">
+      <t>
+          The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", 
+          "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be 
+          interpreted as described in <xref target="RFC2119"></xref>.
+      </t>
+      <t>
+          "nv-1.0" in this document is used as an abbreviation for 
+          urn:ietf:params:xml:ns:nv-1.0.
+		  The XML namespace prefix "nv" is used, but implementations MUST NOT 
+		  depend on it and instead employ a proper namespace-aware XML parser 
+		  and serializer to interpret and output the XML documents.
+      </t>
+      <t>     
+      	  In examples, "C:" represents lines sent by a protocol client and "S:"
+          represents lines returned by a protocol server. Indentation and white 
+          space in examples are provided only to illustrate element relationships
+          and are not a REQUIRED feature of this specification.
+      </t>
+      <t> 
+		  XML is case sensitive.  Unless stated otherwise, XML specifications 
+		  and examples provided in this document MUST be interpreted in the 
+		  character case presented to develop a conforming implementation.
+      </t>      
+    </section>
+
+    <section title="Definitions and Object Attributes">
+      <section title="Definitions">
+	  <t>
+          The following definitions are used in this document:         
+      </t>
+      <t>
+          <list style="symbols">
+
+            <t>
+Domain Name Verification(DNV), represents the verification of the domain's
+label is in compliance with laws, rules and regulations.
+            </t>
+            <t>
+Real Name Verification(RNV), represents the verification of the registrant(real name) is in
+compliance with laws, rules and regulations.
+            </t>     
+		             <t>
+Name Verification(NV), represents DNV, RNV or both of them.
+            </t>	
+
+<t>
+Verification Code, which is described in "verisign_epp-extension_verificationcode",is 
+a formatted token, referred to as the Verification Code Token, 
+that is digitally signed by a Verification Service Provider (VSP) using XML Signature
+in "W3C.CR-xmldsig-core2-20120124".
+</t>
+
+<t>
+Signed Code, which is described in "verisign_epp-extension_verificationcode", 
+is the XML Signature format of the Verification Code.
+</t>	
+
+<t>
+Encoded Signed Code,  which is described in "verisign_epp-extension_verificationcode", 
+is the "base64" encoded XML Signature format of the Verification Code.
+</t>		
+<t>
+Prohibited Name(PN),TBD.
+</t>
+<t>
+Reserved Name(RN),TBD.
+</t>	
+          </list>          
+      </t>
+	  </section>
+	  <section title="Object Attributes">
+	  <t>
+	An EPP NV object has attributes and associated values that can be
+   viewed and modified by the sponsoring client or the server.  This
+   section describes each attribute type in detail.  The formal syntax
+   for the attribute values described here can be found in the "Formal
+   Syntax" section of this document and in the appropriate normative
+   references.
+	  </t>
+	  <t>
+          <list style="symbols">
+		  <t>
+   Status Values.
+   A NV object MUST always have one associated status
+   value. The Status value can be set only by the server. 
+   The status value MAY be accompanied by a string
+   of human-readable text that describes the rationale for the status
+   applied to the object. The status of an object MAY change as a result of
+   an action performed by a server operator.
+		   Status Value Descriptions:
+          <list style="symbols">
+		  <t>
+		  pendingCompliant.  The object verification is not complete and 
+		  is pending complete.  
+		  Please refer to section 4.3.  Offline Review of Requested Actions
+		  (reference) for details on handling offline review of of 
+		  NV objects with the pendingComplaint status.
+		  </t>
+		  <t>
+		  compliant.
+		  The object is in compliance with the policy.
+		  </t>
+		  		  <t>
+		  nonCompliant.
+		  The object is not in compliance with the policy.
+		  </t>
+		  </list>    
+		  </t>
+		  <t>
+
+   Dates and Times.  Date and time attribute values MUST be represented in Universal
+   Coordinated Time (UTC) using the Gregorian calendar.  The extended
+   date-time form using upper case "T" and "Z" characters defined in
+   <xref target="W3C.REC-xmlschema-2-20041028"></xref> MUST be used to represent date-time
+   values, as XML Schema does not support truncated date-time forms or
+   lower case "T" and "Z" characters.
+		  </t>
+		  <t>
+		  Authorization Information.
+   Authorization information is associated with NV objects to
+   facilitate query operations.  Authorization information is
+   assigned when a NV object is created, and it might be updated in
+   the future.  This specification describes password-based
+   authorization information, though other mechanisms are possible.
+		  </t>
+		  </list>          
+      </t>
+	  </section>
+    
+<section title="Name Verification Proofs">
+<t>
+When doing name verification, some verification service providers(VSP) MAY need to collect
+the proof materials to verify the real name of a registrant. The proof of materials were defined 
+and listed below.
+</t>
+<t>
+<list style="symbols">
+<t>
+Proof of Citizen(POC), in this document the POC represents the citizen's identification card(ID) material.
+</t>
+<t>
+Proof of Enterprise(POE), in this document the POE represents the Organization Code Certificate(OCC) or
+Business License(BL) material.
+</t>
+<t>
+Proof of Other Types(POOT),in this document the POOT represents other certificate materials except the POC and POE.
+</t>
+</list>
+</t>
+</section>
+
+</section>
+	
+    <section title="EPP Command Mapping">
+      <t>      
+				A detailed description of the EPP syntax and semantics can be found
+  				in the EPP core protocol specification <xref target="RFC5730"></xref>.  
+  				The command mappings described here are specifically for use in 
+  				provisioning and managing NV via EPP.
+      </t>
+      <section title="EPP Query Commands">
+<t>
+   EPP provides three commands to retrieve NV information: &lt;check&gt;
+   determine if an object is known to the server, 
+   &lt;info&gt; to retrieve detailed information associated with an object, and &lt;transfer&gt; to retrieve object transfer
+   status information.
+</t>
+<section title="EPP &lt;check&gt; Command">
+<t>
+   The EPP &lt;check&gt; command is used to determine if the domain's label can be
+   used to create a DNV object. It provides a hint that allows a
+   client to anticipate the success or failure of creating a DNV object
+   using the &lt;create&gt; command.
+</t>
+ <t>
+   In addition to the standard EPP command elements, the &lt;check&gt; command
+   MUST contain a &lt;nv:check&gt; element that identifies the nv
+   namespace. The &lt;nv:check&gt; element contains the following child
+   elements:
+</t>
+<t>
+<list style="symbols">
+<t>
+One or more &lt;nv:name&gt; elements that contain the domain labels to be queried.
+</t>
+</list>
+</t>
+
+         
+ 			<figure>
+ 			<artwork><![CDATA[     
+   Example <check> command:
+
+   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   C:  <command>
+   C:    <check>
+   C:      <nv:check xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   C:        <nv:name>example1</nv:name>
+   C:        <nv:name>example2</nv:name>
+   C:        <nv:name>example3</nv:name>
+   C:      </nv:check>
+   C:    </check>
+   C:    <clTRID>ABC-12345</clTRID>
+   C:  </command>
+   C:</epp>
+    	]]></artwork>
+      </figure>   	           
+           <t>
+   When a &lt;check&gt; command has been processed successfully, the EPP
+   &lt;resData&gt; element MUST contain a child &lt;nv:chkData&gt; element that
+   identifies the NV namespace.  The &lt;nv:chkData&gt; element
+   contains one or more &lt;nv:cd&gt;elements that contain the following
+   child elements:
+           </t>  
+      	   <t>
+		   
+          	   <list style="symbols">
+               <t>
+A &lt;nv:name&gt; element that contains the queried domain label.  This element MUST contain an "avail"
+      attribute whose value indicates object availability (can it be
+      created or not) at the moment the &lt;check&gt; command was
+      completed.  A value of "1" or "true" means that the object can be
+      created.  A value of "0" or "false" means that the object can
+      not be created. This element SHOULD contain an "reserved"
+      attribute whose value indicates this name is an RN or not, 
+	  with a default value of "0".  A value of "1" or "true" 
+      means that the object is an RN Name.  A value of "0" or "false" means 
+      that the object is not restricted. 
+</t>
+<t>
+An OPTIONAL &lt;nv:reason&gt; element that MAY be provided when an
+      object cannot be created.  If present, this element contains
+      server-specific text to help explain why the object cannot be
+      created.  This text MUST be represented in the response
+      language previously negotiated with the client; an OPTIONAL "lang"
+      attribute MAY be present to identify the language if the
+      negotiated value is something other than the default value of "en"
+      (English).
+</t>
+   </list>
+   </t>
+ 			<figure>
+ 			<artwork><![CDATA[     
+   Example <check> response:
+
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1000">
+   S:      <msg>Command completed successfully</msg>
+   S:    </result>
+   S:    <resData>
+   S:      <nv:chkData
+   S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:        <nv:cd>
+   S:          <nv:name avail="1">example1</nv:name>
+   S:        </nv:cd>
+   S:        <nv:cd>
+   S:          <nv:name avail="0">example2</nv:name>
+   S:          <nv:reason>In Prohibited Lists.</nv:reason>
+   S:        </nv:cd>
+   S:        <nv:cd>
+   S:          <nv:name avail="0",reserved="1">example3</nv:name>
+   S:        </nv:cd>
+   S:      </nv:chkData>
+   S:    </resData>
+   S:    <trID>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54322-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
+    	]]></artwork>
+      </figure> 
+<t>
+An EPP error response MUST be returned if an &lt;check&gt; command cannot be processed for any 
+reason.
+</t>	  
+</section>
+
+      	<section title="EPP &lt;info&gt; Command">
+		
+		        <t>				
+   The EPP &lt;info&gt; command is used to retrieve information associated
+   with a NV object. The response to this command MAY vary
+   depending on the identity of the querying client, and server policy towards unauthorized
+   clients.  If the querying client is the sponsoring client, all
+   available information MUST be returned. If the querying client is
+   not the sponsoring client but the client provides valid authorization
+   information, all available information MUST be returned. If the
+   querying client is not the sponsoring client and the client does not
+   provide valid authorization information, server policy determines
+   which OPTIONAL elements are returned.
+	</t>
+	<t>
+   In addition to the standard EPP command elements, the &lt;info&gt; command
+   MUST contain a &lt;nv:info&gt; element that identifies the NV
+   namespace.  The &lt;nv:info&gt; element contains the following child
+   elements:
+   </t>
+      	   <t>
+          	   <list style="symbols">
+               <t>
+   A &lt;nv:code&gt; element that contains the Verification Code Token value.
+   An "type" attribute MUST be used to identify the type of the query(Signed Code or Input Data).
+   If the type is "signedCode",the response of the server MUST be the Signed Code of the verification code.
+  If the type is "input",the response of the server MUST be the verification input data and the verification status.
+               </t>      
+<t>
+An OPTIONAL &lt;nv:authInfo&gt; element that contains authorization
+      information associated with the NV object. If this element is not provided or
+      if the authorization information is invalid, server policy
+      determines if the command is rejected or if response information
+      will be returned to the client.
+</t>			   
+               </list>          
+          </t>           
+ <figure>
+ 			<artwork><![CDATA[     
+   Example <info> command to query the signed code:
+
+   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   C:  <command>
+   C:    <info>
+   C:      <nv:info xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   C:        <nv:code type="signedCode">abc-123</nv:name>
+   C:      </nv:info>
+   C:    </info>
+   C:    <clTRID>ABC-12345</clTRID>
+   C:  </command>
+   C:</epp>
+
+   Example <info> command to query the input data:
+
+   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   C:  <command>
+   C:    <info>
+   C:      <nv:info xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   C:        <nv:code type="input">abc-123</nv:name>
+   C:      </nv:info>
+   C:    </info>
+   C:    <clTRID>ABC-12345</clTRID>
+   C:  </command>
+   C:</epp>  
+
+   Example <info> command with authorization information:
+
+   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   C:  <command>
+   C:    <info>
+   C:      <nv:info xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   C:        <nv:code type="signedCode">abc-123</nv:name>
+   C:        <nv:authInfo>
+   C:          <nv:pw>2fooBAR</nv:pw>
+   C:        </nv:authInfo>
+   C:      </nv:info>
+   C:    </info>
+   C:    <clTRID>ABC-12345</clTRID>
+   C:  </command>
+   C:</epp>      
+     	]]></artwork>
+      </figure>   	           	           
+           <t>
+   When an &lt;info&gt; command has been processed successfully, the EPP
+   &lt;resData&gt; element MUST contain a child &lt;nv:infData&gt; element that
+   identifies the nv namespace.
+   The &lt;nv:infData&gt; element has two forms based on the query type provided in the command:
+   the Signed Code Form and the Input Form. The child element of 
+   the &lt;nv:infData&gt; element is defined for each form. 
+   </t>
+	<t>
+The Signed Code Form is returned when the command "type" attribute is set
+to "signedCode".  The &lt;nv:signedCode&gt; element is used for
+the Signed Code Form that contains the following child elements:
+          	   <list style="symbols">
+	<t>
+	A &lt;nv:code&gt; element that contains the Verification Code Token value of the signed code with 
+	the "type" attribute to indicate the type of NV object.  
+	The "type" attribute value of "domain" indicates a DNV object and "real-name" indicates a RNV object.
+	</t>
+	<t>
+	 An &lt;nv:status&gt; elements that contain the
+      current status associated with the NV.
+	</t> 
+<t>
+A &lt;verificationCode:encodedSignedCode&gt; element include:
+   <list style="symbols">
+<t>
+A &lt;verificationCode:code&gt;element that is an "base64" encoded form of the digitally signed
+&lt;verificationCode:signedCode&gt;.
+				</t>
+               </list>  
+</t>			   
+               </list>    			   
+          </t>           
+ 			<figure>
+ 			<artwork><![CDATA[     
+
+   Example <info> response of a Signed Code:
+
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1000">
+   S:      <msg>Command completed successfully</msg>
+   S:    </result>
+   S:    <resData>
+   S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:        <nv:signedCode>
+   S:          <nv:code type="domain">abc-123</nv:code>
+   S:          <nv:status>compliant</nv:status>
+   S:          <verificationCode:encodedSignedCode
+   S:            xmlns:verificationCode=
+   S:            "urn:ietf:params:xml:ns:verificationCode-1.0">
+   S:            <verificationCode:code>
+   S:ICAgICAgPHZlcmlmaWNhdGlvbkNvZGU6c2lnbmVkQ29kZQogICAgICAgIHhtbG5z
+   S:OnZlcmlmaWNhdGlvbkNvZGU9CiAgICAgICAgICAidXJuOmlldGY6cGFyYW1zOnht
+   S:bDpuczp2ZXJpZmljYXRpb25Db2RlLTEuMCIKICAgICAgICAgIGlkPSJzaWduZWRD
+   S:b2RlIj4KICAgCQk8dmVyaWZpY2F0aW9uQ29kZTpjb2RlPjEtYWJjMTIzPC92ZXJp
+   S:ZmljYXRpb25Db2RlOmNvZGU+CiAgPFNpZ25hdHVyZSB4bWxucz0iaHR0cDovL3d3
+   S:dy53My5vcmcvMjAwMC8wOS94bWxkc2lnIyI+CiAgIDxTaWduZWRJbmZvPgogICAg
+   S:PENhbm9uaWNhbGl6YXRpb25NZXRob2QKIEFsZ29yaXRobT0iaHR0cDovL3d3dy53
+   S:My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8+CiAgICA8U2lnbmF0dXJlTWV0
+   S:aG9kCiBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZHNp
+   S:Zy1tb3JlI3JzYS1zaGEyNTYiLz4KICAgIDxSZWZlcmVuY2UgVVJJPSIjc2lnbmVk
+   S:Q29kZSI+CiAgICAgPFRyYW5zZm9ybXM+CiAgICAgIDxUcmFuc2Zvcm0KIEFsZ29y
+   S:aXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnI2VudmVsb3Bl
+   S:ZC1zaWduYXR1cmUiLz4KICAgICA8L1RyYW5zZm9ybXM+CiAgICAgPERpZ2VzdE1l
+   S:dGhvZAogQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGVu
+   S:YyNzaGEyNTYiLz4KIDxEaWdlc3RWYWx1ZT53Z3lXM25aUG9FZnBwdGxoUklMS25P
+   S:UW5iZHRVNkFyTTdTaHJBZkhnREZnPTwvRGlnZXN0VmFsdWU+CiAgICA8L1JlZmVy
+   S:ZW5jZT4KICAgPC9TaWduZWRJbmZvPgogICA8U2lnbmF0dXJlVmFsdWU+CiBqTXU0
+   S:UGZ5UUdpSkJGMEdXU0VQRkNKam15d0NFcVIyaDRMRCtnZTZYUStKbm1LRkZDdUNa
+   S:Uy8zU0xLQXgwTDF3CiBRREZPMmUwWTY5azJHNy9MR0UzN1gzdk9mbG9iRk0xb0d3
+   S:amE4K0dNVnJhb3RvNXhBZDQvQUY3ZUh1a2dBeW1ECiBvOXRveG9hMmgweVY0QTRQ
+   S:bVh6c1U2Uzg2WHRDY1VFK1MvV003Mm55bjQ3em9VQ3p6UEtIWkJSeWVXZWhWRlEr
+   S:CiBqWVJNSUFNek01N0hIUUErNmVhWGVmUnZ0UEVUZ1VPNGFWSVZTdWdjNE9VQVpa
+   S:d2JZY1pyQzZ3T2FRcXFxQVppCiAzMGFQT0JZYkF2SE1TbVdTUytoRmtic2hvbUpm
+   S:SHhiOTdURDJncmxZTnJRSXpxWGs3V2JIV3kyU1lkQStzSS9aCiBpcEpzWE5hNm9z
+   S:VFV3MUN6QTdqZndBPT0KICAgPC9TaWduYXR1cmVWYWx1ZT4KICAgPEtleUluZm8+
+   S:CiAgICA8WDUwOURhdGE+CiAgICA8WDUwOUNlcnRpZmljYXRlPgogTUlJRVNUQ0NB
+   S:ekdnQXdJQkFnSUJBakFOQmdrcWhraUc5dzBCQVFzRkFEQmlNUXN3Q1FZRFZRUUdF
+   S:d0pWVXpFTAogTUFrR0ExVUVDQk1DUTBFeEZEQVNCZ05WQkFjVEMweHZjeUJCYm1k
+   S:bGJHVnpNUk13RVFZRFZRUUtFd3BKUTBGTwogVGlCVVRVTklNUnN3R1FZRFZRUURF
+   S:eEpKUTBGT1RpQlVUVU5JSUZSRlUxUWdRMEV3SGhjTk1UTXdNakE0TURBdwogTURB
+   S:d1doY05NVGd3TWpBM01qTTFPVFU1V2pCc01Rc3dDUVlEVlFRR0V3SlZVekVMTUFr
+   S:R0ExVUVDQk1DUTBFeAogRkRBU0JnTlZCQWNUQzB4dmN5QkJibWRsYkdWek1SY3dG
+   S:UVlEVlFRS0V3NVdZV3hwWkdGMGIzSWdWRTFEU0RFaAogTUI4R0ExVUVBeE1ZVm1G
+   S:c2FXUmhkRzl5SUZSTlEwZ2dWRVZUVkNCRFJWSlVNSUlCSWpBTkJna3Foa2lHOXcw
+   S:QgogQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBby9jd3ZYaGJWWWwwUkRXV3ZveWVa
+   S:cEVUVlpWVmNNQ292VVZOZy9zdwogV2ludU1nRVdnVlFGcnoweEEwNHBFaFhDRlZ2
+   S:NGV2YlVwZWtKNWJ1cVUxZ21ReU9zQ0tRbGhPSFRkUGp2a0M1dQogcERxYTUxRmxr
+   S:MFRNYU1rSVFqczdhVUtDbUE0Ukc0dFRUR0svRWpSMWl4OC9EMGdIWVZSbGR5MVlQ
+   S:ck1QK291NwogNWJPVm5Jb3MrSGlmckF0ckl2NHFFcXdMTDRGVFpBVXBhQ2EyQm1n
+   S:WGZ5MkNTUlFieEQ1T3IxZ2NTYTN2dXJoNQogc1BNQ054cWFYbUlYbVFpcFMrRHVF
+   S:QnFNTTh0bGRhTjdSWW9qVUVLckdWc05rNWk5eTIvN3NqbjF6eXlVUGY3dgogTDRH
+   S:Z0RZcWhKWVdWNjFEblhneC9KZDZDV3h2c25ERjZzY3NjUXpVVEVsK2h5d0lEQVFB
+   S:Qm80SC9NSUg4TUF3RwogQTFVZEV3RUIvd1FDTUFBd0hRWURWUjBPQkJZRUZQWkVj
+   S:SVFjRC9CajJJRnovTEVSdW8yQURKdmlNSUdNQmdOVgogSFNNRWdZUXdnWUdBRk8w
+   S:LzdrRWgzRnVFS1MrUS9rWUhhRC9XNndpaG9XYWtaREJpTVFzd0NRWURWUVFHRXdK
+   S:VgogVXpFTE1Ba0dBMVVFQ0JNQ1EwRXhGREFTQmdOVkJBY1RDMHh2Y3lCQmJtZGxi
+   S:R1Z6TVJNd0VRWURWUVFLRXdwSgogUTBGT1RpQlVUVU5JTVJzd0dRWURWUVFERXhK
+   S:SlEwRk9UaUJVVFVOSUlGUkZVMVFnUTBHQ0FRRXdEZ1lEVlIwUAogQVFIL0JBUURB
+   S:Z2VBTUM0R0ExVWRId1FuTUNVd0k2QWhvQitHSFdoMGRIQTZMeTlqY213dWFXTmhi
+   S:bTR1YjNKbgogTDNSdFkyZ3VZM0pzTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFC
+   S:MnFTeTd1aSs0M2NlYktVS3dXUHJ6ejl5LwogSWtyTWVKR0tqbzQwbis5dWVrYXcz
+   S:REo1RXFpT2YvcVo0cGpCRCsrb1I2QkpDYjZOUXVRS3dub0F6NWxFNFNzdQogeTUr
+   S:aTkzb1QzSGZ5VmM0Z05NSW9IbTFQUzE5bDdEQktyYndiekFlYS8waktXVnpydm1W
+   S:N1RCZmp4RDNBUW8xUgogYlU1ZEJyNklqYmRMRmxuTzV4MEcwbXJHN3g1T1VQdXVy
+   S:aWh5aVVScEZEcHdIOEtBSDF3TWNDcFhHWEZSdEdLawogd3lkZ3lWWUF0eTdvdGts
+   S:L3ozYlprQ1ZUMzRnUHZGNzBzUjYrUXhVeTh1MEx6RjVBL2JlWWFacHhTWUczMWFt
+   S:TAogQWRYaXRUV0ZpcGFJR2VhOWxFR0ZNMEw5K0JnN1h6Tm40blZMWG9reUVCM2Jn
+   S:UzRzY0c2UXpuWDIzRkdrCiAgIDwvWDUwOUNlcnRpZmljYXRlPgogICA8L1g1MDlE
+   S:YXRhPgogICA8L0tleUluZm8+CiAgPC9TaWduYXR1cmU+CgkJPC92ZXJpZmljYXRp
+   S:b25Db2RlOnNpZ25lZENvZGU+Cg==
+   S:          </verificationCode:code>
+   S:         </verificationCode:encodedSignedCode>
+   S:       </nv:signedCode>
+   S:       <nv:authInfo>
+   S:         <nv:pw>2fooBAR</nv:pw>
+   S:       </nv:authInfo>
+   S:      </nv:infData>
+   S:    </resData>
+   S:    <trID>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54322-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
+     	]]></artwork>
+      </figure> 
+           <t>
+The Input Code Form is returned when the 
+command "type" attribute is set to "input".
+The &lt;nv:input&gt; element is used for the Input Form and contains 
+a choice of two different child elements dependent on the type of NV object 
+that matches the &lt;nv:code&gt; in the command.  The &lt;nv:dnv&gt; child element
+is used for a DNV object and the &lt;nv:rnv&gt; child element is used for a RNV object.
+</t>
+<t>
+The &lt;nv:dnv&gt; element is used for a DNV object and contains the following child elements: 
+           </t> 
+      	   <t>  
+   <list style="symbols">
+   <t>
+   A &lt;nv:name&gt; element that contains the label of the domain.
+   </t>
+   <t>
+   An OPTIONAL &lt;nv:rnvCode&gt; element containing the Verification Code Token value of a RNV object used for verification of a Reserved Name.  
+    </t>
+   </list>
+   </t>	
+  
+           
+ 			<figure>
+ 			<artwork><![CDATA[     
+
+   Example <info> response of a DNV:
+
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1000">
+   S:      <msg>Command completed successfully</msg>
+   S:    </result>
+   S:    <resData>
+   S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:        <nv:input>
+   S:         <nv:dnv>
+   S:           <nv:name>example</nv:name>
+   S:         </nv:dnv>
+   S:       </nv:input>
+   S:       <nv:authInfo>
+   S:         <nv:pw>2fooBAR</nv:pw>
+   S:       </nv:authInfo>
+   S:      </nv:infData>
+   S:    </resData>
+   S:    <trID>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54322-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
+     	]]></artwork>
+      </figure>   	 		   
+
+               <t>
+	The &lt;nv:rnv&gt; element is used for a RNV object.
+	The "role" attribute MUST be used to identify the role of the RNV object with the possible values of "person"
+	or "organization".
+	</t>
+	<t>
+	The &lt;nv:rnv&gt; element contains the following child elements:  		   
+   <list style="symbols">
+      <t>
+      A &lt;nv:name&gt; element that contains the full name of the contact.
+   </t>
+
+         <t>
+      A &lt;nv:num&gt; element that contains the citizen or the organization ID of the contact.
+   </t>
+<t>
+ A &lt;nv:proofType&gt; element that contains the proof material type of the of the contact.
+</t>
+         <t>
+    Zero or more &lt;nv:document&gt; element that contains the following child elements:
+
+   <list style="symbols">
+   <t>
+   A &lt;nv:fileType&gt; element contains the type of the file.
+   </t>
+      <t>
+   A &lt;nv:fileContent&gt; element contains the "base64" encoded content of the file.
+   </t>
+   </list>
+   </t>
+   </list>
+   </t>          
+ 			<figure>
+ 			<artwork><![CDATA[     
+
+   Example <info> response of an RVN person:
+
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1000">
+   S:      <msg>Command completed successfully</msg>
+   S:    </result>
+   S:    <resData>
+   S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:        <nv:input>
+   S:         <nv:rnv role="person">
+   S:           <nv:name>John Xie</nv:name>
+   S:           <nv:num>1234567890</nv:num>
+   S:           <nv:proofType>poc</nv:proofType>
+   S:           <nv:document>
+   S:             <nv:fileType>jpg</nv:fileType>
+   S:             <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
+   S:               </nv:fileContent>
+   S:           </nv:document>
+   S:         </nv:rnv>
+   S:        </nv:input>
+   S:       <nv:authInfo>
+   S:         <nv:pw>2fooBAR</nv:pw>
+   S:       </nv:authInfo>   
+   S:      </nv:infData>
+   S:    </resData>
+   S:    <trID>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54322-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
+   
+   Example <info> response of an RNV organization:
+
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1000">
+   S:      <msg>Command completed successfully</msg>
+   S:    </result>
+   S:    <resData>
+   S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:       <nv:input>
+   S:        <nv:rnv role="org">
+   S:         <nv:name>John Xie</nv:name>
+   S:         <nv:num>1234567890</nv:num>
+   S:         <nv:proofType>poe</nv:proofType>   
+   S:         <nv:document>
+   S:          <nv:fileType>jpg</nv:fileType>
+   S:          <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
+   S:            </nv:fileContent>
+   S:         </nv:document>
+   S:        </nv:rnv>
+   S:       </nv:input>
+   S:       <nv:authInfo>
+   S:         <nv:pw>2fooBAR</nv:pw>
+   S:       </nv:authInfo>   
+   S:      </nv:infData>
+   S:    </resData>
+   S:    <trID>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54322-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
+    	]]></artwork>
+      </figure> 
+<t>
+A server with a different information-return policy MAY provide less
+information in a response for an unauthorized client.
+</t>	  
+           <t>
+An EPP error response MUST be returned if an &lt;info&gt; command cannot be processed for any 
+reason.
+           </t>                                    
+      	</section>
+		
+<section title="EPP &lt;transfer&gt; Command">
+<t>
+Transfer semantics do not apply to Name Verification (NV) objects,
+ so there is no mapping defined for the EPP &lt;transfer&gt; command.
+</t>
+</section>		
+      </section>
+      <section title="EPP Transform Commands">
+        <t>
+   EPP provides five commands to transform NV objects: &lt;create&gt; to
+   create an instance of an object, &lt;delete&gt; to delete an instance
+   of an object, &lt;renew&gt; to extend the validity period of an
+   object, &lt;transfer&gt; to manage object sponsorship changes, and
+   &lt;update&gt; to change information associated with an object.		
+	    </t>
+      	<section title="EPP &lt;create&gt; Command">
+           <t>
+   The EPP &lt;create&gt; command provides a transform operation that allows a
+   client to create an NV object.  In addition to the standard EPP
+   command elements, the &lt;create&gt; command MUST contain a &lt;nv:create&gt;
+   element that identifies the NV namespace.  
+   The &lt;nv:create&gt; elements contains a choice 
+   of two different child elements dependent on 
+   the type of NV object to create.  The &lt;nv:dnv&gt; child element 
+   is used to create a DNV object and the &lt;nv:rnv&gt; child element is used to create a RNV object. 
+   AN &lt;nv:authInfo&gt; element contains authorization information to be associated with the NV object.
+          	   <list style="symbols">
+               <t>
+The &lt;nv:dnv&gt; element is used for a DNV object and contains the following child elements: 
+  
+   <list style="symbols">
+   <t>
+   A &lt;nv:name&gt; element that contains the label of the domain.
+   </t>
+   <t>
+    An OPTIONAL &lt;nv:rnvCode&gt; element containing the Verification Code Token value of a RNV object used for verification of a Reserved Name. 
+   </t>
+   </list>
+   </t>
+
+   <t>
+   The &lt;nv:rnv&gt; element is used for a RNV object.  
+   The "role" attribute MUST be used to identify the role of the RNV object with the possible 
+   values of "person" or "organization".  The &lt;nv:rnv&gt; element contains the following child elements:
+   <list style="symbols">
+      <t>
+      A &lt;nv:name&gt; element that contains the full name of the contact.
+   </t>
+         <t>
+      A &lt;nv:num&gt; element that contains the citizen or the organization ID of the contact.
+   </t>
+   <t>
+ A &lt;nv:proofType&gt; element that contains the proof material type of the of the contact.
+</t>
+         <t>
+      Zero or more &lt;nv:document&gt; element that contains the following child elements:
+
+   <list style="symbols">
+   <t>
+   A &lt;nv:fileType&gt; element contains the type of the file.
+   </t>
+      <t>
+   A &lt;nv:fileContent&gt; element contains the "base64" encoded content of the file.
+   </t>
+   </list>
+   </t>
+   </list>
+   </t>
+    
+   </list>
+   </t>
+         
+ 			<figure>
+ 			<artwork><![CDATA[     
+   Example <create> command for a DNV object:
+
+   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   C:  <command>
+   C:    <create>
+   C:      <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   C:       <nv:dnv>
+   C:         <nv:name>example</nv:name>
+   C:       </nv:dnv>
+   C:       <nv:authInfo>
+   C:         <nv:pw>2fooBAR</nv:pw>
+   C:       </nv:authInfo>
+   C:      </nv:create>
+   C:    </create>
+   C:    <clTRID>ABC-12345</clTRID>
+   C:  </command>
+   C:</epp>
+   
+   Example <create> command for a RNV person object:
+
+   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   C:  <command>
+   C:    <create>
+   C:     <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0" 
+   C:       <nv:rnv role="person">
+   C:         <nv:name>John Xie</nv:name>
+   C:         <nv:num>1234567890</nv:num>
+   C:         <nv:proofType>poe</nv:proofType>   
+   C:         <nv:document>
+   C:           <nv:fileType>jpg</nv:fileType>
+   C:           <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
+   C:            </nv:fileContent>
+   C:         </nv:document>
+   C:       </nv:rnv>
+   C:       <nv:authInfo>
+   C:         <nv:pw>2fooBAR</nv:pw>
+   C:       </nv:authInfo>
+   C:      </nv:create>
+   C:    </create>
+   C:    <clTRID>ABC-12345</clTRID>
+   C:  </command>
+   C:</epp>
+   
+   Example <create> command for an RNV organization:
+
+   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   C:  <command>
+   C:    <create>
+   C:      <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   C:       <nv:rnv role="org">
+   C:        <nv:name>John Xie</nv:name>
+   C:        <nv:num>1234567890</nv:num>
+   C:        <nv:proofType>poe</nv:proofType>      
+   C:        <nv:document>
+   C:         <nv:fileType>jpg</rnv:fileType>
+   C:         <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
+   C:	       </nv:fileContent>
+   C:        </nv:document>
+   C:       </nv:rnv>
+   C:       <nv:authInfo>
+   C:         <nv:pw>2fooBAR</nv:pw>
+   C:       </nv:authInfo>   
+   C:      </nv:create>
+   C:    </create>
+   C:    <clTRID>ABC-12345</clTRID>
+   C:  </command>
+   C:</epp>
+    	]]></artwork>
+      </figure>   	           
+           <t>
+   When a &lt;create&gt; command has been processed successfully, the EPP
+   &lt;resData&gt; element MUST contain a child &lt;nv:creData&gt; element that
+   identifies the nv namespace. &lt;nv:creData&gt; element
+   contains the either a &lt;nv:success&gt; element on success or a &lt;nv:failed&gt; element on failure.
+           </t>  
+      	   <t>
+		   
+          	   <list style="symbols">
+               <t>
+   The &lt;nv:success&gt; element contains the following child elements:
+  
+   <list style="symbols">
+      <t>
+   A &lt;nv:code&gt; element that contains the id of the verification code.
+   </t>
+   <t>
+	 Zero or more OPTIONAL &lt;nv:status&gt; elements that contain the
+      current status descriptors associated with the NV.
+</t>   
+	<t>
+A  &lt;nv:crDate&gt; element that contains the date and time of nv object creation.
+</t> 
+<t>
+A &lt;verificationCode:encodedSignedCode&gt; element include:
+ 
+   <list style="symbols">
+<t>
+A &lt;verificationCode:code&gt;element that is an "base64" encoded form of the digitally signed
+&lt;verificationCode:signedCode&gt;.
+				</t>
+               </list>  
+</t>
+   </list>
+   </t>
+
+               <t>
+   The &lt;nv:failed&gt; element contains the following child elements:
+ 
+   <list style="symbols">
+   <t>
+	 Zero or more OPTIONAL &lt;nv:status&gt; elements that contain the
+      current status descriptors associated with the NV.
+</t>
+<t>
+      A &lt;nv:msg&gt; element containing a human-readable description of the
+         reason of the failure.  The language of the response is identified via
+         an OPTIONAL "lang" attribute.  If not specified, the default
+         attribute value MUST be "en" (English).
+</t>
+
+   </list>
+   </t>
+    
+   </list>
+
+</t>
+ 			<figure>
+ 			<artwork><![CDATA[     
+   Example <create> response of success:
+
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1000">
+   S:      <msg>Command completed successfully</msg>
+   S:    </result>
+   S:    <resData>
+   S:      <nv:creData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:       <nv:success>
+   S:        <nv:code type="domain">abc-123</nv:code>
+   S:        <nv:crDate>2015-08-17T22:00:00.0Z</nv:crDate>
+   S:        <verificationCode:encodedSignedCode
+   S:         xmlns:verificationCode=
+   S:         "urn:ietf:params:xml:ns:verificationCode-1.0">
+   S:          <verificationCode:code>
+   S:ICAgICAgPHZlcmlmaWNhdGlvbkNvZGU6c2lnbmVkQ29kZQogICAgICAgIHhtbG5z
+   S:OnZlcmlmaWNhdGlvbkNvZGU9CiAgICAgICAgICAidXJuOmlldGY6cGFyYW1zOnht
+   S:bDpuczp2ZXJpZmljYXRpb25Db2RlLTEuMCIKICAgICAgICAgIGlkPSJzaWduZWRD
+   S:b2RlIj4KICAgCQk8dmVyaWZpY2F0aW9uQ29kZTpjb2RlPjEtYWJjMTIzPC92ZXJp
+   S:ZmljYXRpb25Db2RlOmNvZGU+CiAgPFNpZ25hdHVyZSB4bWxucz0iaHR0cDovL3d3
+   S:dy53My5vcmcvMjAwMC8wOS94bWxkc2lnIyI+CiAgIDxTaWduZWRJbmZvPgogICAg
+   S:PENhbm9uaWNhbGl6YXRpb25NZXRob2QKIEFsZ29yaXRobT0iaHR0cDovL3d3dy53
+   S:My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8+CiAgICA8U2lnbmF0dXJlTWV0
+   S:aG9kCiBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZHNp
+   S:Zy1tb3JlI3JzYS1zaGEyNTYiLz4KICAgIDxSZWZlcmVuY2UgVVJJPSIjc2lnbmVk
+   S:Q29kZSI+CiAgICAgPFRyYW5zZm9ybXM+CiAgICAgIDxUcmFuc2Zvcm0KIEFsZ29y
+   S:aXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnI2VudmVsb3Bl
+   S:ZC1zaWduYXR1cmUiLz4KICAgICA8L1RyYW5zZm9ybXM+CiAgICAgPERpZ2VzdE1l
+   S:dGhvZAogQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGVu
+   S:YyNzaGEyNTYiLz4KIDxEaWdlc3RWYWx1ZT53Z3lXM25aUG9FZnBwdGxoUklMS25P
+   S:UW5iZHRVNkFyTTdTaHJBZkhnREZnPTwvRGlnZXN0VmFsdWU+CiAgICA8L1JlZmVy
+   S:ZW5jZT4KICAgPC9TaWduZWRJbmZvPgogICA8U2lnbmF0dXJlVmFsdWU+CiBqTXU0
+   S:UGZ5UUdpSkJGMEdXU0VQRkNKam15d0NFcVIyaDRMRCtnZTZYUStKbm1LRkZDdUNa
+   S:Uy8zU0xLQXgwTDF3CiBRREZPMmUwWTY5azJHNy9MR0UzN1gzdk9mbG9iRk0xb0d3
+   S:amE4K0dNVnJhb3RvNXhBZDQvQUY3ZUh1a2dBeW1ECiBvOXRveG9hMmgweVY0QTRQ
+   S:bVh6c1U2Uzg2WHRDY1VFK1MvV003Mm55bjQ3em9VQ3p6UEtIWkJSeWVXZWhWRlEr
+   S:CiBqWVJNSUFNek01N0hIUUErNmVhWGVmUnZ0UEVUZ1VPNGFWSVZTdWdjNE9VQVpa
+   S:d2JZY1pyQzZ3T2FRcXFxQVppCiAzMGFQT0JZYkF2SE1TbVdTUytoRmtic2hvbUpm
+   S:SHhiOTdURDJncmxZTnJRSXpxWGs3V2JIV3kyU1lkQStzSS9aCiBpcEpzWE5hNm9z
+   S:VFV3MUN6QTdqZndBPT0KICAgPC9TaWduYXR1cmVWYWx1ZT4KICAgPEtleUluZm8+
+   S:CiAgICA8WDUwOURhdGE+CiAgICA8WDUwOUNlcnRpZmljYXRlPgogTUlJRVNUQ0NB
+   S:ekdnQXdJQkFnSUJBakFOQmdrcWhraUc5dzBCQVFzRkFEQmlNUXN3Q1FZRFZRUUdF
+   S:d0pWVXpFTAogTUFrR0ExVUVDQk1DUTBFeEZEQVNCZ05WQkFjVEMweHZjeUJCYm1k
+   S:bGJHVnpNUk13RVFZRFZRUUtFd3BKUTBGTwogVGlCVVRVTklNUnN3R1FZRFZRUURF
+   S:eEpKUTBGT1RpQlVUVU5JSUZSRlUxUWdRMEV3SGhjTk1UTXdNakE0TURBdwogTURB
+   S:d1doY05NVGd3TWpBM01qTTFPVFU1V2pCc01Rc3dDUVlEVlFRR0V3SlZVekVMTUFr
+   S:R0ExVUVDQk1DUTBFeAogRkRBU0JnTlZCQWNUQzB4dmN5QkJibWRsYkdWek1SY3dG
+   S:UVlEVlFRS0V3NVdZV3hwWkdGMGIzSWdWRTFEU0RFaAogTUI4R0ExVUVBeE1ZVm1G
+   S:c2FXUmhkRzl5SUZSTlEwZ2dWRVZUVkNCRFJWSlVNSUlCSWpBTkJna3Foa2lHOXcw
+   S:QgogQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBby9jd3ZYaGJWWWwwUkRXV3ZveWVa
+   S:cEVUVlpWVmNNQ292VVZOZy9zdwogV2ludU1nRVdnVlFGcnoweEEwNHBFaFhDRlZ2
+   S:NGV2YlVwZWtKNWJ1cVUxZ21ReU9zQ0tRbGhPSFRkUGp2a0M1dQogcERxYTUxRmxr
+   S:MFRNYU1rSVFqczdhVUtDbUE0Ukc0dFRUR0svRWpSMWl4OC9EMGdIWVZSbGR5MVlQ
+   S:ck1QK291NwogNWJPVm5Jb3MrSGlmckF0ckl2NHFFcXdMTDRGVFpBVXBhQ2EyQm1n
+   S:WGZ5MkNTUlFieEQ1T3IxZ2NTYTN2dXJoNQogc1BNQ054cWFYbUlYbVFpcFMrRHVF
+   S:QnFNTTh0bGRhTjdSWW9qVUVLckdWc05rNWk5eTIvN3NqbjF6eXlVUGY3dgogTDRH
+   S:Z0RZcWhKWVdWNjFEblhneC9KZDZDV3h2c25ERjZzY3NjUXpVVEVsK2h5d0lEQVFB
+   S:Qm80SC9NSUg4TUF3RwogQTFVZEV3RUIvd1FDTUFBd0hRWURWUjBPQkJZRUZQWkVj
+   S:SVFjRC9CajJJRnovTEVSdW8yQURKdmlNSUdNQmdOVgogSFNNRWdZUXdnWUdBRk8w
+   S:LzdrRWgzRnVFS1MrUS9rWUhhRC9XNndpaG9XYWtaREJpTVFzd0NRWURWUVFHRXdK
+   S:VgogVXpFTE1Ba0dBMVVFQ0JNQ1EwRXhGREFTQmdOVkJBY1RDMHh2Y3lCQmJtZGxi
+   S:R1Z6TVJNd0VRWURWUVFLRXdwSgogUTBGT1RpQlVUVU5JTVJzd0dRWURWUVFERXhK
+   S:SlEwRk9UaUJVVFVOSUlGUkZVMVFnUTBHQ0FRRXdEZ1lEVlIwUAogQVFIL0JBUURB
+   S:Z2VBTUM0R0ExVWRId1FuTUNVd0k2QWhvQitHSFdoMGRIQTZMeTlqY213dWFXTmhi
+   S:bTR1YjNKbgogTDNSdFkyZ3VZM0pzTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFC
+   S:MnFTeTd1aSs0M2NlYktVS3dXUHJ6ejl5LwogSWtyTWVKR0tqbzQwbis5dWVrYXcz
+   S:REo1RXFpT2YvcVo0cGpCRCsrb1I2QkpDYjZOUXVRS3dub0F6NWxFNFNzdQogeTUr
+   S:aTkzb1QzSGZ5VmM0Z05NSW9IbTFQUzE5bDdEQktyYndiekFlYS8waktXVnpydm1W
+   S:N1RCZmp4RDNBUW8xUgogYlU1ZEJyNklqYmRMRmxuTzV4MEcwbXJHN3g1T1VQdXVy
+   S:aWh5aVVScEZEcHdIOEtBSDF3TWNDcFhHWEZSdEdLawogd3lkZ3lWWUF0eTdvdGts
+   S:L3ozYlprQ1ZUMzRnUHZGNzBzUjYrUXhVeTh1MEx6RjVBL2JlWWFacHhTWUczMWFt
+   S:TAogQWRYaXRUV0ZpcGFJR2VhOWxFR0ZNMEw5K0JnN1h6Tm40blZMWG9reUVCM2Jn
+   S:UzRzY0c2UXpuWDIzRkdrCiAgIDwvWDUwOUNlcnRpZmljYXRlPgogICA8L1g1MDlE
+   S:YXRhPgogICA8L0tleUluZm8+CiAgPC9TaWduYXR1cmU+CgkJPC92ZXJpZmljYXRp
+   S:b25Db2RlOnNpZ25lZENvZGU+Cg==
+   S:         </verificationCode:code>
+   S:        </verificationCode:encodedSignedCode>
+   S:       <nv:success>
+   S:      </nv:creData>
+   S:    </resData>
+   S:    <trID>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54321-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
+   
+   Example <create> response of failed:
+
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1000">
+   S:      <msg>Command completed successfully</msg>
+   S:    </result>
+   S:    <resData>
+   S:     <nv:creData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:      <nv:failed>
+   S:        <nv:status>nonComplaint</nv:msg>
+   S:        <nv:msg>The name of the object is not correct.</nv:msg>
+   S:      </nv:failed>
+   S:     </nv:creData>
+   S:    </resData>
+   S:    <trID>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54321-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
+    	]]></artwork>
+      </figure> 
+<t>
+An EPP error response MUST be returned if an &lt;create&gt; command cannot be processed for any 
+reason.
+</t>	  
+      	</section>
+		
+<section title="EPP &lt;delete&gt; Command">
+<t>
+Delete semantics do not apply to Name Verification (NV) objects, 
+so there is no mapping defined for the EPP &lt;delete&gt; command.
+</t>
+</section>
+
+<section title="EPP &lt;renew&gt; Command">
+<t>
+Renew semantics do not apply to Name Verification (NV) objects, 
+so there is no mapping defined for the EPP &lt;renew&gt; command.
+</t>
+</section>
+<section title="EPP &lt;transfer&gt; Command">
+<t>
+Transfer semantics do not apply to Name Verification (NV) objects, 
+so there is no mapping defined for the EPP &lt;transfer&gt; command.
+</t>
+</section>
+<section title="EPP &lt;update&gt; Command">
+<t>
+   The EPP &lt;update&gt; command provides a transform operation that allows a
+   client to modify the attributes of a NV object.  In addition to
+   the standard EPP command elements, the &lt;update&gt; command MUST contain
+   a &lt;nv:update&gt; element that identifies the NV namespace.  The
+   &lt;nv:update&gt; element contains the following child elements:
+<list style="symbols">
+<t>
+A &lt;nv:code&gt; element that contains the code of the a NV object to be updated.
+</t>
+<t>
+A &lt;nv:chg&gt; element that contains object attribute values to be changed.
+</t>
+</list>
+</t>
+<t>
+A &lt;nv:chg&gt; element contains the following child elements:
+<list style="symbols">
+<t>
+A &lt;nv:authInfo&gt; element that contains authorization
+      information associated with the NV object.  This mapping
+      includes a password-based authentication mechanism, but the schema
+      allows new mechanisms to be defined in new schemas. 
+</t>
+</list>
+</t>
+ 			<figure>
+ 			<artwork><![CDATA[     
+   Example <update> command:
+
+   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   C:  <command>
+   C:    <update>
+   C:      <nv:update xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   C:        <nv:code>abc-123</nv:code>
+   C:        <nv:chg>
+   C:          <nv:authInfo>
+   C:            <nv:pw>2BARfoo</nv:pw>
+   C:          </nv:authInfo>
+   C:        </nv:chg>
+   C:      </nv:update>
+   C:    </update>
+   C:    <clTRID>ABC-12345</clTRID>
+   C:  </command>
+   C:</epp>
+
+   When an <update> command has been processed successfully, a server
+   MUST respond with an EPP response with no <resData> element.
+
+   Example <update> response:
+
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1000">
+   S:      <msg>Command completed successfully</msg>
+   S:    </result>
+   S:    <trID>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54321-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
+
+   An EPP error response MUST be returned if an <update> command cannot
+   be processed for any reason.
+    	]]></artwork>
+      </figure> 
+</section>	
+      </section>
+	  <section  title="Offline Review of Requested Actions">
+	  <t>
+   Commands are processed by a server in the order they are received
+   from a client.  Though an immediate response confirming receipt and
+   processing of the command is produced by the server, a server
+   operator MAY perform an offline review of requested transform
+   commands before completing the requested action.  In such situations,
+   the response from the server MUST clearly note that the transform
+   command has been received and processed but that the requested action
+   is pending.  The status of the corresponding object MUST clearly
+   reflect processing of the pending action.  The server MUST notify the
+   client when offline processing of the action has been completed.
+	  </t>
+	  <t>
+   Examples describing a &lt;create&gt; command that requires offline review
+   are included here.  Note the result code and message returned in
+   response to the &lt;create&gt; command.
+	  </t>
+<figure>
+<artwork><![CDATA[     
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1001">
+   S:      <msg>Command completed successfully; action pending</msg>
+   S:    </result>
+   S:    <resData>
+   S:      <nv:creData
+   S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:        <nv:pending>
+   S:          <nv:code>abc-123</nv:code>
+   S:          <nv:status>pendingComplaint</nv:status>
+   S:          <nv:crDate>2015-09-03T22:00:00.0Z</nv:crDate>
+   S:        </nv:pending>
+   S:      </nv:creData>
+   S:    </resData>
+   S:    <trID>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54321-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
+    	]]></artwork>
+      </figure> 	 
+<t>
+The status of the NV object after returning this response MUST
+   include "pendingCompliant".  The server operator reviews the request
+   offline, and informs the client of the outcome of the review either
+   by queuing a service message for retrieval via the &lt;poll&gt; command or
+   by using an out-of-band mechanism to inform the client of the
+   request.
+</t>
+<t>
+ The service message MUST contain text that describes the notification
+   in the child &lt;msg&gt; element of the response &lt;msgQ&gt; element.  In
+   addition, the EPP &lt;resData&gt; element MUST contain a child &lt;nv:panData&gt; 
+   element that identifies the NV namespace.  The &lt;nv:panData&gt; element contains the following child elements:
+   <list>
+   <t>
+A &lt;nv:code&gt; element that contains the code of the a NV object.   
+   </t>
+         <t>
+ A &lt;nv:paStatus&gt; element that contains the
+      current status descriptors associated with the NV.
+   </t>   
+   <t>
+     A &lt;nv:msg&gt; element containing a human-readable description of the
+         result.  The language of the response is identified via
+         an OPTIONAL "lang" attribute.  If not specified, the default
+         attribute value MUST be "en" (English).
+   </t> 
+
+      <t>
+ A &lt;nv:paDate&gt; element that contains the date and time
+      describing when review of the requested action was completed.
+   </t>   
+   </list>
+</t>
+<figure>
+<artwork><![CDATA[     
+   Example "review completed" service message:
+
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1301">
+   S:      <msg>Command completed successfully; ack to dequeue</msg>
+   S:    </result>
+   S:    <msgQ count="5" id="12345">
+   S:      <qDate>2015-09-04T22:01:00.0Z</qDate>
+   S:      <msg>Pending action completed successfully.</msg>
+   S:    </msgQ>
+   S:    <resData>
+   S:      <nv:panData
+   S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:        <nv:code>abc-123</nv:code>
+   S:        <nv:paStatus>complaint</nv:panStatus>
+   S:        <nv:msg>The object has passed verification,
+   S:			signed code was generated.</nv:msg>
+   S:        <nv:paDate>2015-09-04T22:00:00.0Z</nv:paDate>
+   S:      </nv:panData>
+   S:    </resData>
+   S:    <trID>
+   S:      <clTRID>BCD-23456</clTRID>
+   S:      <svTRID>65432-WXY</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
+    	]]></artwork>
+      </figure> 	  
+	  </section>
+	  </section>
+    <section title="Formal Syntax">
+      <t> 
+   An EPP object NV mapping is specified in XML Schema notation.  The
+   formal syntax presented here is a complete schema representation of
+   the object mapping suitable for automated validation of EPP XML
+   instances. The BEGIN and END tags are not part of the schema; they
+   are used to note the beginning and ending of the schema for URI
+   registration purposes.		       	
+      </t>  
+ <figure>
+ <artwork><![CDATA[
+   BEGIN
+   
+   <?xml version="1.0" encoding="UTF-8"?>
+
+   <schema targetNamespace="urn:ietf:params:xml:ns:nv-1.0"
+     xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"
+     xmlns:epp="urn:ietf:params:xml:ns:epp-1.0"
+     xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0"
+     xmlns:verificationCode="urn:ietf:params:xml:ns:verificationCode-1.0"
+     xmlns="http://www.w3.org/2001/XMLSchema"
+     elementFormDefault="qualified">
+
+   <annotation>
+     <documentation>
+       Extensible Provisioning Protocol v1.0
+       Name Verification provisioning schema.
+     </documentation>
+   </annotation>
+
+   <!--
+	Import common element types.
+   -->
+  <import namespace="urn:ietf:params:xml:ns:eppcom-1.0"/>
+  <import namespace="urn:ietf:params:xml:ns:epp-1.0"/>
+  <import namespace="urn:ietf:params:xml:ns:verificationCode-1.0"/>
+   
+   <!--
+	Child elements found in EPP commands.
+   -->
+   <element name="check" type="nv:mNameType"/>
+   <element name="create" type="nv:createType"/>
+   <element name="info" type="nv:infoType"/>
+   <element name="update" type="nv:updateType"/>
+	
+   <!--
+	Child element of <check> command.
+   -->
+   <complexType name="mNameType">
+    <sequence>
+      <element name="name" type="eppcom:labelType"
+       maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+   
+   <!--
+	Child elements of the <create> command.
+   -->
+   <complexType name="createType">
+    <sequence>
+      <choice>
+        <element name="dnv" type="nv:dnvType"/>
+        <element name="rnv" type="nv:rnvType"/>
+      </choice>
+	  <element name="authInfo" type="nv:authInfoChgType"/>	
+	 </sequence>  
+   </complexType>
+   
+   <complexType name="dnvType">
+    <sequence>
+      <element name="name" type="eppcom:labelType"/>
+    </sequence>
+   </complexType>
+   
+   <complexType name="rnvType">
+    <sequence>
+      <element name="name" type="nv:nameType"/>
+      <element name="num" type="nv:nameType"/>
+      <element name="proofType" type="nv:proofEumType"/>
+      <element name="document" type="nv:documentType"
+       minOccurs="0", maxOccurs="unbounded"/>
+    </sequence>
+	 <attribute name="role" type="nv:roleType" 
+      default="person"/>
+   </complexType>
+   
+   <simpleType name="proofEumType">
+     <restriction base="token">
+       <enumeration value="poc"/>
+       <enumeration value="poe"/>
+       <enumeration value="poot"/>
+     </restriction>
+   </simpleType>
+   
+  <simpleType name="roleType">
+      <restriction base="token">
+        <enumeration value="person"/>
+        <enumeration value="org"/>
+    </restriction>
+  </simpleType>    
+   
+   <simpleType name="nameType">
+      <restriction base="token">
+         <minLength value="1"/>
+         <maxLength value="255"/>
+      </restriction>
+   </simpleType>
+   
+   <complexType name="documentType">
+    <sequence>
+      <element name="fileType" type="nv:fileType"/>
+      <element name="fileContent" type="base64Binary"/>
+    </sequence>
+   </complexType>
+   
+   <simpleType name="fileType">
+     <restriction base="token">
+        <enumeration value="pdf"/>
+        <enumeration value="jpg"/>
+     </restriction>
+   </simpleType>
+   
+
+   <!--
+	Child elements of the <info> command.
+   -->
+   <complexType name="infoType">
+    <sequence>
+      <element name="code" type="token"/>
+      <element name="authInfo" type="nv:authInfoChgType"
+	    minOccurs="0"/>	  
+    </sequence>
+	 <attribute name="type" type="nv:infoFormType" 
+      default="signedCode"/>
+   </complexType>
+     
+      
+  <simpleType name="infoFormType">
+     <restriction base="token">
+       <enumeration value="input"/>
+       <enumeration value="signedCode"/>
+    </restriction>
+  </simpleType> 
+  
+   <!--
+   Child elements of the <update> command.
+   -->
+   <complexType name="updateType">
+    <sequence>
+      <element name="code" type="token"/>
+      <element name="chg" type="nv:chgType"/>
+    </sequence>
+   </complexType>
+   
+   <!--
+   Data elements that can be changed.
+   -->
+   <complexType name="chgType">
+    <sequence>
+      <element name="authInfo" type="nv:authInfoChgType"/>
+    </sequence>
+   </complexType>
+   
+   <!--
+   Data elements of authInfoChgType.
+   -->
+   <complexType name="authInfoChgType">
+    <choice>
+      <element name="pw" type="eppcom:pwAuthInfoType"/>
+      <element name="ext" type="eppcom:extAuthInfoType"/>
+    </choice>
+   </complexType>
+  
+   <!--
+	Child response elements.
+   -->
+   <element name="chkData" type="nv:chkDataType"/>
+   <element name="creData" type="nv:creDataType"/>
+   <element name="panData" type="nv:panDataType"/>
+   <element name="infData" type="nv:infDataType"/>
+ 
+   <!--
+   <check> response elements.
+   -->
+   <complexType name="chkDataType">
+    <sequence>
+      <element name="cd" type="nv:checkType"
+       maxOccurs="unbounded"/>
+    </sequence>
+   </complexType>
+
+   <complexType name="checkType">
+    <sequence>
+      <element name="name" type="nv:checkNameType"/>
+      <element name="reason" type="eppcom:reasonType"
+       minOccurs="0"/>
+    </sequence>
+   </complexType>
+
+   <complexType name="checkNameType">
+    <simpleContent>
+      <extension base="eppcom:labelType">
+        <attribute name="avail" type="boolean"
+         use="required"/>
+	    <attribute name="restricted" type="boolean"/>	 
+      </extension>
+    </simpleContent>
+   </complexType>
+
+   <!--
+	<create> response elements.
+   -->
+   <complexType name="creDataType">
+    <choice>
+      <element name="success" type="nv:successType"/>
+      <element name="failed" type="nv:failedType"/>
+      <element name="pending" type="nv:pendingType"/>
+    </choice>
+   </complexType>
+   
+   <complexType name="successType">
+    <sequence>
+	  <element name="code" type="token"/>
+	  <element name="status" type="nv:statusType"/>
+      <element name="crDate" type="dateTime"/>
+      <element name="encodedSignedCode" 
+	   type="verificationCode:encodedSignedCodeType"/>
+    </sequence>
+   </complexType>
+   
+   <complexType name="failedType">
+    <sequence>
+      <element name="status" type="nv:statusType"/>
+      <element name="msg" type="token"/>
+    </sequence>
+   </complexType>
+
+   <complexType name="pendingType">
+    <sequence>
+      <element name="code" type="token"/>
+	  <element name="status" type="nv:statusType"/>
+      <element name="crDate" type="dateTime"/>
+    </sequence>
+   </complexType>
+   
+   <!--
+   Pending action notification response elements.
+   -->
+   <complexType name="panDataType">
+    <sequence>
+      <element name="code" type="token"/>
+      <element name="paStatus" type="nv:statusType"/>
+      <element name="msg" type="token"/>
+      <element name="paDate" type="dateTime"/>
+    </sequence>
+   </complexType>
+   
+   <!--
+	<info> response elements.
+   -->
+   <complexType name="infDataType">
+    <sequence>
+     <choice>
+      <element name="signedCode" type="nv:signedCodeType"/>
+      <element name="input" type="nv:createType"/>
+     </choice>
+	 <element name="authInfo" type="nv:authInfoChgType"/>	
+	</sequence>
+   </complexType>
+   
+   <complexType name="signedCodeType">
+    <sequence>
+      <element name="code" type="token"/>
+      <element name="status" type="nv:statusType"
+       minOccurs="0"/>
+      <element name="authInfo" type="nv:authInfoChgType"/>	   
+      <element name="encodedSignedCode" 
+	   type="verificationCode:encodedSignedCodeType"/>
+    </sequence>
+   </complexType>
+
+   <!--
+   Status is a combination of attributes and an optional
+   human-readable message that may be expressed in languages other
+   than English.
+   -->
+   <complexType name="statusType">
+    <simpleContent>
+      <extension base="normalizedString">
+        <attribute name="s" type="nv:statusValueType"
+         use="required"/>
+        <attribute name="lang" type="language"
+         default="en"/>
+      </extension>
+    </simpleContent>
+   </complexType>
+
+   <simpleType name="statusValueType">
+    <restriction base="token">
+      <enumeration value="complaint"/>
+      <enumeration value="nonComplaint"/>
+	  <enumeration value="pendingComplaint"/>
+    </restriction>
+   </simpleType>
+
+   <!--
+   End of schema.
+   -->
+   </schema>
+   
+   END
+ 
+]]></artwork>
+</figure>  
+    </section>      
+
+    <section title="Internationalization Considerations" anchor="Internationalization">
+      <t>         
+				EPP is represented in XML, which provides native support for encoding 
+				information using the Unicode character set and its more compact representations 
+				including UTF-8. Conformant XML processors recognize both UTF-8 and UTF-16. 
+				Though XML includes provisions to identify and use other character encodings 
+				through use of an "encoding" attribute in an &lt;?xml?&gt; declaration, 
+				use of UTF-8 is RECOMMENDED.
+      </t>
+      <t>
+        As an extension of the EPP, the elements, element
+        content described in this document MUST inherit the internationalization 
+        conventions used to represent higher-layer domain and core protocol 
+        structures present in an XML instance that includes this extension.
+      </t> 
+    </section>
+    		
+    <section title="IANA Considerations" anchor="Iana">
+      <t>         
+   This document uses URNs to describe XML namespaces and XML schemas
+   conforming to a registry mechanism described in <xref target="RFC3688"></xref>. 
+   IANA is requested to assignment the following two URI.
+      </t>
+      <t>         
+   Registration request for the NV namespace:
+      </t>
+      <t>
+         <list style="symbols">
+            <t>
+   URI: urn:ietf:params:xml:ns:nv-1.0
+            </t> 
+            <t>
+   Registrant Contact: See the "Author's Address" section of this document.
+            </t>
+            <t>
+   XML: None. Namespace URI does not represent an XML specification.
+            </t>                         			
+         </list>                        
+      </t>
+      <t>         
+   Registration request for the NV XML schema:
+      </t>
+      <t>
+         <list style="symbols">
+            <t>
+   URI: urn:ietf:params:xml:schema:nv-1.0
+            </t> 
+            <t>
+   Registrant Contact: See the "Author's Address" section of this document.
+            </t>
+            <t>
+   XML: See the "Formal Syntax" section of this document.
+            </t>                         			
+         </list>                        
+      </t>             
+    </section>
+	
+    <section title="Security considerations" anchor="security">
+      <t>
+   The object mapping described in this document does not provide any
+   other security services or introduce any additional considerations
+   beyond those described by <xref target="RFC5730"></xref> or those caused by the protocol
+   layers used by EPP.
+      </t>
+    </section>
+
+    <section title="Acknowledgements" anchor="Acknowledgements">
+      <t>
+		The authors especially thank the author of <xref target="RFC5730"></xref>.
+      </t>
+      <t>
+		Useful comments and contributions were made by TBD.
+      </t> 
+    </section>
+    
+    <section title="Change History" anchor="Change">
+      <t>
+          RFC Editor: Please remove this section.
+      </t>
+      <section title="draft-xie-epp-nv-mapping-00: Version 00">
+        <t>
+          <list style="symbols">
+            <t>         
+          First draft.
+            </t>
+          </list>          
+        </t>
+      </section>
+    </section>            
+  </middle>
+
+  <back>
+	<references title="Normative References">
+			&RFC2119;
+			&RFC3688;				
+			&RFC5730;
+	  <reference anchor="W3C.REC-xml-20040204"
+                 target="http://www.w3.org/TR/2004/REC-xml-20040204">
+        <front>
+          <title>"Extensible Markup Language (XML) 1.0 (Third Edition)", 
+          World Wide Web Consortium FirstEdition REC-xml-20040204</title>
+          <author initials="T" surname="Bray">
+            <organization></organization>
+          </author>
+          <author initials="J" surname="Paoli">
+            <organization></organization>
+          </author>
+          <author initials="C" surname="Sperberg-McQueen">
+            <organization></organization>
+          </author>
+          <author initials="E" surname="Maler">
+            <organization></organization>
+          </author>           
+          <author initials="F" surname="Yergeau">
+            <organization></organization>
+          </author>                     
+          <date month="February" year="2004" />
+        </front>
+      </reference>
+      
+      <reference anchor="W3C.REC-xmlschema-1-20041028"
+                 target="http://www.w3.org/TR/2004/REC-xmlschema-1-20041028">
+        <front>
+          <title>"XML Schema Part 1: Structures Second Edition", World Wide 
+          Web Consortium Recommendation REC-xmlschema-1-20041028</title>
+          <author initials="H" surname="Thompson">
+            <organization></organization>
+          </author>
+          <author initials="D" surname="Beech">
+            <organization></organization>
+          </author>
+          <author initials="M" surname="Maloney">
+            <organization></organization>
+          </author>
+          <author initials="N" surname="Mendelsohn">
+            <organization></organization>
+          </author>                              
+          <date month="October" year="2004" />
+        </front>
+      </reference> 
+      
+      <reference anchor="W3C.REC-xmlschema-2-20041028"
+                 target="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028">
+        <front>
+          <title>"XML Schema Part 2: Datatypes Second Edition", World Wide 
+          Web Consortium Recommendation REC-xmlschema-2-20041028</title>
+          <author initials="P" surname="Biron">
+            <organization></organization>
+          </author>
+          <author initials="A" surname="Malhotra">
+            <organization></organization>
+          </author>                             
+          <date month="October" year="2004" />
+        </front>
+      </reference>       
+	</references>
+	 
+  </back>
+</rfc>
