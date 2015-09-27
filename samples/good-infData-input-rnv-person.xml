@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <response>
+    <result code="1000">
+      <msg>Command completed successfully</msg>
+    </result>
+    <resData>
+      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+        <nv:input>
+         <nv:rnv role="person">
+           <nv:name>John Xie</nv:name>
+           <nv:num>1234567890</nv:num>
+           <nv:proofType>poc</nv:proofType>
+           <nv:document>
+             <nv:fileType>jpg</nv:fileType>
+             <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
+               </nv:fileContent>
+           </nv:document>
+         </nv:rnv>
+         <nv:authInfo>
+           <nv:pw>2fooBAR</nv:pw>
+         </nv:authInfo>   
+        </nv:input>
+      </nv:infData>
+    </resData>
+    <trID>
+      <clTRID>ABC-12345</clTRID>
+      <svTRID>54322-XYZ</svTRID>
+    </trID>
+  </response>
+</epp>
+ 

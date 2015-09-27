@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <response>
+    <result code="1000">
+      <msg>Command completed successfully</msg>
+    </result>
+    <resData>
+      <nv:chkData
+       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+        <nv:cd>
+          <nv:name avail="1">example1</nv:name>
+        </nv:cd>
+        <nv:cd>
+          <nv:name avail="0">example2</nv:name>
+          <nv:reason>In Prohibited Lists.</nv:reason>
+        </nv:cd>
+        <nv:cd>
+          <nv:name avail="0" restricted="1">example3</nv:name>
+        </nv:cd>
+      </nv:chkData>
+    </resData>
+    <trID>
+      <clTRID>ABC-12345</clTRID>
+      <svTRID>54322-XYZ</svTRID>
+    </trID>
+  </response>
+</epp>

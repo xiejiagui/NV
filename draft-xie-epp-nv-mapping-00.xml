@@ -4,6 +4,7 @@
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC3688 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3688.xml">
 <!ENTITY RFC5730 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5730.xml">
+<!ENTITY RFC7451 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7451.xml">
 ]>
 
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
@@ -38,18 +39,25 @@ Extensible Provisioning Protocol (EPP) China Name Verification Mapping
       </address>
     </author>
 	
-	<author fullname="James Gould" initials="J" surname="Gould">
+    <author fullname="James Gould" initials="J.G" surname="Gould">
       <organization>VeriSign, Inc.</organization>
+
       <address>
-      <postal>
-        <street>12061 Bluemont Way</street>
-        <city>Reston</city>
-        <region>VA</region>
-        <code>20190</code>
-        <country>USA</country>
-      </postal>
-      <phone></phone>
-      <email>jgould@verisign.com</email>
+        <postal>
+          <street>12061 Bluemont Way</street>
+
+          <city>Reston</city>
+
+          <region>VA</region>
+
+          <code>20190</code>
+
+          <country>US</country>
+        </postal>
+
+        <email>jgould@verisign.com</email>
+
+        <uri>http://www.verisign.com</uri>
       </address>
     </author>
 	
@@ -308,19 +316,19 @@ One or more &lt;nv:name&gt; elements that contain the domain labels to be querie
  			<artwork><![CDATA[     
    Example <check> command:
 
-   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   C:  <command>
-   C:    <check>
-   C:      <nv:check xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   C:        <nv:name>example1</nv:name>
-   C:        <nv:name>example2</nv:name>
-   C:        <nv:name>example3</nv:name>
-   C:      </nv:check>
-   C:    </check>
-   C:    <clTRID>ABC-12345</clTRID>
-   C:  </command>
-   C:</epp>
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <check>
+C:      <nv:check xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+C:        <nv:name>example1</nv:name>
+C:        <nv:name>example2</nv:name>
+C:        <nv:name>example3</nv:name>
+C:      </nv:check>
+C:    </check>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>
     	]]></artwork>
       </figure>   	           
            <t>
@@ -339,7 +347,7 @@ A &lt;nv:name&gt; element that contains the queried domain label.  This element 
       created or not) at the moment the &lt;check&gt; command was
       completed.  A value of "1" or "true" means that the object can be
       created.  A value of "0" or "false" means that the object can
-      not be created. This element SHOULD contain an "reserved"
+      not be created. This element SHOULD contain an "restricted"
       attribute whose value indicates this name is an RN or not, 
 	  with a default value of "0".  A value of "1" or "true" 
       means that the object is an RN Name.  A value of "0" or "false" means 
@@ -361,33 +369,33 @@ An OPTIONAL &lt;nv:reason&gt; element that MAY be provided when an
  			<artwork><![CDATA[     
    Example <check> response:
 
-   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   S:  <response>
-   S:    <result code="1000">
-   S:      <msg>Command completed successfully</msg>
-   S:    </result>
-   S:    <resData>
-   S:      <nv:chkData
-   S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   S:        <nv:cd>
-   S:          <nv:name avail="1">example1</nv:name>
-   S:        </nv:cd>
-   S:        <nv:cd>
-   S:          <nv:name avail="0">example2</nv:name>
-   S:          <nv:reason>In Prohibited Lists.</nv:reason>
-   S:        </nv:cd>
-   S:        <nv:cd>
-   S:          <nv:name avail="0",reserved="1">example3</nv:name>
-   S:        </nv:cd>
-   S:      </nv:chkData>
-   S:    </resData>
-   S:    <trID>
-   S:      <clTRID>ABC-12345</clTRID>
-   S:      <svTRID>54322-XYZ</svTRID>
-   S:    </trID>
-   S:  </response>
-   S:</epp>
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <resData>
+S:      <nv:chkData
+S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+S:        <nv:cd>
+S:          <nv:name avail="1">example1</nv:name>
+S:        </nv:cd>
+S:        <nv:cd>
+S:          <nv:name avail="0">example2</nv:name>
+S:          <nv:reason>In Prohibited Lists.</nv:reason>
+S:        </nv:cd>
+S:        <nv:cd>
+S:          <nv:name avail="0" restricted="1">example3</nv:name>
+S:        </nv:cd>
+S:      </nv:chkData>
+S:    </resData>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54322-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>
     	]]></artwork>
       </figure> 
 <t>
@@ -437,48 +445,51 @@ An OPTIONAL &lt;nv:authInfo&gt; element that contains authorization
  			<artwork><![CDATA[     
    Example <info> command to query the signed code:
 
-   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   C:  <command>
-   C:    <info>
-   C:      <nv:info xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   C:        <nv:code type="signedCode">abc-123</nv:name>
-   C:      </nv:info>
-   C:    </info>
-   C:    <clTRID>ABC-12345</clTRID>
-   C:  </command>
-   C:</epp>
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <info>
+C:      <nv:info xmlns:nv="urn:ietf:params:xml:ns:nv-1.0" 
+C:        type="signedCode">
+C:        <nv:code>abc-123</nv:code>
+C:      </nv:info>
+C:    </info>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>
 
    Example <info> command to query the input data:
 
-   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   C:  <command>
-   C:    <info>
-   C:      <nv:info xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   C:        <nv:code type="input">abc-123</nv:name>
-   C:      </nv:info>
-   C:    </info>
-   C:    <clTRID>ABC-12345</clTRID>
-   C:  </command>
-   C:</epp>  
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <info>
+C:      <nv:info xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"
+C:       type="input">
+C:        <nv:code>abc-123</nv:code>
+C:      </nv:info>
+C:    </info>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>  
 
    Example <info> command with authorization information:
 
-   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   C:  <command>
-   C:    <info>
-   C:      <nv:info xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   C:        <nv:code type="signedCode">abc-123</nv:name>
-   C:        <nv:authInfo>
-   C:          <nv:pw>2fooBAR</nv:pw>
-   C:        </nv:authInfo>
-   C:      </nv:info>
-   C:    </info>
-   C:    <clTRID>ABC-12345</clTRID>
-   C:  </command>
-   C:</epp>      
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <info>
+C:      <nv:info xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"
+C:        type="signedCode">
+C:        <nv:code>abc-123</nv:code>
+C:        <nv:authInfo>
+C:          <nv:pw>2fooBAR</nv:pw>
+C:        </nv:authInfo>
+C:      </nv:info>
+C:    </info>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>      
      	]]></artwork>
       </figure>   	           	           
            <t>
@@ -519,96 +530,92 @@ A &lt;verificationCode:code&gt;element that is an "base64" encoded form of the d
 
    Example <info> response of a Signed Code:
 
-   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   S:  <response>
-   S:    <result code="1000">
-   S:      <msg>Command completed successfully</msg>
-   S:    </result>
-   S:    <resData>
-   S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   S:        <nv:signedCode>
-   S:          <nv:code type="domain">abc-123</nv:code>
-   S:          <nv:status>compliant</nv:status>
-   S:          <verificationCode:encodedSignedCode
-   S:            xmlns:verificationCode=
-   S:            "urn:ietf:params:xml:ns:verificationCode-1.0">
-   S:            <verificationCode:code>
-   S:ICAgICAgPHZlcmlmaWNhdGlvbkNvZGU6c2lnbmVkQ29kZQogICAgICAgIHhtbG5z
-   S:OnZlcmlmaWNhdGlvbkNvZGU9CiAgICAgICAgICAidXJuOmlldGY6cGFyYW1zOnht
-   S:bDpuczp2ZXJpZmljYXRpb25Db2RlLTEuMCIKICAgICAgICAgIGlkPSJzaWduZWRD
-   S:b2RlIj4KICAgCQk8dmVyaWZpY2F0aW9uQ29kZTpjb2RlPjEtYWJjMTIzPC92ZXJp
-   S:ZmljYXRpb25Db2RlOmNvZGU+CiAgPFNpZ25hdHVyZSB4bWxucz0iaHR0cDovL3d3
-   S:dy53My5vcmcvMjAwMC8wOS94bWxkc2lnIyI+CiAgIDxTaWduZWRJbmZvPgogICAg
-   S:PENhbm9uaWNhbGl6YXRpb25NZXRob2QKIEFsZ29yaXRobT0iaHR0cDovL3d3dy53
-   S:My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8+CiAgICA8U2lnbmF0dXJlTWV0
-   S:aG9kCiBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZHNp
-   S:Zy1tb3JlI3JzYS1zaGEyNTYiLz4KICAgIDxSZWZlcmVuY2UgVVJJPSIjc2lnbmVk
-   S:Q29kZSI+CiAgICAgPFRyYW5zZm9ybXM+CiAgICAgIDxUcmFuc2Zvcm0KIEFsZ29y
-   S:aXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnI2VudmVsb3Bl
-   S:ZC1zaWduYXR1cmUiLz4KICAgICA8L1RyYW5zZm9ybXM+CiAgICAgPERpZ2VzdE1l
-   S:dGhvZAogQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGVu
-   S:YyNzaGEyNTYiLz4KIDxEaWdlc3RWYWx1ZT53Z3lXM25aUG9FZnBwdGxoUklMS25P
-   S:UW5iZHRVNkFyTTdTaHJBZkhnREZnPTwvRGlnZXN0VmFsdWU+CiAgICA8L1JlZmVy
-   S:ZW5jZT4KICAgPC9TaWduZWRJbmZvPgogICA8U2lnbmF0dXJlVmFsdWU+CiBqTXU0
-   S:UGZ5UUdpSkJGMEdXU0VQRkNKam15d0NFcVIyaDRMRCtnZTZYUStKbm1LRkZDdUNa
-   S:Uy8zU0xLQXgwTDF3CiBRREZPMmUwWTY5azJHNy9MR0UzN1gzdk9mbG9iRk0xb0d3
-   S:amE4K0dNVnJhb3RvNXhBZDQvQUY3ZUh1a2dBeW1ECiBvOXRveG9hMmgweVY0QTRQ
-   S:bVh6c1U2Uzg2WHRDY1VFK1MvV003Mm55bjQ3em9VQ3p6UEtIWkJSeWVXZWhWRlEr
-   S:CiBqWVJNSUFNek01N0hIUUErNmVhWGVmUnZ0UEVUZ1VPNGFWSVZTdWdjNE9VQVpa
-   S:d2JZY1pyQzZ3T2FRcXFxQVppCiAzMGFQT0JZYkF2SE1TbVdTUytoRmtic2hvbUpm
-   S:SHhiOTdURDJncmxZTnJRSXpxWGs3V2JIV3kyU1lkQStzSS9aCiBpcEpzWE5hNm9z
-   S:VFV3MUN6QTdqZndBPT0KICAgPC9TaWduYXR1cmVWYWx1ZT4KICAgPEtleUluZm8+
-   S:CiAgICA8WDUwOURhdGE+CiAgICA8WDUwOUNlcnRpZmljYXRlPgogTUlJRVNUQ0NB
-   S:ekdnQXdJQkFnSUJBakFOQmdrcWhraUc5dzBCQVFzRkFEQmlNUXN3Q1FZRFZRUUdF
-   S:d0pWVXpFTAogTUFrR0ExVUVDQk1DUTBFeEZEQVNCZ05WQkFjVEMweHZjeUJCYm1k
-   S:bGJHVnpNUk13RVFZRFZRUUtFd3BKUTBGTwogVGlCVVRVTklNUnN3R1FZRFZRUURF
-   S:eEpKUTBGT1RpQlVUVU5JSUZSRlUxUWdRMEV3SGhjTk1UTXdNakE0TURBdwogTURB
-   S:d1doY05NVGd3TWpBM01qTTFPVFU1V2pCc01Rc3dDUVlEVlFRR0V3SlZVekVMTUFr
-   S:R0ExVUVDQk1DUTBFeAogRkRBU0JnTlZCQWNUQzB4dmN5QkJibWRsYkdWek1SY3dG
-   S:UVlEVlFRS0V3NVdZV3hwWkdGMGIzSWdWRTFEU0RFaAogTUI4R0ExVUVBeE1ZVm1G
-   S:c2FXUmhkRzl5SUZSTlEwZ2dWRVZUVkNCRFJWSlVNSUlCSWpBTkJna3Foa2lHOXcw
-   S:QgogQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBby9jd3ZYaGJWWWwwUkRXV3ZveWVa
-   S:cEVUVlpWVmNNQ292VVZOZy9zdwogV2ludU1nRVdnVlFGcnoweEEwNHBFaFhDRlZ2
-   S:NGV2YlVwZWtKNWJ1cVUxZ21ReU9zQ0tRbGhPSFRkUGp2a0M1dQogcERxYTUxRmxr
-   S:MFRNYU1rSVFqczdhVUtDbUE0Ukc0dFRUR0svRWpSMWl4OC9EMGdIWVZSbGR5MVlQ
-   S:ck1QK291NwogNWJPVm5Jb3MrSGlmckF0ckl2NHFFcXdMTDRGVFpBVXBhQ2EyQm1n
-   S:WGZ5MkNTUlFieEQ1T3IxZ2NTYTN2dXJoNQogc1BNQ054cWFYbUlYbVFpcFMrRHVF
-   S:QnFNTTh0bGRhTjdSWW9qVUVLckdWc05rNWk5eTIvN3NqbjF6eXlVUGY3dgogTDRH
-   S:Z0RZcWhKWVdWNjFEblhneC9KZDZDV3h2c25ERjZzY3NjUXpVVEVsK2h5d0lEQVFB
-   S:Qm80SC9NSUg4TUF3RwogQTFVZEV3RUIvd1FDTUFBd0hRWURWUjBPQkJZRUZQWkVj
-   S:SVFjRC9CajJJRnovTEVSdW8yQURKdmlNSUdNQmdOVgogSFNNRWdZUXdnWUdBRk8w
-   S:LzdrRWgzRnVFS1MrUS9rWUhhRC9XNndpaG9XYWtaREJpTVFzd0NRWURWUVFHRXdK
-   S:VgogVXpFTE1Ba0dBMVVFQ0JNQ1EwRXhGREFTQmdOVkJBY1RDMHh2Y3lCQmJtZGxi
-   S:R1Z6TVJNd0VRWURWUVFLRXdwSgogUTBGT1RpQlVUVU5JTVJzd0dRWURWUVFERXhK
-   S:SlEwRk9UaUJVVFVOSUlGUkZVMVFnUTBHQ0FRRXdEZ1lEVlIwUAogQVFIL0JBUURB
-   S:Z2VBTUM0R0ExVWRId1FuTUNVd0k2QWhvQitHSFdoMGRIQTZMeTlqY213dWFXTmhi
-   S:bTR1YjNKbgogTDNSdFkyZ3VZM0pzTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFC
-   S:MnFTeTd1aSs0M2NlYktVS3dXUHJ6ejl5LwogSWtyTWVKR0tqbzQwbis5dWVrYXcz
-   S:REo1RXFpT2YvcVo0cGpCRCsrb1I2QkpDYjZOUXVRS3dub0F6NWxFNFNzdQogeTUr
-   S:aTkzb1QzSGZ5VmM0Z05NSW9IbTFQUzE5bDdEQktyYndiekFlYS8waktXVnpydm1W
-   S:N1RCZmp4RDNBUW8xUgogYlU1ZEJyNklqYmRMRmxuTzV4MEcwbXJHN3g1T1VQdXVy
-   S:aWh5aVVScEZEcHdIOEtBSDF3TWNDcFhHWEZSdEdLawogd3lkZ3lWWUF0eTdvdGts
-   S:L3ozYlprQ1ZUMzRnUHZGNzBzUjYrUXhVeTh1MEx6RjVBL2JlWWFacHhTWUczMWFt
-   S:TAogQWRYaXRUV0ZpcGFJR2VhOWxFR0ZNMEw5K0JnN1h6Tm40blZMWG9reUVCM2Jn
-   S:UzRzY0c2UXpuWDIzRkdrCiAgIDwvWDUwOUNlcnRpZmljYXRlPgogICA8L1g1MDlE
-   S:YXRhPgogICA8L0tleUluZm8+CiAgPC9TaWduYXR1cmU+CgkJPC92ZXJpZmljYXRp
-   S:b25Db2RlOnNpZ25lZENvZGU+Cg==
-   S:          </verificationCode:code>
-   S:         </verificationCode:encodedSignedCode>
-   S:       </nv:signedCode>
-   S:       <nv:authInfo>
-   S:         <nv:pw>2fooBAR</nv:pw>
-   S:       </nv:authInfo>
-   S:      </nv:infData>
-   S:    </resData>
-   S:    <trID>
-   S:      <clTRID>ABC-12345</clTRID>
-   S:      <svTRID>54322-XYZ</svTRID>
-   S:    </trID>
-   S:  </response>
-   S:</epp>
-     	]]></artwork>
+ S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+ S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+ S:  <response>
+ S:    <result code="1000">
+ S:      <msg>Command completed successfully</msg>
+ S:    </result>
+ S:    <resData>
+ S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+ S:        <nv:signedCode>
+ S:         <nv:code type="domain">abc-123</nv:code>
+ S:          <nv:status s="compliant"/>
+ S:          <nv:authInfo>
+ S:            <nv:pw>2fooBAR</nv:pw>
+ S:          </nv:authInfo>
+ S:          <nv:encodedSignedCode>
+ S:ICAgICAgPHZlcmlmaWNhdGlvbkNvZGU6c2lnbmVkQ29kZQogICAgICAgIHhtbG5z
+ S:OnZlcmlmaWNhdGlvbkNvZGU9CiAgICAgICAgICAidXJuOmlldGY6cGFyYW1zOnht
+ S:bDpuczp2ZXJpZmljYXRpb25Db2RlLTEuMCIKICAgICAgICAgIGlkPSJzaWduZWRD
+ S:b2RlIj4KICAgCQk8dmVyaWZpY2F0aW9uQ29kZTpjb2RlPjEtYWJjMTIzPC92ZXJp
+ S:ZmljYXRpb25Db2RlOmNvZGU+CiAgPFNpZ25hdHVyZSB4bWxucz0iaHR0cDovL3d3
+ S:dy53My5vcmcvMjAwMC8wOS94bWxkc2lnIyI+CiAgIDxTaWduZWRJbmZvPgogICAg
+ S:PENhbm9uaWNhbGl6YXRpb25NZXRob2QKIEFsZ29yaXRobT0iaHR0cDovL3d3dy53
+ S:My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8+CiAgICA8U2lnbmF0dXJlTWV0
+ S:aG9kCiBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZHNp
+ S:Zy1tb3JlI3JzYS1zaGEyNTYiLz4KICAgIDxSZWZlcmVuY2UgVVJJPSIjc2lnbmVk
+ S:Q29kZSI+CiAgICAgPFRyYW5zZm9ybXM+CiAgICAgIDxUcmFuc2Zvcm0KIEFsZ29y
+ S:aXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnI2VudmVsb3Bl
+ S:ZC1zaWduYXR1cmUiLz4KICAgICA8L1RyYW5zZm9ybXM+CiAgICAgPERpZ2VzdE1l
+ S:dGhvZAogQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGVu
+ S:YyNzaGEyNTYiLz4KIDxEaWdlc3RWYWx1ZT53Z3lXM25aUG9FZnBwdGxoUklMS25P
+ S:UW5iZHRVNkFyTTdTaHJBZkhnREZnPTwvRGlnZXN0VmFsdWU+CiAgICA8L1JlZmVy
+ S:ZW5jZT4KICAgPC9TaWduZWRJbmZvPgogICA8U2lnbmF0dXJlVmFsdWU+CiBqTXU0
+ S:UGZ5UUdpSkJGMEdXU0VQRkNKam15d0NFcVIyaDRMRCtnZTZYUStKbm1LRkZDdUNa
+ S:Uy8zU0xLQXgwTDF3CiBRREZPMmUwWTY5azJHNy9MR0UzN1gzdk9mbG9iRk0xb0d3
+ S:amE4K0dNVnJhb3RvNXhBZDQvQUY3ZUh1a2dBeW1ECiBvOXRveG9hMmgweVY0QTRQ
+ S:bVh6c1U2Uzg2WHRDY1VFK1MvV003Mm55bjQ3em9VQ3p6UEtIWkJSeWVXZWhWRlEr
+ S:CiBqWVJNSUFNek01N0hIUUErNmVhWGVmUnZ0UEVUZ1VPNGFWSVZTdWdjNE9VQVpa
+ S:d2JZY1pyQzZ3T2FRcXFxQVppCiAzMGFQT0JZYkF2SE1TbVdTUytoRmtic2hvbUpm
+ S:SHhiOTdURDJncmxZTnJRSXpxWGs3V2JIV3kyU1lkQStzSS9aCiBpcEpzWE5hNm9z
+ S:VFV3MUN6QTdqZndBPT0KICAgPC9TaWduYXR1cmVWYWx1ZT4KICAgPEtleUluZm8+
+ S:CiAgICA8WDUwOURhdGE+CiAgICA8WDUwOUNlcnRpZmljYXRlPgogTUlJRVNUQ0NB
+ S:ekdnQXdJQkFnSUJBakFOQmdrcWhraUc5dzBCQVFzRkFEQmlNUXN3Q1FZRFZRUUdF
+ S:d0pWVXpFTAogTUFrR0ExVUVDQk1DUTBFeEZEQVNCZ05WQkFjVEMweHZjeUJCYm1k
+ S:bGJHVnpNUk13RVFZRFZRUUtFd3BKUTBGTwogVGlCVVRVTklNUnN3R1FZRFZRUURF
+ S:eEpKUTBGT1RpQlVUVU5JSUZSRlUxUWdRMEV3SGhjTk1UTXdNakE0TURBdwogTURB
+ S:d1doY05NVGd3TWpBM01qTTFPVFU1V2pCc01Rc3dDUVlEVlFRR0V3SlZVekVMTUFr
+ S:R0ExVUVDQk1DUTBFeAogRkRBU0JnTlZCQWNUQzB4dmN5QkJibWRsYkdWek1SY3dG
+ S:UVlEVlFRS0V3NVdZV3hwWkdGMGIzSWdWRTFEU0RFaAogTUI4R0ExVUVBeE1ZVm1G
+ S:c2FXUmhkRzl5SUZSTlEwZ2dWRVZUVkNCRFJWSlVNSUlCSWpBTkJna3Foa2lHOXcw
+ S:QgogQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBby9jd3ZYaGJWWWwwUkRXV3ZveWVa
+ S:cEVUVlpWVmNNQ292VVZOZy9zdwogV2ludU1nRVdnVlFGcnoweEEwNHBFaFhDRlZ2
+ S:NGV2YlVwZWtKNWJ1cVUxZ21ReU9zQ0tRbGhPSFRkUGp2a0M1dQogcERxYTUxRmxr
+ S:MFRNYU1rSVFqczdhVUtDbUE0Ukc0dFRUR0svRWpSMWl4OC9EMGdIWVZSbGR5MVlQ
+ S:ck1QK291NwogNWJPVm5Jb3MrSGlmckF0ckl2NHFFcXdMTDRGVFpBVXBhQ2EyQm1n
+ S:WGZ5MkNTUlFieEQ1T3IxZ2NTYTN2dXJoNQogc1BNQ054cWFYbUlYbVFpcFMrRHVF
+ S:QnFNTTh0bGRhTjdSWW9qVUVLckdWc05rNWk5eTIvN3NqbjF6eXlVUGY3dgogTDRH
+ S:Z0RZcWhKWVdWNjFEblhneC9KZDZDV3h2c25ERjZzY3NjUXpVVEVsK2h5d0lEQVFB
+ S:Qm80SC9NSUg4TUF3RwogQTFVZEV3RUIvd1FDTUFBd0hRWURWUjBPQkJZRUZQWkVj
+ S:SVFjRC9CajJJRnovTEVSdW8yQURKdmlNSUdNQmdOVgogSFNNRWdZUXdnWUdBRk8w
+ S:LzdrRWgzRnVFS1MrUS9rWUhhRC9XNndpaG9XYWtaREJpTVFzd0NRWURWUVFHRXdK
+ S:VgogVXpFTE1Ba0dBMVVFQ0JNQ1EwRXhGREFTQmdOVkJBY1RDMHh2Y3lCQmJtZGxi
+ S:R1Z6TVJNd0VRWURWUVFLRXdwSgogUTBGT1RpQlVUVU5JTVJzd0dRWURWUVFERXhK
+ S:SlEwRk9UaUJVVFVOSUlGUkZVMVFnUTBHQ0FRRXdEZ1lEVlIwUAogQVFIL0JBUURB
+ S:Z2VBTUM0R0ExVWRId1FuTUNVd0k2QWhvQitHSFdoMGRIQTZMeTlqY213dWFXTmhi
+ S:bTR1YjNKbgogTDNSdFkyZ3VZM0pzTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFC
+ S:MnFTeTd1aSs0M2NlYktVS3dXUHJ6ejl5LwogSWtyTWVKR0tqbzQwbis5dWVrYXcz
+ S:REo1RXFpT2YvcVo0cGpCRCsrb1I2QkpDYjZOUXVRS3dub0F6NWxFNFNzdQogeTUr
+ S:aTkzb1QzSGZ5VmM0Z05NSW9IbTFQUzE5bDdEQktyYndiekFlYS8waktXVnpydm1W
+ S:N1RCZmp4RDNBUW8xUgogYlU1ZEJyNklqYmRMRmxuTzV4MEcwbXJHN3g1T1VQdXVy
+ S:aWh5aVVScEZEcHdIOEtBSDF3TWNDcFhHWEZSdEdLawogd3lkZ3lWWUF0eTdvdGts
+ S:L3ozYlprQ1ZUMzRnUHZGNzBzUjYrUXhVeTh1MEx6RjVBL2JlWWFacHhTWUczMWFt
+ S:TAogQWRYaXRUV0ZpcGFJR2VhOWxFR0ZNMEw5K0JnN1h6Tm40blZMWG9reUVCM2Jn
+ S:UzRzY0c2UXpuWDIzRkdrCiAgIDwvWDUwOUNlcnRpZmljYXRlPgogICA8L1g1MDlE
+ S:YXRhPgogICA8L0tleUluZm8+CiAgPC9TaWduYXR1cmU+CgkJPC92ZXJpZmljYXRp
+ S:b25Db2RlOnNpZ25lZENvZGU+Cg==
+ S:         </nv:encodedSignedCode>
+ S:       </nv:signedCode>
+ S:      </nv:infData>
+ S:    </resData>
+ S:    <trID>
+ S:      <clTRID>ABC-12345</clTRID>
+ S:      <svTRID>54322-XYZ</svTRID>
+ S:    </trID>
+ S:  </response>
+ S:</epp>
+    	]]></artwork>
       </figure> 
            <t>
 The Input Code Form is returned when the 
@@ -638,30 +645,30 @@ The &lt;nv:dnv&gt; element is used for a DNV object and contains the following c
 
    Example <info> response of a DNV:
 
-   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   S:  <response>
-   S:    <result code="1000">
-   S:      <msg>Command completed successfully</msg>
-   S:    </result>
-   S:    <resData>
-   S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   S:        <nv:input>
-   S:         <nv:dnv>
-   S:           <nv:name>example</nv:name>
-   S:         </nv:dnv>
-   S:       </nv:input>
-   S:       <nv:authInfo>
-   S:         <nv:pw>2fooBAR</nv:pw>
-   S:       </nv:authInfo>
-   S:      </nv:infData>
-   S:    </resData>
-   S:    <trID>
-   S:      <clTRID>ABC-12345</clTRID>
-   S:      <svTRID>54322-XYZ</svTRID>
-   S:    </trID>
-   S:  </response>
-   S:</epp>
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <resData>
+S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+S:        <nv:input>
+S:         <nv:dnv>
+S:           <nv:name>example</nv:name>
+S:         </nv:dnv>
+S:         <nv:authInfo>
+S:           <nv:pw>2fooBAR</nv:pw>
+S:         </nv:authInfo>
+S:       </nv:input>
+S:      </nv:infData>
+S:    </resData>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54322-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>
      	]]></artwork>
       </figure>   	 		   
 
@@ -700,73 +707,73 @@ The &lt;nv:dnv&gt; element is used for a DNV object and contains the following c
  			<figure>
  			<artwork><![CDATA[     
 
-   Example <info> response of an RVN person:
+   Example <info> response of an RNV person:
 
-   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   S:  <response>
-   S:    <result code="1000">
-   S:      <msg>Command completed successfully</msg>
-   S:    </result>
-   S:    <resData>
-   S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   S:        <nv:input>
-   S:         <nv:rnv role="person">
-   S:           <nv:name>John Xie</nv:name>
-   S:           <nv:num>1234567890</nv:num>
-   S:           <nv:proofType>poc</nv:proofType>
-   S:           <nv:document>
-   S:             <nv:fileType>jpg</nv:fileType>
-   S:             <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
-   S:               </nv:fileContent>
-   S:           </nv:document>
-   S:         </nv:rnv>
-   S:        </nv:input>
-   S:       <nv:authInfo>
-   S:         <nv:pw>2fooBAR</nv:pw>
-   S:       </nv:authInfo>   
-   S:      </nv:infData>
-   S:    </resData>
-   S:    <trID>
-   S:      <clTRID>ABC-12345</clTRID>
-   S:      <svTRID>54322-XYZ</svTRID>
-   S:    </trID>
-   S:  </response>
-   S:</epp>
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <resData>
+S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+S:        <nv:input>
+S:         <nv:rnv role="person">
+S:           <nv:name>John Xie</nv:name>
+S:           <nv:num>1234567890</nv:num>
+S:           <nv:proofType>poc</nv:proofType>
+S:           <nv:document>
+S:             <nv:fileType>jpg</nv:fileType>
+S:             <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
+S:               </nv:fileContent>
+S:           </nv:document>
+S:         </nv:rnv>
+S:         <nv:authInfo>
+S:           <nv:pw>2fooBAR</nv:pw>
+S:         </nv:authInfo>   
+S:        </nv:input>
+S:      </nv:infData>
+S:    </resData>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54322-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>
    
    Example <info> response of an RNV organization:
 
-   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   S:  <response>
-   S:    <result code="1000">
-   S:      <msg>Command completed successfully</msg>
-   S:    </result>
-   S:    <resData>
-   S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   S:       <nv:input>
-   S:        <nv:rnv role="org">
-   S:         <nv:name>John Xie</nv:name>
-   S:         <nv:num>1234567890</nv:num>
-   S:         <nv:proofType>poe</nv:proofType>   
-   S:         <nv:document>
-   S:          <nv:fileType>jpg</nv:fileType>
-   S:          <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
-   S:            </nv:fileContent>
-   S:         </nv:document>
-   S:        </nv:rnv>
-   S:       </nv:input>
-   S:       <nv:authInfo>
-   S:         <nv:pw>2fooBAR</nv:pw>
-   S:       </nv:authInfo>   
-   S:      </nv:infData>
-   S:    </resData>
-   S:    <trID>
-   S:      <clTRID>ABC-12345</clTRID>
-   S:      <svTRID>54322-XYZ</svTRID>
-   S:    </trID>
-   S:  </response>
-   S:</epp>
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <resData>
+S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+S:       <nv:input>
+S:        <nv:rnv role="org">
+S:         <nv:name>John Xie</nv:name>
+S:         <nv:num>1234567890</nv:num>
+S:         <nv:proofType>poe</nv:proofType>   
+S:         <nv:document>
+S:          <nv:fileType>jpg</nv:fileType>
+S:          <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
+S:            </nv:fileContent>
+S:         </nv:document>
+S:        </nv:rnv>
+S:        <nv:authInfo>
+S:         <nv:pw>2fooBAR</nv:pw>
+S:        </nv:authInfo>   
+S:       </nv:input>
+S:      </nv:infData>
+S:    </resData>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54322-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>
     	]]></artwork>
       </figure> 
 <t>
@@ -855,74 +862,74 @@ The &lt;nv:dnv&gt; element is used for a DNV object and contains the following c
  			<artwork><![CDATA[     
    Example <create> command for a DNV object:
 
-   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   C:  <command>
-   C:    <create>
-   C:      <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   C:       <nv:dnv>
-   C:         <nv:name>example</nv:name>
-   C:       </nv:dnv>
-   C:       <nv:authInfo>
-   C:         <nv:pw>2fooBAR</nv:pw>
-   C:       </nv:authInfo>
-   C:      </nv:create>
-   C:    </create>
-   C:    <clTRID>ABC-12345</clTRID>
-   C:  </command>
-   C:</epp>
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <create>
+C:      <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+C:       <nv:dnv>
+C:         <nv:name>example</nv:name>
+C:       </nv:dnv>
+C:       <nv:authInfo>
+C:         <nv:pw>2fooBAR</nv:pw>
+C:       </nv:authInfo>
+C:      </nv:create>
+C:    </create>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>
    
    Example <create> command for a RNV person object:
 
-   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   C:  <command>
-   C:    <create>
-   C:     <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0" 
-   C:       <nv:rnv role="person">
-   C:         <nv:name>John Xie</nv:name>
-   C:         <nv:num>1234567890</nv:num>
-   C:         <nv:proofType>poe</nv:proofType>   
-   C:         <nv:document>
-   C:           <nv:fileType>jpg</nv:fileType>
-   C:           <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
-   C:            </nv:fileContent>
-   C:         </nv:document>
-   C:       </nv:rnv>
-   C:       <nv:authInfo>
-   C:         <nv:pw>2fooBAR</nv:pw>
-   C:       </nv:authInfo>
-   C:      </nv:create>
-   C:    </create>
-   C:    <clTRID>ABC-12345</clTRID>
-   C:  </command>
-   C:</epp>
-   
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <create>
+C:     <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"> 
+C:       <nv:rnv role="person">
+C:         <nv:name>John Xie</nv:name>
+C:         <nv:num>1234567890</nv:num>
+C:         <nv:proofType>poe</nv:proofType>   
+C:         <nv:document>
+C:           <nv:fileType>jpg</nv:fileType>
+C:           <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
+C:           </nv:fileContent>
+C:         </nv:document>
+C:       </nv:rnv>
+C:       <nv:authInfo>
+C:         <nv:pw>2fooBAR</nv:pw>
+C:       </nv:authInfo>
+C:      </nv:create>
+C:    </create>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>
+
    Example <create> command for an RNV organization:
 
-   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   C:  <command>
-   C:    <create>
-   C:      <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   C:       <nv:rnv role="org">
-   C:        <nv:name>John Xie</nv:name>
-   C:        <nv:num>1234567890</nv:num>
-   C:        <nv:proofType>poe</nv:proofType>      
-   C:        <nv:document>
-   C:         <nv:fileType>jpg</rnv:fileType>
-   C:         <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
-   C:	       </nv:fileContent>
-   C:        </nv:document>
-   C:       </nv:rnv>
-   C:       <nv:authInfo>
-   C:         <nv:pw>2fooBAR</nv:pw>
-   C:       </nv:authInfo>   
-   C:      </nv:create>
-   C:    </create>
-   C:    <clTRID>ABC-12345</clTRID>
-   C:  </command>
-   C:</epp>
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <create>
+C:      <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+C:       <nv:rnv role="org">
+C:        <nv:name>John Xie</nv:name>
+C:        <nv:num>1234567890</nv:num>
+C:        <nv:proofType>poe</nv:proofType>      
+C:        <nv:document>
+C:         <nv:fileType>jpg</nv:fileType>
+C:         <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
+C:	       </nv:fileContent>
+C:        </nv:document>
+C:       </nv:rnv>
+C:       <nv:authInfo>
+C:         <nv:pw>2fooBAR</nv:pw>
+C:       </nv:authInfo>   
+C:      </nv:create>
+C:    </create>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>
     	]]></artwork>
       </figure>   	           
            <t>
@@ -939,7 +946,9 @@ The &lt;nv:dnv&gt; element is used for a DNV object and contains the following c
   
    <list style="symbols">
       <t>
-   A &lt;nv:code&gt; element that contains the id of the verification code.
+   A &lt;nv:code&gt; element that contains the id of the verification code 
+   with the required "type" attribute that defines the type of the 
+   verification code.
    </t>
    <t>
 	 Zero or more OPTIONAL &lt;nv:status&gt; elements that contain the
@@ -986,115 +995,112 @@ A &lt;verificationCode:code&gt;element that is an "base64" encoded form of the d
  			<artwork><![CDATA[     
    Example <create> response of success:
 
-   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   S:  <response>
-   S:    <result code="1000">
-   S:      <msg>Command completed successfully</msg>
-   S:    </result>
-   S:    <resData>
-   S:      <nv:creData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   S:       <nv:success>
-   S:        <nv:code type="domain">abc-123</nv:code>
-   S:        <nv:crDate>2015-08-17T22:00:00.0Z</nv:crDate>
-   S:        <verificationCode:encodedSignedCode
-   S:         xmlns:verificationCode=
-   S:         "urn:ietf:params:xml:ns:verificationCode-1.0">
-   S:          <verificationCode:code>
-   S:ICAgICAgPHZlcmlmaWNhdGlvbkNvZGU6c2lnbmVkQ29kZQogICAgICAgIHhtbG5z
-   S:OnZlcmlmaWNhdGlvbkNvZGU9CiAgICAgICAgICAidXJuOmlldGY6cGFyYW1zOnht
-   S:bDpuczp2ZXJpZmljYXRpb25Db2RlLTEuMCIKICAgICAgICAgIGlkPSJzaWduZWRD
-   S:b2RlIj4KICAgCQk8dmVyaWZpY2F0aW9uQ29kZTpjb2RlPjEtYWJjMTIzPC92ZXJp
-   S:ZmljYXRpb25Db2RlOmNvZGU+CiAgPFNpZ25hdHVyZSB4bWxucz0iaHR0cDovL3d3
-   S:dy53My5vcmcvMjAwMC8wOS94bWxkc2lnIyI+CiAgIDxTaWduZWRJbmZvPgogICAg
-   S:PENhbm9uaWNhbGl6YXRpb25NZXRob2QKIEFsZ29yaXRobT0iaHR0cDovL3d3dy53
-   S:My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8+CiAgICA8U2lnbmF0dXJlTWV0
-   S:aG9kCiBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZHNp
-   S:Zy1tb3JlI3JzYS1zaGEyNTYiLz4KICAgIDxSZWZlcmVuY2UgVVJJPSIjc2lnbmVk
-   S:Q29kZSI+CiAgICAgPFRyYW5zZm9ybXM+CiAgICAgIDxUcmFuc2Zvcm0KIEFsZ29y
-   S:aXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnI2VudmVsb3Bl
-   S:ZC1zaWduYXR1cmUiLz4KICAgICA8L1RyYW5zZm9ybXM+CiAgICAgPERpZ2VzdE1l
-   S:dGhvZAogQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGVu
-   S:YyNzaGEyNTYiLz4KIDxEaWdlc3RWYWx1ZT53Z3lXM25aUG9FZnBwdGxoUklMS25P
-   S:UW5iZHRVNkFyTTdTaHJBZkhnREZnPTwvRGlnZXN0VmFsdWU+CiAgICA8L1JlZmVy
-   S:ZW5jZT4KICAgPC9TaWduZWRJbmZvPgogICA8U2lnbmF0dXJlVmFsdWU+CiBqTXU0
-   S:UGZ5UUdpSkJGMEdXU0VQRkNKam15d0NFcVIyaDRMRCtnZTZYUStKbm1LRkZDdUNa
-   S:Uy8zU0xLQXgwTDF3CiBRREZPMmUwWTY5azJHNy9MR0UzN1gzdk9mbG9iRk0xb0d3
-   S:amE4K0dNVnJhb3RvNXhBZDQvQUY3ZUh1a2dBeW1ECiBvOXRveG9hMmgweVY0QTRQ
-   S:bVh6c1U2Uzg2WHRDY1VFK1MvV003Mm55bjQ3em9VQ3p6UEtIWkJSeWVXZWhWRlEr
-   S:CiBqWVJNSUFNek01N0hIUUErNmVhWGVmUnZ0UEVUZ1VPNGFWSVZTdWdjNE9VQVpa
-   S:d2JZY1pyQzZ3T2FRcXFxQVppCiAzMGFQT0JZYkF2SE1TbVdTUytoRmtic2hvbUpm
-   S:SHhiOTdURDJncmxZTnJRSXpxWGs3V2JIV3kyU1lkQStzSS9aCiBpcEpzWE5hNm9z
-   S:VFV3MUN6QTdqZndBPT0KICAgPC9TaWduYXR1cmVWYWx1ZT4KICAgPEtleUluZm8+
-   S:CiAgICA8WDUwOURhdGE+CiAgICA8WDUwOUNlcnRpZmljYXRlPgogTUlJRVNUQ0NB
-   S:ekdnQXdJQkFnSUJBakFOQmdrcWhraUc5dzBCQVFzRkFEQmlNUXN3Q1FZRFZRUUdF
-   S:d0pWVXpFTAogTUFrR0ExVUVDQk1DUTBFeEZEQVNCZ05WQkFjVEMweHZjeUJCYm1k
-   S:bGJHVnpNUk13RVFZRFZRUUtFd3BKUTBGTwogVGlCVVRVTklNUnN3R1FZRFZRUURF
-   S:eEpKUTBGT1RpQlVUVU5JSUZSRlUxUWdRMEV3SGhjTk1UTXdNakE0TURBdwogTURB
-   S:d1doY05NVGd3TWpBM01qTTFPVFU1V2pCc01Rc3dDUVlEVlFRR0V3SlZVekVMTUFr
-   S:R0ExVUVDQk1DUTBFeAogRkRBU0JnTlZCQWNUQzB4dmN5QkJibWRsYkdWek1SY3dG
-   S:UVlEVlFRS0V3NVdZV3hwWkdGMGIzSWdWRTFEU0RFaAogTUI4R0ExVUVBeE1ZVm1G
-   S:c2FXUmhkRzl5SUZSTlEwZ2dWRVZUVkNCRFJWSlVNSUlCSWpBTkJna3Foa2lHOXcw
-   S:QgogQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBby9jd3ZYaGJWWWwwUkRXV3ZveWVa
-   S:cEVUVlpWVmNNQ292VVZOZy9zdwogV2ludU1nRVdnVlFGcnoweEEwNHBFaFhDRlZ2
-   S:NGV2YlVwZWtKNWJ1cVUxZ21ReU9zQ0tRbGhPSFRkUGp2a0M1dQogcERxYTUxRmxr
-   S:MFRNYU1rSVFqczdhVUtDbUE0Ukc0dFRUR0svRWpSMWl4OC9EMGdIWVZSbGR5MVlQ
-   S:ck1QK291NwogNWJPVm5Jb3MrSGlmckF0ckl2NHFFcXdMTDRGVFpBVXBhQ2EyQm1n
-   S:WGZ5MkNTUlFieEQ1T3IxZ2NTYTN2dXJoNQogc1BNQ054cWFYbUlYbVFpcFMrRHVF
-   S:QnFNTTh0bGRhTjdSWW9qVUVLckdWc05rNWk5eTIvN3NqbjF6eXlVUGY3dgogTDRH
-   S:Z0RZcWhKWVdWNjFEblhneC9KZDZDV3h2c25ERjZzY3NjUXpVVEVsK2h5d0lEQVFB
-   S:Qm80SC9NSUg4TUF3RwogQTFVZEV3RUIvd1FDTUFBd0hRWURWUjBPQkJZRUZQWkVj
-   S:SVFjRC9CajJJRnovTEVSdW8yQURKdmlNSUdNQmdOVgogSFNNRWdZUXdnWUdBRk8w
-   S:LzdrRWgzRnVFS1MrUS9rWUhhRC9XNndpaG9XYWtaREJpTVFzd0NRWURWUVFHRXdK
-   S:VgogVXpFTE1Ba0dBMVVFQ0JNQ1EwRXhGREFTQmdOVkJBY1RDMHh2Y3lCQmJtZGxi
-   S:R1Z6TVJNd0VRWURWUVFLRXdwSgogUTBGT1RpQlVUVU5JTVJzd0dRWURWUVFERXhK
-   S:SlEwRk9UaUJVVFVOSUlGUkZVMVFnUTBHQ0FRRXdEZ1lEVlIwUAogQVFIL0JBUURB
-   S:Z2VBTUM0R0ExVWRId1FuTUNVd0k2QWhvQitHSFdoMGRIQTZMeTlqY213dWFXTmhi
-   S:bTR1YjNKbgogTDNSdFkyZ3VZM0pzTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFC
-   S:MnFTeTd1aSs0M2NlYktVS3dXUHJ6ejl5LwogSWtyTWVKR0tqbzQwbis5dWVrYXcz
-   S:REo1RXFpT2YvcVo0cGpCRCsrb1I2QkpDYjZOUXVRS3dub0F6NWxFNFNzdQogeTUr
-   S:aTkzb1QzSGZ5VmM0Z05NSW9IbTFQUzE5bDdEQktyYndiekFlYS8waktXVnpydm1W
-   S:N1RCZmp4RDNBUW8xUgogYlU1ZEJyNklqYmRMRmxuTzV4MEcwbXJHN3g1T1VQdXVy
-   S:aWh5aVVScEZEcHdIOEtBSDF3TWNDcFhHWEZSdEdLawogd3lkZ3lWWUF0eTdvdGts
-   S:L3ozYlprQ1ZUMzRnUHZGNzBzUjYrUXhVeTh1MEx6RjVBL2JlWWFacHhTWUczMWFt
-   S:TAogQWRYaXRUV0ZpcGFJR2VhOWxFR0ZNMEw5K0JnN1h6Tm40blZMWG9reUVCM2Jn
-   S:UzRzY0c2UXpuWDIzRkdrCiAgIDwvWDUwOUNlcnRpZmljYXRlPgogICA8L1g1MDlE
-   S:YXRhPgogICA8L0tleUluZm8+CiAgPC9TaWduYXR1cmU+CgkJPC92ZXJpZmljYXRp
-   S:b25Db2RlOnNpZ25lZENvZGU+Cg==
-   S:         </verificationCode:code>
-   S:        </verificationCode:encodedSignedCode>
-   S:       <nv:success>
-   S:      </nv:creData>
-   S:    </resData>
-   S:    <trID>
-   S:      <clTRID>ABC-12345</clTRID>
-   S:      <svTRID>54321-XYZ</svTRID>
-   S:    </trID>
-   S:  </response>
-   S:</epp>
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <resData>
+S:      <nv:creData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+S:       <nv:success>
+S:        <nv:code type="domain">abc-123</nv:code>
+S:        <nv:status s="compliant"/>
+S:        <nv:crDate>2015-08-17T22:00:00.0Z</nv:crDate>
+S:        <nv:encodedSignedCode>
+S:ICAgICAgPHZlcmlmaWNhdGlvbkNvZGU6c2lnbmVkQ29kZQogICAgICAgIHhtbG5z
+S:OnZlcmlmaWNhdGlvbkNvZGU9CiAgICAgICAgICAidXJuOmlldGY6cGFyYW1zOnht
+S:bDpuczp2ZXJpZmljYXRpb25Db2RlLTEuMCIKICAgICAgICAgIGlkPSJzaWduZWRD
+S:b2RlIj4KICAgCQk8dmVyaWZpY2F0aW9uQ29kZTpjb2RlPjEtYWJjMTIzPC92ZXJp
+S:ZmljYXRpb25Db2RlOmNvZGU+CiAgPFNpZ25hdHVyZSB4bWxucz0iaHR0cDovL3d3
+S:dy53My5vcmcvMjAwMC8wOS94bWxkc2lnIyI+CiAgIDxTaWduZWRJbmZvPgogICAg
+S:PENhbm9uaWNhbGl6YXRpb25NZXRob2QKIEFsZ29yaXRobT0iaHR0cDovL3d3dy53
+S:My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8+CiAgICA8U2lnbmF0dXJlTWV0
+S:aG9kCiBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZHNp
+S:Zy1tb3JlI3JzYS1zaGEyNTYiLz4KICAgIDxSZWZlcmVuY2UgVVJJPSIjc2lnbmVk
+S:Q29kZSI+CiAgICAgPFRyYW5zZm9ybXM+CiAgICAgIDxUcmFuc2Zvcm0KIEFsZ29y
+S:aXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnI2VudmVsb3Bl
+S:ZC1zaWduYXR1cmUiLz4KICAgICA8L1RyYW5zZm9ybXM+CiAgICAgPERpZ2VzdE1l
+S:dGhvZAogQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGVu
+S:YyNzaGEyNTYiLz4KIDxEaWdlc3RWYWx1ZT53Z3lXM25aUG9FZnBwdGxoUklMS25P
+S:UW5iZHRVNkFyTTdTaHJBZkhnREZnPTwvRGlnZXN0VmFsdWU+CiAgICA8L1JlZmVy
+S:ZW5jZT4KICAgPC9TaWduZWRJbmZvPgogICA8U2lnbmF0dXJlVmFsdWU+CiBqTXU0
+S:UGZ5UUdpSkJGMEdXU0VQRkNKam15d0NFcVIyaDRMRCtnZTZYUStKbm1LRkZDdUNa
+S:Uy8zU0xLQXgwTDF3CiBRREZPMmUwWTY5azJHNy9MR0UzN1gzdk9mbG9iRk0xb0d3
+S:amE4K0dNVnJhb3RvNXhBZDQvQUY3ZUh1a2dBeW1ECiBvOXRveG9hMmgweVY0QTRQ
+S:bVh6c1U2Uzg2WHRDY1VFK1MvV003Mm55bjQ3em9VQ3p6UEtIWkJSeWVXZWhWRlEr
+S:CiBqWVJNSUFNek01N0hIUUErNmVhWGVmUnZ0UEVUZ1VPNGFWSVZTdWdjNE9VQVpa
+S:d2JZY1pyQzZ3T2FRcXFxQVppCiAzMGFQT0JZYkF2SE1TbVdTUytoRmtic2hvbUpm
+S:SHhiOTdURDJncmxZTnJRSXpxWGs3V2JIV3kyU1lkQStzSS9aCiBpcEpzWE5hNm9z
+S:VFV3MUN6QTdqZndBPT0KICAgPC9TaWduYXR1cmVWYWx1ZT4KICAgPEtleUluZm8+
+S:CiAgICA8WDUwOURhdGE+CiAgICA8WDUwOUNlcnRpZmljYXRlPgogTUlJRVNUQ0NB
+S:ekdnQXdJQkFnSUJBakFOQmdrcWhraUc5dzBCQVFzRkFEQmlNUXN3Q1FZRFZRUUdF
+S:d0pWVXpFTAogTUFrR0ExVUVDQk1DUTBFeEZEQVNCZ05WQkFjVEMweHZjeUJCYm1k
+S:bGJHVnpNUk13RVFZRFZRUUtFd3BKUTBGTwogVGlCVVRVTklNUnN3R1FZRFZRUURF
+S:eEpKUTBGT1RpQlVUVU5JSUZSRlUxUWdRMEV3SGhjTk1UTXdNakE0TURBdwogTURB
+S:d1doY05NVGd3TWpBM01qTTFPVFU1V2pCc01Rc3dDUVlEVlFRR0V3SlZVekVMTUFr
+S:R0ExVUVDQk1DUTBFeAogRkRBU0JnTlZCQWNUQzB4dmN5QkJibWRsYkdWek1SY3dG
+S:UVlEVlFRS0V3NVdZV3hwWkdGMGIzSWdWRTFEU0RFaAogTUI4R0ExVUVBeE1ZVm1G
+S:c2FXUmhkRzl5SUZSTlEwZ2dWRVZUVkNCRFJWSlVNSUlCSWpBTkJna3Foa2lHOXcw
+S:QgogQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBby9jd3ZYaGJWWWwwUkRXV3ZveWVa
+S:cEVUVlpWVmNNQ292VVZOZy9zdwogV2ludU1nRVdnVlFGcnoweEEwNHBFaFhDRlZ2
+S:NGV2YlVwZWtKNWJ1cVUxZ21ReU9zQ0tRbGhPSFRkUGp2a0M1dQogcERxYTUxRmxr
+S:MFRNYU1rSVFqczdhVUtDbUE0Ukc0dFRUR0svRWpSMWl4OC9EMGdIWVZSbGR5MVlQ
+S:ck1QK291NwogNWJPVm5Jb3MrSGlmckF0ckl2NHFFcXdMTDRGVFpBVXBhQ2EyQm1n
+S:WGZ5MkNTUlFieEQ1T3IxZ2NTYTN2dXJoNQogc1BNQ054cWFYbUlYbVFpcFMrRHVF
+S:QnFNTTh0bGRhTjdSWW9qVUVLckdWc05rNWk5eTIvN3NqbjF6eXlVUGY3dgogTDRH
+S:Z0RZcWhKWVdWNjFEblhneC9KZDZDV3h2c25ERjZzY3NjUXpVVEVsK2h5d0lEQVFB
+S:Qm80SC9NSUg4TUF3RwogQTFVZEV3RUIvd1FDTUFBd0hRWURWUjBPQkJZRUZQWkVj
+S:SVFjRC9CajJJRnovTEVSdW8yQURKdmlNSUdNQmdOVgogSFNNRWdZUXdnWUdBRk8w
+S:LzdrRWgzRnVFS1MrUS9rWUhhRC9XNndpaG9XYWtaREJpTVFzd0NRWURWUVFHRXdK
+S:VgogVXpFTE1Ba0dBMVVFQ0JNQ1EwRXhGREFTQmdOVkJBY1RDMHh2Y3lCQmJtZGxi
+S:R1Z6TVJNd0VRWURWUVFLRXdwSgogUTBGT1RpQlVUVU5JTVJzd0dRWURWUVFERXhK
+S:SlEwRk9UaUJVVFVOSUlGUkZVMVFnUTBHQ0FRRXdEZ1lEVlIwUAogQVFIL0JBUURB
+S:Z2VBTUM0R0ExVWRId1FuTUNVd0k2QWhvQitHSFdoMGRIQTZMeTlqY213dWFXTmhi
+S:bTR1YjNKbgogTDNSdFkyZ3VZM0pzTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFC
+S:MnFTeTd1aSs0M2NlYktVS3dXUHJ6ejl5LwogSWtyTWVKR0tqbzQwbis5dWVrYXcz
+S:REo1RXFpT2YvcVo0cGpCRCsrb1I2QkpDYjZOUXVRS3dub0F6NWxFNFNzdQogeTUr
+S:aTkzb1QzSGZ5VmM0Z05NSW9IbTFQUzE5bDdEQktyYndiekFlYS8waktXVnpydm1W
+S:N1RCZmp4RDNBUW8xUgogYlU1ZEJyNklqYmRMRmxuTzV4MEcwbXJHN3g1T1VQdXVy
+S:aWh5aVVScEZEcHdIOEtBSDF3TWNDcFhHWEZSdEdLawogd3lkZ3lWWUF0eTdvdGts
+S:L3ozYlprQ1ZUMzRnUHZGNzBzUjYrUXhVeTh1MEx6RjVBL2JlWWFacHhTWUczMWFt
+S:TAogQWRYaXRUV0ZpcGFJR2VhOWxFR0ZNMEw5K0JnN1h6Tm40blZMWG9reUVCM2Jn
+S:UzRzY0c2UXpuWDIzRkdrCiAgIDwvWDUwOUNlcnRpZmljYXRlPgogICA8L1g1MDlE
+S:YXRhPgogICA8L0tleUluZm8+CiAgPC9TaWduYXR1cmU+CgkJPC92ZXJpZmljYXRp
+S:b25Db2RlOnNpZ25lZENvZGU+Cg==
+S:        </nv:encodedSignedCode>
+S:       </nv:success>
+S:      </nv:creData>
+S:    </resData>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54321-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>
    
    Example <create> response of failed:
 
-   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   S:  <response>
-   S:    <result code="1000">
-   S:      <msg>Command completed successfully</msg>
-   S:    </result>
-   S:    <resData>
-   S:     <nv:creData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   S:      <nv:failed>
-   S:        <nv:status>nonComplaint</nv:msg>
-   S:        <nv:msg>The name of the object is not correct.</nv:msg>
-   S:      </nv:failed>
-   S:     </nv:creData>
-   S:    </resData>
-   S:    <trID>
-   S:      <clTRID>ABC-12345</clTRID>
-   S:      <svTRID>54321-XYZ</svTRID>
-   S:    </trID>
-   S:  </response>
-   S:</epp>
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <resData>
+S:     <nv:creData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+S:      <nv:failed>
+S:        <nv:status s="nonCompliant"/>
+S:        <nv:msg>The name of the object is not correct.</nv:msg>
+S:      </nv:failed>
+S:     </nv:creData>
+S:    </resData>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54321-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>
     	]]></artwork>
       </figure> 
 <t>
@@ -1153,43 +1159,44 @@ A &lt;nv:authInfo&gt; element that contains authorization
  			<artwork><![CDATA[     
    Example <update> command:
 
-   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   C:  <command>
-   C:    <update>
-   C:      <nv:update xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   C:        <nv:code>abc-123</nv:code>
-   C:        <nv:chg>
-   C:          <nv:authInfo>
-   C:            <nv:pw>2BARfoo</nv:pw>
-   C:          </nv:authInfo>
-   C:        </nv:chg>
-   C:      </nv:update>
-   C:    </update>
-   C:    <clTRID>ABC-12345</clTRID>
-   C:  </command>
-   C:</epp>
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <update>
+C:      <nv:update xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+C:        <nv:code>abc-123</nv:code>
+C:        <nv:chg>
+C:          <nv:authInfo>
+C:            <nv:pw>2BARfoo</nv:pw>
+C:          </nv:authInfo>
+C:        </nv:chg>
+C:      </nv:update>
+C:    </update>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>
 
-   When an <update> command has been processed successfully, a server
-   MUST respond with an EPP response with no <resData> element.
+   When an <update> command has been processed successfully, 
+   a server MUST respond with an EPP response with no 
+   <resData> element.
 
    Example <update> response:
 
-   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   S:  <response>
-   S:    <result code="1000">
-   S:      <msg>Command completed successfully</msg>
-   S:    </result>
-   S:    <trID>
-   S:      <clTRID>ABC-12345</clTRID>
-   S:      <svTRID>54321-XYZ</svTRID>
-   S:    </trID>
-   S:  </response>
-   S:</epp>
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54321-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>
 
-   An EPP error response MUST be returned if an <update> command cannot
-   be processed for any reason.
+   An EPP error response MUST be returned if an <update> 
+   command cannot be processed for any reason.
     	]]></artwork>
       </figure> 
 </section>	
@@ -1214,28 +1221,28 @@ A &lt;nv:authInfo&gt; element that contains authorization
 	  </t>
 <figure>
 <artwork><![CDATA[     
-   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   S:  <response>
-   S:    <result code="1001">
-   S:      <msg>Command completed successfully; action pending</msg>
-   S:    </result>
-   S:    <resData>
-   S:      <nv:creData
-   S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   S:        <nv:pending>
-   S:          <nv:code>abc-123</nv:code>
-   S:          <nv:status>pendingComplaint</nv:status>
-   S:          <nv:crDate>2015-09-03T22:00:00.0Z</nv:crDate>
-   S:        </nv:pending>
-   S:      </nv:creData>
-   S:    </resData>
-   S:    <trID>
-   S:      <clTRID>ABC-12345</clTRID>
-   S:      <svTRID>54321-XYZ</svTRID>
-   S:    </trID>
-   S:  </response>
-   S:</epp>
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1001">
+S:      <msg>Command completed successfully; action pending</msg>
+S:    </result>
+S:    <resData>
+S:      <nv:creData
+S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+S:        <nv:pending>
+S:          <nv:code>abc-123</nv:code>
+S:          <nv:status s="pendingCompliant"/>
+S:          <nv:crDate>2015-09-03T22:00:00.0Z</nv:crDate>
+S:        </nv:pending>
+S:      </nv:creData>
+S:    </resData>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54321-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>
     	]]></artwork>
       </figure> 	 
 <t>
@@ -1276,32 +1283,32 @@ A &lt;nv:code&gt; element that contains the code of the a NV object.
 <artwork><![CDATA[     
    Example "review completed" service message:
 
-   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   S:  <response>
-   S:    <result code="1301">
-   S:      <msg>Command completed successfully; ack to dequeue</msg>
-   S:    </result>
-   S:    <msgQ count="5" id="12345">
-   S:      <qDate>2015-09-04T22:01:00.0Z</qDate>
-   S:      <msg>Pending action completed successfully.</msg>
-   S:    </msgQ>
-   S:    <resData>
-   S:      <nv:panData
-   S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   S:        <nv:code>abc-123</nv:code>
-   S:        <nv:paStatus>complaint</nv:panStatus>
-   S:        <nv:msg>The object has passed verification,
-   S:			signed code was generated.</nv:msg>
-   S:        <nv:paDate>2015-09-04T22:00:00.0Z</nv:paDate>
-   S:      </nv:panData>
-   S:    </resData>
-   S:    <trID>
-   S:      <clTRID>BCD-23456</clTRID>
-   S:      <svTRID>65432-WXY</svTRID>
-   S:    </trID>
-   S:  </response>
-   S:</epp>
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1301">
+S:      <msg>Command completed successfully; ack to dequeue</msg>
+S:    </result>
+S:    <msgQ count="5" id="12345">
+S:      <qDate>2015-09-04T22:01:00.0Z</qDate>
+S:      <msg>Pending action completed successfully.</msg>
+S:    </msgQ>
+S:    <resData>
+S:      <nv:panData
+S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+S:        <nv:code>abc-123</nv:code>
+S:        <nv:paStatus s="compliant"/>
+S:        <nv:msg>The object has passed verification,
+S:			signed code was generated.</nv:msg>
+S:        <nv:paDate>2015-09-04T22:00:00.0Z</nv:paDate>
+S:      </nv:panData>
+S:    </resData>
+S:    <trID>
+S:      <clTRID>BCD-23456</clTRID>
+S:      <svTRID>65432-WXY</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>
     	]]></artwork>
       </figure> 	  
 	  </section>
@@ -1318,304 +1325,313 @@ A &lt;nv:code&gt; element that contains the code of the a NV object.
  <figure>
  <artwork><![CDATA[
    BEGIN
-   
-   <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-   <schema targetNamespace="urn:ietf:params:xml:ns:nv-1.0"
-     xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"
-     xmlns:epp="urn:ietf:params:xml:ns:epp-1.0"
-     xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0"
-     xmlns:verificationCode="urn:ietf:params:xml:ns:verificationCode-1.0"
-     xmlns="http://www.w3.org/2001/XMLSchema"
-     elementFormDefault="qualified">
+<schema targetNamespace="urn:ietf:params:xml:ns:nv-1.0"
+  xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"
+  xmlns:epp="urn:ietf:params:xml:ns:epp-1.0"
+  xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0"
+  xmlns:verificationCode=
+    "urn:ietf:params:xml:ns:verificationCode-1.0"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified">
 
-   <annotation>
-     <documentation>
-       Extensible Provisioning Protocol v1.0
-       Name Verification provisioning schema.
-     </documentation>
-   </annotation>
+<annotation>
+  <documentation>
+	 Extensible Provisioning Protocol v1.0
+	 Name Verification provisioning schema.
+  </documentation>
+</annotation>
 
-   <!--
-	Import common element types.
-   -->
-  <import namespace="urn:ietf:params:xml:ns:eppcom-1.0"/>
-  <import namespace="urn:ietf:params:xml:ns:epp-1.0"/>
-  <import namespace="urn:ietf:params:xml:ns:verificationCode-1.0"/>
-   
-   <!--
-	Child elements found in EPP commands.
-   -->
-   <element name="check" type="nv:mNameType"/>
-   <element name="create" type="nv:createType"/>
-   <element name="info" type="nv:infoType"/>
-   <element name="update" type="nv:updateType"/>
+<!--
+Import common element types.
+-->
+<import namespace="urn:ietf:params:xml:ns:eppcom-1.0"/>
+<import namespace="urn:ietf:params:xml:ns:epp-1.0"/>
+<import namespace=
+  "urn:ietf:params:xml:ns:verificationCode-1.0"/>
+
+<!--
+Child elements found in EPP commands.
+-->
+<element name="check" type="nv:mNameType"/>
+<element name="create" type="nv:createType"/>
+<element name="info" type="nv:infoType"/>
+<element name="update" type="nv:updateType"/>
+
+<!--
+Child element of <check> command.
+-->
+<complexType name="mNameType">
+ <sequence>
+	<element name="name" type="eppcom:labelType"
+	 maxOccurs="unbounded"/>
+ </sequence>
+</complexType>
+
+<!--
+Child elements of the <create> command.
+-->
+<complexType name="createType">
+ <sequence>
+	<choice>
+	  <element name="dnv" type="nv:dnvType"/>
+	  <element name="rnv" type="nv:rnvType"/>
+	</choice>
+  <element name="authInfo" type="nv:authInfoChgType"/>	
+ </sequence>  
+</complexType>
+
+<complexType name="dnvType">
+ <sequence>
+	<element name="name" type="eppcom:labelType"/>
+ </sequence>
+</complexType>
+
+<complexType name="rnvType">
+ <sequence>
+	<element name="name" type="nv:nameType"/>
+	<element name="num" type="nv:nameType"/>
+	<element name="proofType" type="nv:proofEumType"/>
+	<element name="document" type="nv:documentType"
+	 minOccurs="0" maxOccurs="unbounded"/>
+ </sequence>
+ <attribute name="role" type="nv:roleType" 
+	default="person"/>
+</complexType>
+
+<simpleType name="proofEumType">
+  <restriction base="token">
+	 <enumeration value="poc"/>
+	 <enumeration value="poe"/>
+	 <enumeration value="poot"/>
+  </restriction>
+</simpleType>
+
+<simpleType name="roleType">
+	<restriction base="token">
+	  <enumeration value="person"/>
+	  <enumeration value="org"/>
+ </restriction>
+</simpleType>    
+
+<simpleType name="nameType">
+	<restriction base="token">
+		<minLength value="1"/>
+		<maxLength value="255"/>
+	</restriction>
+</simpleType>
+
+<complexType name="documentType">
+ <sequence>
+	<element name="fileType" type="nv:fileType"/>
+	<element name="fileContent" type="base64Binary"/>
+ </sequence>
+</complexType>
+
+<simpleType name="fileType">
+  <restriction base="token">
+	  <enumeration value="pdf"/>
+	  <enumeration value="jpg"/>
+  </restriction>
+</simpleType>
+
+
+<!--
+Child elements of the <info> command.
+-->
+<complexType name="infoType">
+ <sequence>
+	<element name="code" type="token"/>
+	<element name="authInfo" type="nv:authInfoChgType"
+	 minOccurs="0"/>	  
+ </sequence>
+ <attribute name="type" type="nv:infoFormType" 
+	default="signedCode"/>
+</complexType>
+  
 	
-   <!--
-	Child element of <check> command.
-   -->
-   <complexType name="mNameType">
-    <sequence>
-      <element name="name" type="eppcom:labelType"
-       maxOccurs="unbounded"/>
-    </sequence>
-   </complexType>
-   
-   <!--
-	Child elements of the <create> command.
-   -->
-   <complexType name="createType">
-    <sequence>
-      <choice>
-        <element name="dnv" type="nv:dnvType"/>
-        <element name="rnv" type="nv:rnvType"/>
-      </choice>
-	  <element name="authInfo" type="nv:authInfoChgType"/>	
-	 </sequence>  
-   </complexType>
-   
-   <complexType name="dnvType">
-    <sequence>
-      <element name="name" type="eppcom:labelType"/>
-    </sequence>
-   </complexType>
-   
-   <complexType name="rnvType">
-    <sequence>
-      <element name="name" type="nv:nameType"/>
-      <element name="num" type="nv:nameType"/>
-      <element name="proofType" type="nv:proofEumType"/>
-      <element name="document" type="nv:documentType"
-       minOccurs="0", maxOccurs="unbounded"/>
-    </sequence>
-	 <attribute name="role" type="nv:roleType" 
-      default="person"/>
-   </complexType>
-   
-   <simpleType name="proofEumType">
-     <restriction base="token">
-       <enumeration value="poc"/>
-       <enumeration value="poe"/>
-       <enumeration value="poot"/>
-     </restriction>
-   </simpleType>
-   
-  <simpleType name="roleType">
-      <restriction base="token">
-        <enumeration value="person"/>
-        <enumeration value="org"/>
-    </restriction>
-  </simpleType>    
-   
-   <simpleType name="nameType">
-      <restriction base="token">
-         <minLength value="1"/>
-         <maxLength value="255"/>
-      </restriction>
-   </simpleType>
-   
-   <complexType name="documentType">
-    <sequence>
-      <element name="fileType" type="nv:fileType"/>
-      <element name="fileContent" type="base64Binary"/>
-    </sequence>
-   </complexType>
-   
-   <simpleType name="fileType">
-     <restriction base="token">
-        <enumeration value="pdf"/>
-        <enumeration value="jpg"/>
-     </restriction>
-   </simpleType>
-   
+<simpleType name="infoFormType">
+  <restriction base="token">
+	 <enumeration value="input"/>
+	 <enumeration value="signedCode"/>
+ </restriction>
+</simpleType> 
 
-   <!--
-	Child elements of the <info> command.
-   -->
-   <complexType name="infoType">
-    <sequence>
-      <element name="code" type="token"/>
-      <element name="authInfo" type="nv:authInfoChgType"
-	    minOccurs="0"/>	  
-    </sequence>
-	 <attribute name="type" type="nv:infoFormType" 
-      default="signedCode"/>
-   </complexType>
-     
-      
-  <simpleType name="infoFormType">
-     <restriction base="token">
-       <enumeration value="input"/>
-       <enumeration value="signedCode"/>
-    </restriction>
-  </simpleType> 
-  
-   <!--
-   Child elements of the <update> command.
-   -->
-   <complexType name="updateType">
-    <sequence>
-      <element name="code" type="token"/>
-      <element name="chg" type="nv:chgType"/>
-    </sequence>
-   </complexType>
-   
-   <!--
-   Data elements that can be changed.
-   -->
-   <complexType name="chgType">
-    <sequence>
-      <element name="authInfo" type="nv:authInfoChgType"/>
-    </sequence>
-   </complexType>
-   
-   <!--
-   Data elements of authInfoChgType.
-   -->
-   <complexType name="authInfoChgType">
-    <choice>
-      <element name="pw" type="eppcom:pwAuthInfoType"/>
-      <element name="ext" type="eppcom:extAuthInfoType"/>
-    </choice>
-   </complexType>
-  
-   <!--
-	Child response elements.
-   -->
-   <element name="chkData" type="nv:chkDataType"/>
-   <element name="creData" type="nv:creDataType"/>
-   <element name="panData" type="nv:panDataType"/>
-   <element name="infData" type="nv:infDataType"/>
- 
-   <!--
-   <check> response elements.
-   -->
-   <complexType name="chkDataType">
-    <sequence>
-      <element name="cd" type="nv:checkType"
-       maxOccurs="unbounded"/>
-    </sequence>
-   </complexType>
+<!--
+Child elements of the <update> command.
+-->
+<complexType name="updateType">
+ <sequence>
+	<element name="code" type="token"/>
+	<element name="chg" type="nv:chgType"/>
+ </sequence>
+</complexType>
 
-   <complexType name="checkType">
-    <sequence>
-      <element name="name" type="nv:checkNameType"/>
-      <element name="reason" type="eppcom:reasonType"
-       minOccurs="0"/>
-    </sequence>
-   </complexType>
+<!--
+Data elements that can be changed.
+-->
+<complexType name="chgType">
+ <sequence>
+	<element name="authInfo" type="nv:authInfoChgType"/>
+ </sequence>
+</complexType>
 
-   <complexType name="checkNameType">
-    <simpleContent>
-      <extension base="eppcom:labelType">
-        <attribute name="avail" type="boolean"
-         use="required"/>
-	    <attribute name="restricted" type="boolean"/>	 
-      </extension>
-    </simpleContent>
-   </complexType>
+<!--
+Data elements of authInfoChgType.
+-->
+<complexType name="authInfoChgType">
+ <choice>
+	<element name="pw" type="eppcom:pwAuthInfoType"/>
+	<element name="ext" type="eppcom:extAuthInfoType"/>
+ </choice>
+</complexType>
 
-   <!--
-	<create> response elements.
-   -->
-   <complexType name="creDataType">
-    <choice>
-      <element name="success" type="nv:successType"/>
-      <element name="failed" type="nv:failedType"/>
-      <element name="pending" type="nv:pendingType"/>
-    </choice>
-   </complexType>
-   
-   <complexType name="successType">
-    <sequence>
-	  <element name="code" type="token"/>
-	  <element name="status" type="nv:statusType"/>
-      <element name="crDate" type="dateTime"/>
-      <element name="encodedSignedCode" 
-	   type="verificationCode:encodedSignedCodeType"/>
-    </sequence>
-   </complexType>
-   
-   <complexType name="failedType">
-    <sequence>
-      <element name="status" type="nv:statusType"/>
-      <element name="msg" type="token"/>
-    </sequence>
-   </complexType>
+<!--
+Child response elements.
+-->
+<element name="chkData" type="nv:chkDataType"/>
+<element name="creData" type="nv:creDataType"/>
+<element name="panData" type="nv:panDataType"/>
+<element name="infData" type="nv:infDataType"/>
 
-   <complexType name="pendingType">
-    <sequence>
-      <element name="code" type="token"/>
-	  <element name="status" type="nv:statusType"/>
-      <element name="crDate" type="dateTime"/>
-    </sequence>
-   </complexType>
-   
-   <!--
-   Pending action notification response elements.
-   -->
-   <complexType name="panDataType">
-    <sequence>
-      <element name="code" type="token"/>
-      <element name="paStatus" type="nv:statusType"/>
-      <element name="msg" type="token"/>
-      <element name="paDate" type="dateTime"/>
-    </sequence>
-   </complexType>
-   
-   <!--
-	<info> response elements.
-   -->
-   <complexType name="infDataType">
-    <sequence>
-     <choice>
-      <element name="signedCode" type="nv:signedCodeType"/>
-      <element name="input" type="nv:createType"/>
-     </choice>
-	 <element name="authInfo" type="nv:authInfoChgType"/>	
-	</sequence>
-   </complexType>
-   
-   <complexType name="signedCodeType">
-    <sequence>
-      <element name="code" type="token"/>
-      <element name="status" type="nv:statusType"
-       minOccurs="0"/>
-      <element name="authInfo" type="nv:authInfoChgType"/>	   
-      <element name="encodedSignedCode" 
-	   type="verificationCode:encodedSignedCodeType"/>
-    </sequence>
-   </complexType>
+<!--
+<check> response elements.
+-->
+<complexType name="chkDataType">
+ <sequence>
+	<element name="cd" type="nv:checkType"
+	 maxOccurs="unbounded"/>
+ </sequence>
+</complexType>
 
-   <!--
-   Status is a combination of attributes and an optional
-   human-readable message that may be expressed in languages other
-   than English.
-   -->
-   <complexType name="statusType">
-    <simpleContent>
-      <extension base="normalizedString">
-        <attribute name="s" type="nv:statusValueType"
-         use="required"/>
-        <attribute name="lang" type="language"
-         default="en"/>
-      </extension>
-    </simpleContent>
-   </complexType>
+<complexType name="checkType">
+ <sequence>
+	<element name="name" type="nv:checkNameType"/>
+	<element name="reason" type="eppcom:reasonType"
+	 minOccurs="0"/>
+ </sequence>
+</complexType>
 
-   <simpleType name="statusValueType">
-    <restriction base="token">
-      <enumeration value="complaint"/>
-      <enumeration value="nonComplaint"/>
-	  <enumeration value="pendingComplaint"/>
-    </restriction>
-   </simpleType>
+<complexType name="checkNameType">
+ <simpleContent>
+	<extension base="eppcom:labelType">
+	  <attribute name="avail" type="boolean"
+		use="required"/>
+	 <attribute name="restricted" type="boolean" 
+	  default="0"/>	 
+	</extension>
+ </simpleContent>
+</complexType>
 
-   <!--
-   End of schema.
-   -->
-   </schema>
-   
+<!--
+<create> response elements.
+-->
+<complexType name="creDataType">
+ <choice>
+	<element name="success" type="nv:successType"/>
+	<element name="failed" type="nv:failedType"/>
+	<element name="pending" type="nv:pendingType"/>
+ </choice>
+</complexType>
+
+<complexType name="successType">
+ <sequence>
+  <element name="code" type="nv:verificationCodeType"/>
+  <element name="status" type="nv:statusType"/>
+	<element name="crDate" type="dateTime"/>
+	<element name="encodedSignedCode" 
+	type="verificationCode:encodedSignedCodeType"/>
+ </sequence>
+</complexType>
+
+<complexType name="failedType">
+ <sequence>
+	<element name="status" type="nv:statusType"/>
+	<element name="msg" type="token"/>
+ </sequence>
+</complexType>
+
+<complexType name="pendingType">
+ <sequence>
+	<element name="code" type="token"/>
+  <element name="status" type="nv:statusType"/>
+	<element name="crDate" type="dateTime"/>
+ </sequence>
+</complexType>
+
+<!--
+Pending action notification response elements.
+-->
+<complexType name="panDataType">
+ <sequence>
+	<element name="code" type="token"/>
+	<element name="paStatus" type="nv:statusType"/>
+	<element name="msg" type="token"/>
+	<element name="paDate" type="dateTime"/>
+ </sequence>
+</complexType>
+
+<!--
+<info> response elements.
+-->
+<complexType name="infDataType">
+ <sequence>
+  <choice>
+	<element name="signedCode" type="nv:signedCodeType"/>
+	<element name="input" type="nv:createType"/>
+  </choice>
+</sequence>
+</complexType>
+
+<complexType name="signedCodeType">
+ <sequence>
+	<element name="code" type="nv:verificationCodeType"/>
+	<element name="status" type="nv:statusType"
+	 minOccurs="0"/>
+	<element name="authInfo" type="nv:authInfoChgType"/>	   
+	<element name="encodedSignedCode" 
+	type="verificationCode:encodedSignedCodeType"/>
+ </sequence>
+</complexType>
+
+<complexType name="verificationCodeType">
+  <simpleContent>
+    <extension base="token">
+      <attribute name="type" type="token" 
+        use="required"/>
+    </extension>
+  </simpleContent>
+</complexType>
+
+<!--
+Status is a combination of attributes and an optional
+human-readable message that may be expressed in languages other
+than English.
+-->
+<complexType name="statusType">
+ <simpleContent>
+	<extension base="normalizedString">
+	  <attribute name="s" type="nv:statusValueType"
+		use="required"/>
+	  <attribute name="lang" type="language"
+		default="en"/>
+	</extension>
+ </simpleContent>
+</complexType>
+
+<simpleType name="statusValueType">
+ <restriction base="token">
+	<enumeration value="compliant"/>
+	<enumeration value="nonCompliant"/>
+  <enumeration value="pendingCompliant"/>
+ </restriction>
+</simpleType>
+
+<!--
+End of schema.
+-->
+</schema>
    END
  
 ]]></artwork>
@@ -1640,6 +1656,7 @@ A &lt;nv:code&gt; element that contains the code of the a NV object.
     </section>
     		
     <section title="IANA Considerations" anchor="Iana">
+    	<section anchor="IANA-XML-Namespace" title="XML Namespace">
       <t>         
    This document uses URNs to describe XML namespaces and XML schemas
    conforming to a registry mechanism described in <xref target="RFC3688"></xref>. 
@@ -1677,6 +1694,52 @@ A &lt;nv:code&gt; element that contains the code of the a NV object.
             </t>                         			
          </list>                        
       </t>             
+       </section>
+       
+       <section anchor="EPP-Extension-Registry" title="EPP Extension Registry">
+       
+       	<t>
+   The EPP extension described in this document should be registered by
+   the IANA in the EPP Extension Registry described in <xref target="RFC7451"/>.  The
+   details of the registration are as follows:
+   </t>
+
+   <t>
+   Name of Extension: Extensible Provisioning Protocol (EPP) China Name Verification Mapping
+   </t>
+   
+   <t>
+   Document status: Informational
+   </t>
+   
+   <t>
+   Reference: (insert reference to RFC version of this document)
+   </t>
+
+   <t>
+   Registrant Name and Email Address: IESG, &lt;iesg@ietf.org&gt;
+   </t>
+  
+   <t>
+   TLDs: Any
+   </t>
+ 
+   <t>
+   IPR Disclosure: None
+   </t>
+
+   <t>
+   Status: Active
+   </t>
+
+   <t>
+   Notes: None
+   </t>
+       
+       </section>
+       
+       
+       
     </section>
 	
     <section title="Security considerations" anchor="security">
@@ -1718,6 +1781,7 @@ A &lt;nv:code&gt; element that contains the code of the a NV object.
 			&RFC2119;
 			&RFC3688;				
 			&RFC5730;
+         &RFC7451;      
 	  <reference anchor="W3C.REC-xml-20040204"
                  target="http://www.w3.org/TR/2004/REC-xml-20040204">
         <front>

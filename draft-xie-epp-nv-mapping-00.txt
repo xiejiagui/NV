@@ -5,10 +5,10 @@
 Internet Engineering Task Force                                X. Jiagui
 Internet-Draft                                                  Teleinfo
 Intended status: Informational                                  J. Gould
-Expires: March 29, 2016                                   VeriSign, Inc.
+Expires: March 30, 2016                                   VeriSign, Inc.
                                                               L. Hongyan
                                                                 Teleinfo
-                                                      September 26, 2015
+                                                      September 27, 2015
 
 
  Extensible Provisioning Protocol (EPP) China Name Verification Mapping
@@ -36,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 29, 2016.
+   This Internet-Draft will expire on March 30, 2016.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Jiagui, et al.           Expires March 29, 2016                 [Page 1]
+Jiagui, et al.           Expires March 30, 2016                 [Page 1]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
@@ -96,20 +96,20 @@ Table of Contents
    5.  Formal Syntax . . . . . . . . . . . . . . . . . . . . . . . .  24
    6.  Internationalization Considerations . . . . . . . . . . . . .  31
    7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  31
+     7.1.  XML Namespace . . . . . . . . . . . . . . . . . . . . . .  31
+     7.2.  EPP Extension Registry  . . . . . . . . . . . . . . . . .  32
    8.  Security considerations . . . . . . . . . . . . . . . . . . .  32
-   9.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  32
-   10. Change History  . . . . . . . . . . . . . . . . . . . . . . .  32
-     10.1.  draft-xie-epp-nv-mapping-00: Version 00  . . . . . . . .  32
-   11. Normative References  . . . . . . . . . . . . . . . . . . . .  32
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  33
+   9.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  33
+   10. Change History  . . . . . . . . . . . . . . . . . . . . . . .  33
+     10.1.  draft-xie-epp-nv-mapping-00: Version 00  . . . . . . . .  33
+   11. Normative References  . . . . . . . . . . . . . . . . . . . .  33
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  34
 
 
 
 
 
-
-
-Jiagui, et al.           Expires March 29, 2016                 [Page 2]
+Jiagui, et al.           Expires March 30, 2016                 [Page 2]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
@@ -165,7 +165,7 @@ Internet-Draft               EPP NV Mapping               September 2015
 
 
 
-Jiagui, et al.           Expires March 29, 2016                 [Page 3]
+Jiagui, et al.           Expires March 30, 2016                 [Page 3]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
@@ -221,7 +221,7 @@ Internet-Draft               EPP NV Mapping               September 2015
 
 
 
-Jiagui, et al.           Expires March 29, 2016                 [Page 4]
+Jiagui, et al.           Expires March 30, 2016                 [Page 4]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
@@ -277,7 +277,7 @@ Internet-Draft               EPP NV Mapping               September 2015
 
 
 
-Jiagui, et al.           Expires March 29, 2016                 [Page 5]
+Jiagui, et al.           Expires March 30, 2016                 [Page 5]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
@@ -305,19 +305,19 @@ Internet-Draft               EPP NV Mapping               September 2015
 
       Example <check> command:
 
-      C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-      C:  <command>
-      C:    <check>
-      C:      <nv:check xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-      C:        <nv:name>example1</nv:name>
-      C:        <nv:name>example2</nv:name>
-      C:        <nv:name>example3</nv:name>
-      C:      </nv:check>
-      C:    </check>
-      C:    <clTRID>ABC-12345</clTRID>
-      C:  </command>
-      C:</epp>
+   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   C:  <command>
+   C:    <check>
+   C:      <nv:check xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   C:        <nv:name>example1</nv:name>
+   C:        <nv:name>example2</nv:name>
+   C:        <nv:name>example3</nv:name>
+   C:      </nv:check>
+   C:    </check>
+   C:    <clTRID>ABC-12345</clTRID>
+   C:  </command>
+   C:</epp>
 
    When a <check> command has been processed successfully, the EPP
    <resData> element MUST contain a child <nv:chkData> element that
@@ -333,12 +333,12 @@ Internet-Draft               EPP NV Mapping               September 2015
 
 
 
-Jiagui, et al.           Expires March 29, 2016                 [Page 6]
+Jiagui, et al.           Expires March 30, 2016                 [Page 6]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
-      an "reserved" attribute whose value indicates this name is an RN
+      an "restricted" attribute whose value indicates this name is an RN
       or not, with a default value of "0".  A value of "1" or "true"
       means that the object is an RN Name.  A value of "0" or "false"
       means that the object is not restricted.
@@ -354,33 +354,33 @@ Internet-Draft               EPP NV Mapping               September 2015
 
       Example <check> response:
 
-      S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-      S:  <response>
-      S:    <result code="1000">
-      S:      <msg>Command completed successfully</msg>
-      S:    </result>
-      S:    <resData>
-      S:      <nv:chkData
-      S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-      S:        <nv:cd>
-      S:          <nv:name avail="1">example1</nv:name>
-      S:        </nv:cd>
-      S:        <nv:cd>
-      S:          <nv:name avail="0">example2</nv:name>
-      S:          <nv:reason>In Prohibited Lists.</nv:reason>
-      S:        </nv:cd>
-      S:        <nv:cd>
-      S:          <nv:name avail="0",reserved="1">example3</nv:name>
-      S:        </nv:cd>
-      S:      </nv:chkData>
-      S:    </resData>
-      S:    <trID>
-      S:      <clTRID>ABC-12345</clTRID>
-      S:      <svTRID>54322-XYZ</svTRID>
-      S:    </trID>
-      S:  </response>
-      S:</epp>
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1000">
+   S:      <msg>Command completed successfully</msg>
+   S:    </result>
+   S:    <resData>
+   S:      <nv:chkData
+   S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:        <nv:cd>
+   S:          <nv:name avail="1">example1</nv:name>
+   S:        </nv:cd>
+   S:        <nv:cd>
+   S:          <nv:name avail="0">example2</nv:name>
+   S:          <nv:reason>In Prohibited Lists.</nv:reason>
+   S:        </nv:cd>
+   S:        <nv:cd>
+   S:          <nv:name avail="0" restricted="1">example3</nv:name>
+   S:        </nv:cd>
+   S:      </nv:chkData>
+   S:    </resData>
+   S:    <trID>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54322-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
 
    An EPP error response MUST be returned if an <check> command cannot
    be processed for any reason.
@@ -389,7 +389,7 @@ Internet-Draft               EPP NV Mapping               September 2015
 
 
 
-Jiagui, et al.           Expires March 29, 2016                 [Page 7]
+Jiagui, et al.           Expires March 30, 2016                 [Page 7]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
@@ -445,67 +445,70 @@ Internet-Draft               EPP NV Mapping               September 2015
 
 
 
-Jiagui, et al.           Expires March 29, 2016                 [Page 8]
+Jiagui, et al.           Expires March 30, 2016                 [Page 8]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
       Example <info> command to query the signed code:
 
-      C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-      C:  <command>
-      C:    <info>
-      C:      <nv:info xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-      C:        <nv:code type="signedCode">abc-123</nv:name>
-      C:      </nv:info>
-      C:    </info>
-      C:    <clTRID>ABC-12345</clTRID>
-      C:  </command>
-      C:</epp>
+   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   C:  <command>
+   C:    <info>
+   C:      <nv:info xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"
+   C:        type="signedCode">
+   C:        <nv:code>abc-123</nv:code>
+   C:      </nv:info>
+   C:    </info>
+   C:    <clTRID>ABC-12345</clTRID>
+   C:  </command>
+   C:</epp>
 
       Example <info> command to query the input data:
 
-      C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-      C:  <command>
-      C:    <info>
-      C:      <nv:info xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-      C:        <nv:code type="input">abc-123</nv:name>
-      C:      </nv:info>
-      C:    </info>
-      C:    <clTRID>ABC-12345</clTRID>
-      C:  </command>
-      C:</epp>
+   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   C:  <command>
+   C:    <info>
+   C:      <nv:info xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"
+   C:       type="input">
+   C:        <nv:code>abc-123</nv:code>
+   C:      </nv:info>
+   C:    </info>
+   C:    <clTRID>ABC-12345</clTRID>
+   C:  </command>
+   C:</epp>
 
       Example <info> command with authorization information:
 
-      C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-      C:  <command>
-      C:    <info>
-      C:      <nv:info xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-      C:        <nv:code type="signedCode">abc-123</nv:name>
-      C:        <nv:authInfo>
-      C:          <nv:pw>2fooBAR</nv:pw>
-      C:        </nv:authInfo>
-      C:      </nv:info>
-      C:    </info>
-      C:    <clTRID>ABC-12345</clTRID>
-      C:  </command>
-      C:</epp>
-
-   When an <info> command has been processed successfully, the EPP
-   <resData> element MUST contain a child <nv:infData> element that
-   identifies the nv namespace.  The <nv:infData> element has two forms
+   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   C:  <command>
+   C:    <info>
+   C:      <nv:info xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"
+   C:        type="signedCode">
+   C:        <nv:code>abc-123</nv:code>
+   C:        <nv:authInfo>
+   C:          <nv:pw>2fooBAR</nv:pw>
+   C:        </nv:authInfo>
+   C:      </nv:info>
+   C:    </info>
+   C:    <clTRID>ABC-12345</clTRID>
+   C:  </command>
+   C:</epp>
 
 
 
-Jiagui, et al.           Expires March 29, 2016                 [Page 9]
+
+Jiagui, et al.           Expires March 30, 2016                 [Page 9]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
+   When an <info> command has been processed successfully, the EPP
+   <resData> element MUST contain a child <nv:infData> element that
+   identifies the nv namespace.  The <nv:infData> element has two forms
    based on the query type provided in the command: the Signed Code Form
    and the Input Form.  The child element of the <nv:infData> element is
    defined for each form.
@@ -530,111 +533,107 @@ Internet-Draft               EPP NV Mapping               September 2015
 
       Example <info> response of a Signed Code:
 
-      S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-      S:  <response>
-      S:    <result code="1000">
-      S:      <msg>Command completed successfully</msg>
-      S:    </result>
-      S:    <resData>
-      S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-      S:        <nv:signedCode>
-      S:          <nv:code type="domain">abc-123</nv:code>
-      S:          <nv:status>compliant</nv:status>
-      S:          <verificationCode:encodedSignedCode
-      S:            xmlns:verificationCode=
-      S:            "urn:ietf:params:xml:ns:verificationCode-1.0">
-      S:            <verificationCode:code>
-      S:ICAgICAgPHZlcmlmaWNhdGlvbkNvZGU6c2lnbmVkQ29kZQogICAgICAgIHhtbG5z
-      S:OnZlcmlmaWNhdGlvbkNvZGU9CiAgICAgICAgICAidXJuOmlldGY6cGFyYW1zOnht
-      S:bDpuczp2ZXJpZmljYXRpb25Db2RlLTEuMCIKICAgICAgICAgIGlkPSJzaWduZWRD
-      S:b2RlIj4KICAgCQk8dmVyaWZpY2F0aW9uQ29kZTpjb2RlPjEtYWJjMTIzPC92ZXJp
-      S:ZmljYXRpb25Db2RlOmNvZGU+CiAgPFNpZ25hdHVyZSB4bWxucz0iaHR0cDovL3d3
-      S:dy53My5vcmcvMjAwMC8wOS94bWxkc2lnIyI+CiAgIDxTaWduZWRJbmZvPgogICAg
-      S:PENhbm9uaWNhbGl6YXRpb25NZXRob2QKIEFsZ29yaXRobT0iaHR0cDovL3d3dy53
-      S:My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8+CiAgICA8U2lnbmF0dXJlTWV0
-      S:aG9kCiBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZHNp
+    S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+    S:  <response>
+    S:    <result code="1000">
+    S:      <msg>Command completed successfully</msg>
+    S:    </result>
+    S:    <resData>
+    S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+    S:        <nv:signedCode>
+    S:         <nv:code type="domain">abc-123</nv:code>
+    S:          <nv:status s="compliant"/>
+    S:          <nv:authInfo>
+    S:            <nv:pw>2fooBAR</nv:pw>
+    S:          </nv:authInfo>
+    S:          <nv:encodedSignedCode>
+    S:ICAgICAgPHZlcmlmaWNhdGlvbkNvZGU6c2lnbmVkQ29kZQogICAgICAgIHhtbG5z
+    S:OnZlcmlmaWNhdGlvbkNvZGU9CiAgICAgICAgICAidXJuOmlldGY6cGFyYW1zOnht
+    S:bDpuczp2ZXJpZmljYXRpb25Db2RlLTEuMCIKICAgICAgICAgIGlkPSJzaWduZWRD
+    S:b2RlIj4KICAgCQk8dmVyaWZpY2F0aW9uQ29kZTpjb2RlPjEtYWJjMTIzPC92ZXJp
+    S:ZmljYXRpb25Db2RlOmNvZGU+CiAgPFNpZ25hdHVyZSB4bWxucz0iaHR0cDovL3d3
+    S:dy53My5vcmcvMjAwMC8wOS94bWxkc2lnIyI+CiAgIDxTaWduZWRJbmZvPgogICAg
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 10]
+Jiagui, et al.           Expires March 30, 2016                [Page 10]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
-      S:Zy1tb3JlI3JzYS1zaGEyNTYiLz4KICAgIDxSZWZlcmVuY2UgVVJJPSIjc2lnbmVk
-      S:Q29kZSI+CiAgICAgPFRyYW5zZm9ybXM+CiAgICAgIDxUcmFuc2Zvcm0KIEFsZ29y
-      S:aXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnI2VudmVsb3Bl
-      S:ZC1zaWduYXR1cmUiLz4KICAgICA8L1RyYW5zZm9ybXM+CiAgICAgPERpZ2VzdE1l
-      S:dGhvZAogQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGVu
-      S:YyNzaGEyNTYiLz4KIDxEaWdlc3RWYWx1ZT53Z3lXM25aUG9FZnBwdGxoUklMS25P
-      S:UW5iZHRVNkFyTTdTaHJBZkhnREZnPTwvRGlnZXN0VmFsdWU+CiAgICA8L1JlZmVy
-      S:ZW5jZT4KICAgPC9TaWduZWRJbmZvPgogICA8U2lnbmF0dXJlVmFsdWU+CiBqTXU0
-      S:UGZ5UUdpSkJGMEdXU0VQRkNKam15d0NFcVIyaDRMRCtnZTZYUStKbm1LRkZDdUNa
-      S:Uy8zU0xLQXgwTDF3CiBRREZPMmUwWTY5azJHNy9MR0UzN1gzdk9mbG9iRk0xb0d3
-      S:amE4K0dNVnJhb3RvNXhBZDQvQUY3ZUh1a2dBeW1ECiBvOXRveG9hMmgweVY0QTRQ
-      S:bVh6c1U2Uzg2WHRDY1VFK1MvV003Mm55bjQ3em9VQ3p6UEtIWkJSeWVXZWhWRlEr
-      S:CiBqWVJNSUFNek01N0hIUUErNmVhWGVmUnZ0UEVUZ1VPNGFWSVZTdWdjNE9VQVpa
-      S:d2JZY1pyQzZ3T2FRcXFxQVppCiAzMGFQT0JZYkF2SE1TbVdTUytoRmtic2hvbUpm
-      S:SHhiOTdURDJncmxZTnJRSXpxWGs3V2JIV3kyU1lkQStzSS9aCiBpcEpzWE5hNm9z
-      S:VFV3MUN6QTdqZndBPT0KICAgPC9TaWduYXR1cmVWYWx1ZT4KICAgPEtleUluZm8+
-      S:CiAgICA8WDUwOURhdGE+CiAgICA8WDUwOUNlcnRpZmljYXRlPgogTUlJRVNUQ0NB
-      S:ekdnQXdJQkFnSUJBakFOQmdrcWhraUc5dzBCQVFzRkFEQmlNUXN3Q1FZRFZRUUdF
-      S:d0pWVXpFTAogTUFrR0ExVUVDQk1DUTBFeEZEQVNCZ05WQkFjVEMweHZjeUJCYm1k
-      S:bGJHVnpNUk13RVFZRFZRUUtFd3BKUTBGTwogVGlCVVRVTklNUnN3R1FZRFZRUURF
-      S:eEpKUTBGT1RpQlVUVU5JSUZSRlUxUWdRMEV3SGhjTk1UTXdNakE0TURBdwogTURB
-      S:d1doY05NVGd3TWpBM01qTTFPVFU1V2pCc01Rc3dDUVlEVlFRR0V3SlZVekVMTUFr
-      S:R0ExVUVDQk1DUTBFeAogRkRBU0JnTlZCQWNUQzB4dmN5QkJibWRsYkdWek1SY3dG
-      S:UVlEVlFRS0V3NVdZV3hwWkdGMGIzSWdWRTFEU0RFaAogTUI4R0ExVUVBeE1ZVm1G
-      S:c2FXUmhkRzl5SUZSTlEwZ2dWRVZUVkNCRFJWSlVNSUlCSWpBTkJna3Foa2lHOXcw
-      S:QgogQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBby9jd3ZYaGJWWWwwUkRXV3ZveWVa
-      S:cEVUVlpWVmNNQ292VVZOZy9zdwogV2ludU1nRVdnVlFGcnoweEEwNHBFaFhDRlZ2
-      S:NGV2YlVwZWtKNWJ1cVUxZ21ReU9zQ0tRbGhPSFRkUGp2a0M1dQogcERxYTUxRmxr
-      S:MFRNYU1rSVFqczdhVUtDbUE0Ukc0dFRUR0svRWpSMWl4OC9EMGdIWVZSbGR5MVlQ
-      S:ck1QK291NwogNWJPVm5Jb3MrSGlmckF0ckl2NHFFcXdMTDRGVFpBVXBhQ2EyQm1n
-      S:WGZ5MkNTUlFieEQ1T3IxZ2NTYTN2dXJoNQogc1BNQ054cWFYbUlYbVFpcFMrRHVF
-      S:QnFNTTh0bGRhTjdSWW9qVUVLckdWc05rNWk5eTIvN3NqbjF6eXlVUGY3dgogTDRH
-      S:Z0RZcWhKWVdWNjFEblhneC9KZDZDV3h2c25ERjZzY3NjUXpVVEVsK2h5d0lEQVFB
-      S:Qm80SC9NSUg4TUF3RwogQTFVZEV3RUIvd1FDTUFBd0hRWURWUjBPQkJZRUZQWkVj
-      S:SVFjRC9CajJJRnovTEVSdW8yQURKdmlNSUdNQmdOVgogSFNNRWdZUXdnWUdBRk8w
-      S:LzdrRWgzRnVFS1MrUS9rWUhhRC9XNndpaG9XYWtaREJpTVFzd0NRWURWUVFHRXdK
-      S:VgogVXpFTE1Ba0dBMVVFQ0JNQ1EwRXhGREFTQmdOVkJBY1RDMHh2Y3lCQmJtZGxi
-      S:R1Z6TVJNd0VRWURWUVFLRXdwSgogUTBGT1RpQlVUVU5JTVJzd0dRWURWUVFERXhK
-      S:SlEwRk9UaUJVVFVOSUlGUkZVMVFnUTBHQ0FRRXdEZ1lEVlIwUAogQVFIL0JBUURB
-      S:Z2VBTUM0R0ExVWRId1FuTUNVd0k2QWhvQitHSFdoMGRIQTZMeTlqY213dWFXTmhi
-      S:bTR1YjNKbgogTDNSdFkyZ3VZM0pzTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFC
-      S:MnFTeTd1aSs0M2NlYktVS3dXUHJ6ejl5LwogSWtyTWVKR0tqbzQwbis5dWVrYXcz
-      S:REo1RXFpT2YvcVo0cGpCRCsrb1I2QkpDYjZOUXVRS3dub0F6NWxFNFNzdQogeTUr
-      S:aTkzb1QzSGZ5VmM0Z05NSW9IbTFQUzE5bDdEQktyYndiekFlYS8waktXVnpydm1W
-      S:N1RCZmp4RDNBUW8xUgogYlU1ZEJyNklqYmRMRmxuTzV4MEcwbXJHN3g1T1VQdXVy
-      S:aWh5aVVScEZEcHdIOEtBSDF3TWNDcFhHWEZSdEdLawogd3lkZ3lWWUF0eTdvdGts
-      S:L3ozYlprQ1ZUMzRnUHZGNzBzUjYrUXhVeTh1MEx6RjVBL2JlWWFacHhTWUczMWFt
-      S:TAogQWRYaXRUV0ZpcGFJR2VhOWxFR0ZNMEw5K0JnN1h6Tm40blZMWG9reUVCM2Jn
+    S:PENhbm9uaWNhbGl6YXRpb25NZXRob2QKIEFsZ29yaXRobT0iaHR0cDovL3d3dy53
+    S:My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8+CiAgICA8U2lnbmF0dXJlTWV0
+    S:aG9kCiBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZHNp
+    S:Zy1tb3JlI3JzYS1zaGEyNTYiLz4KICAgIDxSZWZlcmVuY2UgVVJJPSIjc2lnbmVk
+    S:Q29kZSI+CiAgICAgPFRyYW5zZm9ybXM+CiAgICAgIDxUcmFuc2Zvcm0KIEFsZ29y
+    S:aXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnI2VudmVsb3Bl
+    S:ZC1zaWduYXR1cmUiLz4KICAgICA8L1RyYW5zZm9ybXM+CiAgICAgPERpZ2VzdE1l
+    S:dGhvZAogQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGVu
+    S:YyNzaGEyNTYiLz4KIDxEaWdlc3RWYWx1ZT53Z3lXM25aUG9FZnBwdGxoUklMS25P
+    S:UW5iZHRVNkFyTTdTaHJBZkhnREZnPTwvRGlnZXN0VmFsdWU+CiAgICA8L1JlZmVy
+    S:ZW5jZT4KICAgPC9TaWduZWRJbmZvPgogICA8U2lnbmF0dXJlVmFsdWU+CiBqTXU0
+    S:UGZ5UUdpSkJGMEdXU0VQRkNKam15d0NFcVIyaDRMRCtnZTZYUStKbm1LRkZDdUNa
+    S:Uy8zU0xLQXgwTDF3CiBRREZPMmUwWTY5azJHNy9MR0UzN1gzdk9mbG9iRk0xb0d3
+    S:amE4K0dNVnJhb3RvNXhBZDQvQUY3ZUh1a2dBeW1ECiBvOXRveG9hMmgweVY0QTRQ
+    S:bVh6c1U2Uzg2WHRDY1VFK1MvV003Mm55bjQ3em9VQ3p6UEtIWkJSeWVXZWhWRlEr
+    S:CiBqWVJNSUFNek01N0hIUUErNmVhWGVmUnZ0UEVUZ1VPNGFWSVZTdWdjNE9VQVpa
+    S:d2JZY1pyQzZ3T2FRcXFxQVppCiAzMGFQT0JZYkF2SE1TbVdTUytoRmtic2hvbUpm
+    S:SHhiOTdURDJncmxZTnJRSXpxWGs3V2JIV3kyU1lkQStzSS9aCiBpcEpzWE5hNm9z
+    S:VFV3MUN6QTdqZndBPT0KICAgPC9TaWduYXR1cmVWYWx1ZT4KICAgPEtleUluZm8+
+    S:CiAgICA8WDUwOURhdGE+CiAgICA8WDUwOUNlcnRpZmljYXRlPgogTUlJRVNUQ0NB
+    S:ekdnQXdJQkFnSUJBakFOQmdrcWhraUc5dzBCQVFzRkFEQmlNUXN3Q1FZRFZRUUdF
+    S:d0pWVXpFTAogTUFrR0ExVUVDQk1DUTBFeEZEQVNCZ05WQkFjVEMweHZjeUJCYm1k
+    S:bGJHVnpNUk13RVFZRFZRUUtFd3BKUTBGTwogVGlCVVRVTklNUnN3R1FZRFZRUURF
+    S:eEpKUTBGT1RpQlVUVU5JSUZSRlUxUWdRMEV3SGhjTk1UTXdNakE0TURBdwogTURB
+    S:d1doY05NVGd3TWpBM01qTTFPVFU1V2pCc01Rc3dDUVlEVlFRR0V3SlZVekVMTUFr
+    S:R0ExVUVDQk1DUTBFeAogRkRBU0JnTlZCQWNUQzB4dmN5QkJibWRsYkdWek1SY3dG
+    S:UVlEVlFRS0V3NVdZV3hwWkdGMGIzSWdWRTFEU0RFaAogTUI4R0ExVUVBeE1ZVm1G
+    S:c2FXUmhkRzl5SUZSTlEwZ2dWRVZUVkNCRFJWSlVNSUlCSWpBTkJna3Foa2lHOXcw
+    S:QgogQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBby9jd3ZYaGJWWWwwUkRXV3ZveWVa
+    S:cEVUVlpWVmNNQ292VVZOZy9zdwogV2ludU1nRVdnVlFGcnoweEEwNHBFaFhDRlZ2
+    S:NGV2YlVwZWtKNWJ1cVUxZ21ReU9zQ0tRbGhPSFRkUGp2a0M1dQogcERxYTUxRmxr
+    S:MFRNYU1rSVFqczdhVUtDbUE0Ukc0dFRUR0svRWpSMWl4OC9EMGdIWVZSbGR5MVlQ
+    S:ck1QK291NwogNWJPVm5Jb3MrSGlmckF0ckl2NHFFcXdMTDRGVFpBVXBhQ2EyQm1n
+    S:WGZ5MkNTUlFieEQ1T3IxZ2NTYTN2dXJoNQogc1BNQ054cWFYbUlYbVFpcFMrRHVF
+    S:QnFNTTh0bGRhTjdSWW9qVUVLckdWc05rNWk5eTIvN3NqbjF6eXlVUGY3dgogTDRH
+    S:Z0RZcWhKWVdWNjFEblhneC9KZDZDV3h2c25ERjZzY3NjUXpVVEVsK2h5d0lEQVFB
+    S:Qm80SC9NSUg4TUF3RwogQTFVZEV3RUIvd1FDTUFBd0hRWURWUjBPQkJZRUZQWkVj
+    S:SVFjRC9CajJJRnovTEVSdW8yQURKdmlNSUdNQmdOVgogSFNNRWdZUXdnWUdBRk8w
+    S:LzdrRWgzRnVFS1MrUS9rWUhhRC9XNndpaG9XYWtaREJpTVFzd0NRWURWUVFHRXdK
+    S:VgogVXpFTE1Ba0dBMVVFQ0JNQ1EwRXhGREFTQmdOVkJBY1RDMHh2Y3lCQmJtZGxi
+    S:R1Z6TVJNd0VRWURWUVFLRXdwSgogUTBGT1RpQlVUVU5JTVJzd0dRWURWUVFERXhK
+    S:SlEwRk9UaUJVVFVOSUlGUkZVMVFnUTBHQ0FRRXdEZ1lEVlIwUAogQVFIL0JBUURB
+    S:Z2VBTUM0R0ExVWRId1FuTUNVd0k2QWhvQitHSFdoMGRIQTZMeTlqY213dWFXTmhi
+    S:bTR1YjNKbgogTDNSdFkyZ3VZM0pzTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFC
+    S:MnFTeTd1aSs0M2NlYktVS3dXUHJ6ejl5LwogSWtyTWVKR0tqbzQwbis5dWVrYXcz
+    S:REo1RXFpT2YvcVo0cGpCRCsrb1I2QkpDYjZOUXVRS3dub0F6NWxFNFNzdQogeTUr
+    S:aTkzb1QzSGZ5VmM0Z05NSW9IbTFQUzE5bDdEQktyYndiekFlYS8waktXVnpydm1W
+    S:N1RCZmp4RDNBUW8xUgogYlU1ZEJyNklqYmRMRmxuTzV4MEcwbXJHN3g1T1VQdXVy
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 11]
+Jiagui, et al.           Expires March 30, 2016                [Page 11]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
-      S:UzRzY0c2UXpuWDIzRkdrCiAgIDwvWDUwOUNlcnRpZmljYXRlPgogICA8L1g1MDlE
-      S:YXRhPgogICA8L0tleUluZm8+CiAgPC9TaWduYXR1cmU+CgkJPC92ZXJpZmljYXRp
-      S:b25Db2RlOnNpZ25lZENvZGU+Cg==
-      S:          </verificationCode:code>
-      S:         </verificationCode:encodedSignedCode>
-      S:       </nv:signedCode>
-      S:       <nv:authInfo>
-      S:         <nv:pw>2fooBAR</nv:pw>
-      S:       </nv:authInfo>
-      S:      </nv:infData>
-      S:    </resData>
-      S:    <trID>
-      S:      <clTRID>ABC-12345</clTRID>
-      S:      <svTRID>54322-XYZ</svTRID>
-      S:    </trID>
-      S:  </response>
-      S:</epp>
+    S:aWh5aVVScEZEcHdIOEtBSDF3TWNDcFhHWEZSdEdLawogd3lkZ3lWWUF0eTdvdGts
+    S:L3ozYlprQ1ZUMzRnUHZGNzBzUjYrUXhVeTh1MEx6RjVBL2JlWWFacHhTWUczMWFt
+    S:TAogQWRYaXRUV0ZpcGFJR2VhOWxFR0ZNMEw5K0JnN1h6Tm40blZMWG9reUVCM2Jn
+    S:UzRzY0c2UXpuWDIzRkdrCiAgIDwvWDUwOUNlcnRpZmljYXRlPgogICA8L1g1MDlE
+    S:YXRhPgogICA8L0tleUluZm8+CiAgPC9TaWduYXR1cmU+CgkJPC92ZXJpZmljYXRp
+    S:b25Db2RlOnNpZ25lZENvZGU+Cg==
+    S:         </nv:encodedSignedCode>
+    S:       </nv:signedCode>
+    S:      </nv:infData>
+    S:    </resData>
+    S:    <trID>
+    S:      <clTRID>ABC-12345</clTRID>
+    S:      <svTRID>54322-XYZ</svTRID>
+    S:    </trID>
+    S:  </response>
+    S:</epp>
 
    The Input Code Form is returned when the command "type" attribute is
    set to "input".  The <nv:input> element is used for the Input Form
@@ -669,37 +668,38 @@ Internet-Draft               EPP NV Mapping               September 2015
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 12]
+
+Jiagui, et al.           Expires March 30, 2016                [Page 12]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
       Example <info> response of a DNV:
 
-      S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-      S:  <response>
-      S:    <result code="1000">
-      S:      <msg>Command completed successfully</msg>
-      S:    </result>
-      S:    <resData>
-      S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-      S:        <nv:input>
-      S:         <nv:dnv>
-      S:           <nv:name>example</nv:name>
-      S:         </nv:dnv>
-      S:       </nv:input>
-      S:       <nv:authInfo>
-      S:         <nv:pw>2fooBAR</nv:pw>
-      S:       </nv:authInfo>
-      S:      </nv:infData>
-      S:    </resData>
-      S:    <trID>
-      S:      <clTRID>ABC-12345</clTRID>
-      S:      <svTRID>54322-XYZ</svTRID>
-      S:    </trID>
-      S:  </response>
-      S:</epp>
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1000">
+   S:      <msg>Command completed successfully</msg>
+   S:    </result>
+   S:    <resData>
+   S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:        <nv:input>
+   S:         <nv:dnv>
+   S:           <nv:name>example</nv:name>
+   S:         </nv:dnv>
+   S:         <nv:authInfo>
+   S:           <nv:pw>2fooBAR</nv:pw>
+   S:         </nv:authInfo>
+   S:       </nv:input>
+   S:      </nv:infData>
+   S:    </resData>
+   S:    <trID>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54322-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
 
    The <nv:rnv> element is used for a RNV object.  The "role" attribute
    MUST be used to identify the role of the RNV object with the possible
@@ -725,86 +725,86 @@ Internet-Draft               EPP NV Mapping               September 2015
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 13]
+Jiagui, et al.           Expires March 30, 2016                [Page 13]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
-      Example <info> response of an RVN person:
+      Example <info> response of an RNV person:
 
-      S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-      S:  <response>
-      S:    <result code="1000">
-      S:      <msg>Command completed successfully</msg>
-      S:    </result>
-      S:    <resData>
-      S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-      S:        <nv:input>
-      S:         <nv:rnv role="person">
-      S:           <nv:name>John Xie</nv:name>
-      S:           <nv:num>1234567890</nv:num>
-      S:           <nv:proofType>poc</nv:proofType>
-      S:           <nv:document>
-      S:             <nv:fileType>jpg</nv:fileType>
-      S:             <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
-      S:               </nv:fileContent>
-      S:           </nv:document>
-      S:         </nv:rnv>
-      S:        </nv:input>
-      S:       <nv:authInfo>
-      S:         <nv:pw>2fooBAR</nv:pw>
-      S:       </nv:authInfo>
-      S:      </nv:infData>
-      S:    </resData>
-      S:    <trID>
-      S:      <clTRID>ABC-12345</clTRID>
-      S:      <svTRID>54322-XYZ</svTRID>
-      S:    </trID>
-      S:  </response>
-      S:</epp>
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1000">
+   S:      <msg>Command completed successfully</msg>
+   S:    </result>
+   S:    <resData>
+   S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:        <nv:input>
+   S:         <nv:rnv role="person">
+   S:           <nv:name>John Xie</nv:name>
+   S:           <nv:num>1234567890</nv:num>
+   S:           <nv:proofType>poc</nv:proofType>
+   S:           <nv:document>
+   S:             <nv:fileType>jpg</nv:fileType>
+   S:             <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
+   S:               </nv:fileContent>
+   S:           </nv:document>
+   S:         </nv:rnv>
+   S:         <nv:authInfo>
+   S:           <nv:pw>2fooBAR</nv:pw>
+   S:         </nv:authInfo>
+   S:        </nv:input>
+   S:      </nv:infData>
+   S:    </resData>
+   S:    <trID>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54322-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
 
       Example <info> response of an RNV organization:
 
-      S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-      S:  <response>
-      S:    <result code="1000">
-      S:      <msg>Command completed successfully</msg>
-      S:    </result>
-      S:    <resData>
-      S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-      S:       <nv:input>
-      S:        <nv:rnv role="org">
-      S:         <nv:name>John Xie</nv:name>
-      S:         <nv:num>1234567890</nv:num>
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1000">
+   S:      <msg>Command completed successfully</msg>
+   S:    </result>
+   S:    <resData>
+   S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:       <nv:input>
+   S:        <nv:rnv role="org">
+   S:         <nv:name>John Xie</nv:name>
+   S:         <nv:num>1234567890</nv:num>
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 14]
+Jiagui, et al.           Expires March 30, 2016                [Page 14]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
-      S:         <nv:proofType>poe</nv:proofType>
-      S:         <nv:document>
-      S:          <nv:fileType>jpg</nv:fileType>
-      S:          <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
-      S:            </nv:fileContent>
-      S:         </nv:document>
-      S:        </nv:rnv>
-      S:       </nv:input>
-      S:       <nv:authInfo>
-      S:         <nv:pw>2fooBAR</nv:pw>
-      S:       </nv:authInfo>
-      S:      </nv:infData>
-      S:    </resData>
-      S:    <trID>
-      S:      <clTRID>ABC-12345</clTRID>
-      S:      <svTRID>54322-XYZ</svTRID>
-      S:    </trID>
-      S:  </response>
-      S:</epp>
+   S:         <nv:proofType>poe</nv:proofType>
+   S:         <nv:document>
+   S:          <nv:fileType>jpg</nv:fileType>
+   S:          <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
+   S:            </nv:fileContent>
+   S:         </nv:document>
+   S:        </nv:rnv>
+   S:        <nv:authInfo>
+   S:         <nv:pw>2fooBAR</nv:pw>
+   S:        </nv:authInfo>
+   S:       </nv:input>
+   S:      </nv:infData>
+   S:    </resData>
+   S:    <trID>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54322-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
 
    A server with a different information-return policy MAY provide less
    information in a response for an unauthorized client.
@@ -837,7 +837,7 @@ Internet-Draft               EPP NV Mapping               September 2015
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 15]
+Jiagui, et al.           Expires March 30, 2016                [Page 15]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
@@ -877,90 +877,90 @@ Internet-Draft               EPP NV Mapping               September 2015
 
       Example <create> command for a DNV object:
 
-      C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-      C:  <command>
-      C:    <create>
-      C:      <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-      C:       <nv:dnv>
-      C:         <nv:name>example</nv:name>
-      C:       </nv:dnv>
-      C:       <nv:authInfo>
-      C:         <nv:pw>2fooBAR</nv:pw>
-      C:       </nv:authInfo>
-      C:      </nv:create>
-      C:    </create>
+   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   C:  <command>
+   C:    <create>
+   C:      <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   C:       <nv:dnv>
+   C:         <nv:name>example</nv:name>
+   C:       </nv:dnv>
+   C:       <nv:authInfo>
+   C:         <nv:pw>2fooBAR</nv:pw>
+   C:       </nv:authInfo>
+   C:      </nv:create>
+   C:    </create>
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 16]
+Jiagui, et al.           Expires March 30, 2016                [Page 16]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
-      C:    <clTRID>ABC-12345</clTRID>
-      C:  </command>
-      C:</epp>
+   C:    <clTRID>ABC-12345</clTRID>
+   C:  </command>
+   C:</epp>
 
       Example <create> command for a RNV person object:
 
-      C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-      C:  <command>
-      C:    <create>
-      C:     <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"
-      C:       <nv:rnv role="person">
-      C:         <nv:name>John Xie</nv:name>
-      C:         <nv:num>1234567890</nv:num>
-      C:         <nv:proofType>poe</nv:proofType>
-      C:         <nv:document>
-      C:           <nv:fileType>jpg</nv:fileType>
-      C:           <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
-      C:            </nv:fileContent>
-      C:         </nv:document>
-      C:       </nv:rnv>
-      C:       <nv:authInfo>
-      C:         <nv:pw>2fooBAR</nv:pw>
-      C:       </nv:authInfo>
-      C:      </nv:create>
-      C:    </create>
-      C:    <clTRID>ABC-12345</clTRID>
-      C:  </command>
-      C:</epp>
+   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   C:  <command>
+   C:    <create>
+   C:     <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   C:       <nv:rnv role="person">
+   C:         <nv:name>John Xie</nv:name>
+   C:         <nv:num>1234567890</nv:num>
+   C:         <nv:proofType>poe</nv:proofType>
+   C:         <nv:document>
+   C:           <nv:fileType>jpg</nv:fileType>
+   C:           <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
+   C:           </nv:fileContent>
+   C:         </nv:document>
+   C:       </nv:rnv>
+   C:       <nv:authInfo>
+   C:         <nv:pw>2fooBAR</nv:pw>
+   C:       </nv:authInfo>
+   C:      </nv:create>
+   C:    </create>
+   C:    <clTRID>ABC-12345</clTRID>
+   C:  </command>
+   C:</epp>
 
       Example <create> command for an RNV organization:
 
-      C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-      C:  <command>
-      C:    <create>
-      C:      <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-      C:       <nv:rnv role="org">
-      C:        <nv:name>John Xie</nv:name>
-      C:        <nv:num>1234567890</nv:num>
-      C:        <nv:proofType>poe</nv:proofType>
-      C:        <nv:document>
-      C:         <nv:fileType>jpg</rnv:fileType>
-      C:         <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
-      C:          </nv:fileContent>
-      C:        </nv:document>
-      C:       </nv:rnv>
-      C:       <nv:authInfo>
+   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   C:  <command>
+   C:    <create>
+   C:      <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   C:       <nv:rnv role="org">
+   C:        <nv:name>John Xie</nv:name>
+   C:        <nv:num>1234567890</nv:num>
+   C:        <nv:proofType>poe</nv:proofType>
+   C:        <nv:document>
+   C:         <nv:fileType>jpg</nv:fileType>
+   C:         <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
+   C:         </nv:fileContent>
+   C:        </nv:document>
+   C:       </nv:rnv>
+   C:       <nv:authInfo>
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 17]
+Jiagui, et al.           Expires March 30, 2016                [Page 17]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
-      C:         <nv:pw>2fooBAR</nv:pw>
-      C:       </nv:authInfo>
-      C:      </nv:create>
-      C:    </create>
-      C:    <clTRID>ABC-12345</clTRID>
-      C:  </command>
-      C:</epp>
+   C:         <nv:pw>2fooBAR</nv:pw>
+   C:       </nv:authInfo>
+   C:      </nv:create>
+   C:    </create>
+   C:    <clTRID>ABC-12345</clTRID>
+   C:  </command>
+   C:</epp>
 
    When a <create> command has been processed successfully, the EPP
    <resData> element MUST contain a child <nv:creData> element that
@@ -971,7 +971,8 @@ Internet-Draft               EPP NV Mapping               September 2015
    o  The <nv:success> element contains the following child elements:
 
       *  A <nv:code> element that contains the id of the verification
-         code.
+         code with the required "type" attribute that defines the type
+         of the verification code.
 
       *  Zero or more OPTIONAL <nv:status> elements that contain the
          current status descriptors associated with the NV.
@@ -996,139 +997,136 @@ Internet-Draft               EPP NV Mapping               September 2015
 
       Example <create> response of success:
 
-      S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-      S:  <response>
-      S:    <result code="1000">
-      S:      <msg>Command completed successfully</msg>
-      S:    </result>
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1000">
+   S:      <msg>Command completed successfully</msg>
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 18]
+Jiagui, et al.           Expires March 30, 2016                [Page 18]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
-      S:    <resData>
-      S:      <nv:creData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-      S:       <nv:success>
-      S:        <nv:code type="domain">abc-123</nv:code>
-      S:        <nv:crDate>2015-08-17T22:00:00.0Z</nv:crDate>
-      S:        <verificationCode:encodedSignedCode
-      S:         xmlns:verificationCode=
-      S:         "urn:ietf:params:xml:ns:verificationCode-1.0">
-      S:          <verificationCode:code>
-      S:ICAgICAgPHZlcmlmaWNhdGlvbkNvZGU6c2lnbmVkQ29kZQogICAgICAgIHhtbG5z
-      S:OnZlcmlmaWNhdGlvbkNvZGU9CiAgICAgICAgICAidXJuOmlldGY6cGFyYW1zOnht
-      S:bDpuczp2ZXJpZmljYXRpb25Db2RlLTEuMCIKICAgICAgICAgIGlkPSJzaWduZWRD
-      S:b2RlIj4KICAgCQk8dmVyaWZpY2F0aW9uQ29kZTpjb2RlPjEtYWJjMTIzPC92ZXJp
-      S:ZmljYXRpb25Db2RlOmNvZGU+CiAgPFNpZ25hdHVyZSB4bWxucz0iaHR0cDovL3d3
-      S:dy53My5vcmcvMjAwMC8wOS94bWxkc2lnIyI+CiAgIDxTaWduZWRJbmZvPgogICAg
-      S:PENhbm9uaWNhbGl6YXRpb25NZXRob2QKIEFsZ29yaXRobT0iaHR0cDovL3d3dy53
-      S:My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8+CiAgICA8U2lnbmF0dXJlTWV0
-      S:aG9kCiBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZHNp
-      S:Zy1tb3JlI3JzYS1zaGEyNTYiLz4KICAgIDxSZWZlcmVuY2UgVVJJPSIjc2lnbmVk
-      S:Q29kZSI+CiAgICAgPFRyYW5zZm9ybXM+CiAgICAgIDxUcmFuc2Zvcm0KIEFsZ29y
-      S:aXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnI2VudmVsb3Bl
-      S:ZC1zaWduYXR1cmUiLz4KICAgICA8L1RyYW5zZm9ybXM+CiAgICAgPERpZ2VzdE1l
-      S:dGhvZAogQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGVu
-      S:YyNzaGEyNTYiLz4KIDxEaWdlc3RWYWx1ZT53Z3lXM25aUG9FZnBwdGxoUklMS25P
-      S:UW5iZHRVNkFyTTdTaHJBZkhnREZnPTwvRGlnZXN0VmFsdWU+CiAgICA8L1JlZmVy
-      S:ZW5jZT4KICAgPC9TaWduZWRJbmZvPgogICA8U2lnbmF0dXJlVmFsdWU+CiBqTXU0
-      S:UGZ5UUdpSkJGMEdXU0VQRkNKam15d0NFcVIyaDRMRCtnZTZYUStKbm1LRkZDdUNa
-      S:Uy8zU0xLQXgwTDF3CiBRREZPMmUwWTY5azJHNy9MR0UzN1gzdk9mbG9iRk0xb0d3
-      S:amE4K0dNVnJhb3RvNXhBZDQvQUY3ZUh1a2dBeW1ECiBvOXRveG9hMmgweVY0QTRQ
-      S:bVh6c1U2Uzg2WHRDY1VFK1MvV003Mm55bjQ3em9VQ3p6UEtIWkJSeWVXZWhWRlEr
-      S:CiBqWVJNSUFNek01N0hIUUErNmVhWGVmUnZ0UEVUZ1VPNGFWSVZTdWdjNE9VQVpa
-      S:d2JZY1pyQzZ3T2FRcXFxQVppCiAzMGFQT0JZYkF2SE1TbVdTUytoRmtic2hvbUpm
-      S:SHhiOTdURDJncmxZTnJRSXpxWGs3V2JIV3kyU1lkQStzSS9aCiBpcEpzWE5hNm9z
-      S:VFV3MUN6QTdqZndBPT0KICAgPC9TaWduYXR1cmVWYWx1ZT4KICAgPEtleUluZm8+
-      S:CiAgICA8WDUwOURhdGE+CiAgICA8WDUwOUNlcnRpZmljYXRlPgogTUlJRVNUQ0NB
-      S:ekdnQXdJQkFnSUJBakFOQmdrcWhraUc5dzBCQVFzRkFEQmlNUXN3Q1FZRFZRUUdF
-      S:d0pWVXpFTAogTUFrR0ExVUVDQk1DUTBFeEZEQVNCZ05WQkFjVEMweHZjeUJCYm1k
-      S:bGJHVnpNUk13RVFZRFZRUUtFd3BKUTBGTwogVGlCVVRVTklNUnN3R1FZRFZRUURF
-      S:eEpKUTBGT1RpQlVUVU5JSUZSRlUxUWdRMEV3SGhjTk1UTXdNakE0TURBdwogTURB
-      S:d1doY05NVGd3TWpBM01qTTFPVFU1V2pCc01Rc3dDUVlEVlFRR0V3SlZVekVMTUFr
-      S:R0ExVUVDQk1DUTBFeAogRkRBU0JnTlZCQWNUQzB4dmN5QkJibWRsYkdWek1SY3dG
-      S:UVlEVlFRS0V3NVdZV3hwWkdGMGIzSWdWRTFEU0RFaAogTUI4R0ExVUVBeE1ZVm1G
-      S:c2FXUmhkRzl5SUZSTlEwZ2dWRVZUVkNCRFJWSlVNSUlCSWpBTkJna3Foa2lHOXcw
-      S:QgogQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBby9jd3ZYaGJWWWwwUkRXV3ZveWVa
-      S:cEVUVlpWVmNNQ292VVZOZy9zdwogV2ludU1nRVdnVlFGcnoweEEwNHBFaFhDRlZ2
-      S:NGV2YlVwZWtKNWJ1cVUxZ21ReU9zQ0tRbGhPSFRkUGp2a0M1dQogcERxYTUxRmxr
-      S:MFRNYU1rSVFqczdhVUtDbUE0Ukc0dFRUR0svRWpSMWl4OC9EMGdIWVZSbGR5MVlQ
-      S:ck1QK291NwogNWJPVm5Jb3MrSGlmckF0ckl2NHFFcXdMTDRGVFpBVXBhQ2EyQm1n
+   S:    </result>
+   S:    <resData>
+   S:      <nv:creData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:       <nv:success>
+   S:        <nv:code type="domain">abc-123</nv:code>
+   S:        <nv:status s="compliant"/>
+   S:        <nv:crDate>2015-08-17T22:00:00.0Z</nv:crDate>
+   S:        <nv:encodedSignedCode>
+   S:ICAgICAgPHZlcmlmaWNhdGlvbkNvZGU6c2lnbmVkQ29kZQogICAgICAgIHhtbG5z
+   S:OnZlcmlmaWNhdGlvbkNvZGU9CiAgICAgICAgICAidXJuOmlldGY6cGFyYW1zOnht
+   S:bDpuczp2ZXJpZmljYXRpb25Db2RlLTEuMCIKICAgICAgICAgIGlkPSJzaWduZWRD
+   S:b2RlIj4KICAgCQk8dmVyaWZpY2F0aW9uQ29kZTpjb2RlPjEtYWJjMTIzPC92ZXJp
+   S:ZmljYXRpb25Db2RlOmNvZGU+CiAgPFNpZ25hdHVyZSB4bWxucz0iaHR0cDovL3d3
+   S:dy53My5vcmcvMjAwMC8wOS94bWxkc2lnIyI+CiAgIDxTaWduZWRJbmZvPgogICAg
+   S:PENhbm9uaWNhbGl6YXRpb25NZXRob2QKIEFsZ29yaXRobT0iaHR0cDovL3d3dy53
+   S:My5vcmcvMjAwMS8xMC94bWwtZXhjLWMxNG4jIi8+CiAgICA8U2lnbmF0dXJlTWV0
+   S:aG9kCiBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZHNp
+   S:Zy1tb3JlI3JzYS1zaGEyNTYiLz4KICAgIDxSZWZlcmVuY2UgVVJJPSIjc2lnbmVk
+   S:Q29kZSI+CiAgICAgPFRyYW5zZm9ybXM+CiAgICAgIDxUcmFuc2Zvcm0KIEFsZ29y
+   S:aXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnI2VudmVsb3Bl
+   S:ZC1zaWduYXR1cmUiLz4KICAgICA8L1RyYW5zZm9ybXM+CiAgICAgPERpZ2VzdE1l
+   S:dGhvZAogQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGVu
+   S:YyNzaGEyNTYiLz4KIDxEaWdlc3RWYWx1ZT53Z3lXM25aUG9FZnBwdGxoUklMS25P
+   S:UW5iZHRVNkFyTTdTaHJBZkhnREZnPTwvRGlnZXN0VmFsdWU+CiAgICA8L1JlZmVy
+   S:ZW5jZT4KICAgPC9TaWduZWRJbmZvPgogICA8U2lnbmF0dXJlVmFsdWU+CiBqTXU0
+   S:UGZ5UUdpSkJGMEdXU0VQRkNKam15d0NFcVIyaDRMRCtnZTZYUStKbm1LRkZDdUNa
+   S:Uy8zU0xLQXgwTDF3CiBRREZPMmUwWTY5azJHNy9MR0UzN1gzdk9mbG9iRk0xb0d3
+   S:amE4K0dNVnJhb3RvNXhBZDQvQUY3ZUh1a2dBeW1ECiBvOXRveG9hMmgweVY0QTRQ
+   S:bVh6c1U2Uzg2WHRDY1VFK1MvV003Mm55bjQ3em9VQ3p6UEtIWkJSeWVXZWhWRlEr
+   S:CiBqWVJNSUFNek01N0hIUUErNmVhWGVmUnZ0UEVUZ1VPNGFWSVZTdWdjNE9VQVpa
+   S:d2JZY1pyQzZ3T2FRcXFxQVppCiAzMGFQT0JZYkF2SE1TbVdTUytoRmtic2hvbUpm
+   S:SHhiOTdURDJncmxZTnJRSXpxWGs3V2JIV3kyU1lkQStzSS9aCiBpcEpzWE5hNm9z
+   S:VFV3MUN6QTdqZndBPT0KICAgPC9TaWduYXR1cmVWYWx1ZT4KICAgPEtleUluZm8+
+   S:CiAgICA8WDUwOURhdGE+CiAgICA8WDUwOUNlcnRpZmljYXRlPgogTUlJRVNUQ0NB
+   S:ekdnQXdJQkFnSUJBakFOQmdrcWhraUc5dzBCQVFzRkFEQmlNUXN3Q1FZRFZRUUdF
+   S:d0pWVXpFTAogTUFrR0ExVUVDQk1DUTBFeEZEQVNCZ05WQkFjVEMweHZjeUJCYm1k
+   S:bGJHVnpNUk13RVFZRFZRUUtFd3BKUTBGTwogVGlCVVRVTklNUnN3R1FZRFZRUURF
+   S:eEpKUTBGT1RpQlVUVU5JSUZSRlUxUWdRMEV3SGhjTk1UTXdNakE0TURBdwogTURB
+   S:d1doY05NVGd3TWpBM01qTTFPVFU1V2pCc01Rc3dDUVlEVlFRR0V3SlZVekVMTUFr
+   S:R0ExVUVDQk1DUTBFeAogRkRBU0JnTlZCQWNUQzB4dmN5QkJibWRsYkdWek1SY3dG
+   S:UVlEVlFRS0V3NVdZV3hwWkdGMGIzSWdWRTFEU0RFaAogTUI4R0ExVUVBeE1ZVm1G
+   S:c2FXUmhkRzl5SUZSTlEwZ2dWRVZUVkNCRFJWSlVNSUlCSWpBTkJna3Foa2lHOXcw
+   S:QgogQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBby9jd3ZYaGJWWWwwUkRXV3ZveWVa
+   S:cEVUVlpWVmNNQ292VVZOZy9zdwogV2ludU1nRVdnVlFGcnoweEEwNHBFaFhDRlZ2
+   S:NGV2YlVwZWtKNWJ1cVUxZ21ReU9zQ0tRbGhPSFRkUGp2a0M1dQogcERxYTUxRmxr
+   S:MFRNYU1rSVFqczdhVUtDbUE0Ukc0dFRUR0svRWpSMWl4OC9EMGdIWVZSbGR5MVlQ
+   S:ck1QK291NwogNWJPVm5Jb3MrSGlmckF0ckl2NHFFcXdMTDRGVFpBVXBhQ2EyQm1n
+   S:WGZ5MkNTUlFieEQ1T3IxZ2NTYTN2dXJoNQogc1BNQ054cWFYbUlYbVFpcFMrRHVF
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 19]
+Jiagui, et al.           Expires March 30, 2016                [Page 19]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
-      S:WGZ5MkNTUlFieEQ1T3IxZ2NTYTN2dXJoNQogc1BNQ054cWFYbUlYbVFpcFMrRHVF
-      S:QnFNTTh0bGRhTjdSWW9qVUVLckdWc05rNWk5eTIvN3NqbjF6eXlVUGY3dgogTDRH
-      S:Z0RZcWhKWVdWNjFEblhneC9KZDZDV3h2c25ERjZzY3NjUXpVVEVsK2h5d0lEQVFB
-      S:Qm80SC9NSUg4TUF3RwogQTFVZEV3RUIvd1FDTUFBd0hRWURWUjBPQkJZRUZQWkVj
-      S:SVFjRC9CajJJRnovTEVSdW8yQURKdmlNSUdNQmdOVgogSFNNRWdZUXdnWUdBRk8w
-      S:LzdrRWgzRnVFS1MrUS9rWUhhRC9XNndpaG9XYWtaREJpTVFzd0NRWURWUVFHRXdK
-      S:VgogVXpFTE1Ba0dBMVVFQ0JNQ1EwRXhGREFTQmdOVkJBY1RDMHh2Y3lCQmJtZGxi
-      S:R1Z6TVJNd0VRWURWUVFLRXdwSgogUTBGT1RpQlVUVU5JTVJzd0dRWURWUVFERXhK
-      S:SlEwRk9UaUJVVFVOSUlGUkZVMVFnUTBHQ0FRRXdEZ1lEVlIwUAogQVFIL0JBUURB
-      S:Z2VBTUM0R0ExVWRId1FuTUNVd0k2QWhvQitHSFdoMGRIQTZMeTlqY213dWFXTmhi
-      S:bTR1YjNKbgogTDNSdFkyZ3VZM0pzTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFC
-      S:MnFTeTd1aSs0M2NlYktVS3dXUHJ6ejl5LwogSWtyTWVKR0tqbzQwbis5dWVrYXcz
-      S:REo1RXFpT2YvcVo0cGpCRCsrb1I2QkpDYjZOUXVRS3dub0F6NWxFNFNzdQogeTUr
-      S:aTkzb1QzSGZ5VmM0Z05NSW9IbTFQUzE5bDdEQktyYndiekFlYS8waktXVnpydm1W
-      S:N1RCZmp4RDNBUW8xUgogYlU1ZEJyNklqYmRMRmxuTzV4MEcwbXJHN3g1T1VQdXVy
-      S:aWh5aVVScEZEcHdIOEtBSDF3TWNDcFhHWEZSdEdLawogd3lkZ3lWWUF0eTdvdGts
-      S:L3ozYlprQ1ZUMzRnUHZGNzBzUjYrUXhVeTh1MEx6RjVBL2JlWWFacHhTWUczMWFt
-      S:TAogQWRYaXRUV0ZpcGFJR2VhOWxFR0ZNMEw5K0JnN1h6Tm40blZMWG9reUVCM2Jn
-      S:UzRzY0c2UXpuWDIzRkdrCiAgIDwvWDUwOUNlcnRpZmljYXRlPgogICA8L1g1MDlE
-      S:YXRhPgogICA8L0tleUluZm8+CiAgPC9TaWduYXR1cmU+CgkJPC92ZXJpZmljYXRp
-      S:b25Db2RlOnNpZ25lZENvZGU+Cg==
-      S:         </verificationCode:code>
-      S:        </verificationCode:encodedSignedCode>
-      S:       <nv:success>
-      S:      </nv:creData>
-      S:    </resData>
-      S:    <trID>
-      S:      <clTRID>ABC-12345</clTRID>
-      S:      <svTRID>54321-XYZ</svTRID>
-      S:    </trID>
-      S:  </response>
-      S:</epp>
+   S:QnFNTTh0bGRhTjdSWW9qVUVLckdWc05rNWk5eTIvN3NqbjF6eXlVUGY3dgogTDRH
+   S:Z0RZcWhKWVdWNjFEblhneC9KZDZDV3h2c25ERjZzY3NjUXpVVEVsK2h5d0lEQVFB
+   S:Qm80SC9NSUg4TUF3RwogQTFVZEV3RUIvd1FDTUFBd0hRWURWUjBPQkJZRUZQWkVj
+   S:SVFjRC9CajJJRnovTEVSdW8yQURKdmlNSUdNQmdOVgogSFNNRWdZUXdnWUdBRk8w
+   S:LzdrRWgzRnVFS1MrUS9rWUhhRC9XNndpaG9XYWtaREJpTVFzd0NRWURWUVFHRXdK
+   S:VgogVXpFTE1Ba0dBMVVFQ0JNQ1EwRXhGREFTQmdOVkJBY1RDMHh2Y3lCQmJtZGxi
+   S:R1Z6TVJNd0VRWURWUVFLRXdwSgogUTBGT1RpQlVUVU5JTVJzd0dRWURWUVFERXhK
+   S:SlEwRk9UaUJVVFVOSUlGUkZVMVFnUTBHQ0FRRXdEZ1lEVlIwUAogQVFIL0JBUURB
+   S:Z2VBTUM0R0ExVWRId1FuTUNVd0k2QWhvQitHSFdoMGRIQTZMeTlqY213dWFXTmhi
+   S:bTR1YjNKbgogTDNSdFkyZ3VZM0pzTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFC
+   S:MnFTeTd1aSs0M2NlYktVS3dXUHJ6ejl5LwogSWtyTWVKR0tqbzQwbis5dWVrYXcz
+   S:REo1RXFpT2YvcVo0cGpCRCsrb1I2QkpDYjZOUXVRS3dub0F6NWxFNFNzdQogeTUr
+   S:aTkzb1QzSGZ5VmM0Z05NSW9IbTFQUzE5bDdEQktyYndiekFlYS8waktXVnpydm1W
+   S:N1RCZmp4RDNBUW8xUgogYlU1ZEJyNklqYmRMRmxuTzV4MEcwbXJHN3g1T1VQdXVy
+   S:aWh5aVVScEZEcHdIOEtBSDF3TWNDcFhHWEZSdEdLawogd3lkZ3lWWUF0eTdvdGts
+   S:L3ozYlprQ1ZUMzRnUHZGNzBzUjYrUXhVeTh1MEx6RjVBL2JlWWFacHhTWUczMWFt
+   S:TAogQWRYaXRUV0ZpcGFJR2VhOWxFR0ZNMEw5K0JnN1h6Tm40blZMWG9reUVCM2Jn
+   S:UzRzY0c2UXpuWDIzRkdrCiAgIDwvWDUwOUNlcnRpZmljYXRlPgogICA8L1g1MDlE
+   S:YXRhPgogICA8L0tleUluZm8+CiAgPC9TaWduYXR1cmU+CgkJPC92ZXJpZmljYXRp
+   S:b25Db2RlOnNpZ25lZENvZGU+Cg==
+   S:        </nv:encodedSignedCode>
+   S:       </nv:success>
+   S:      </nv:creData>
+   S:    </resData>
+   S:    <trID>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54321-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
 
       Example <create> response of failed:
 
-      S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-      S:  <response>
-      S:    <result code="1000">
-      S:      <msg>Command completed successfully</msg>
-      S:    </result>
-      S:    <resData>
-      S:     <nv:creData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-      S:      <nv:failed>
-      S:        <nv:status>nonComplaint</nv:msg>
-      S:        <nv:msg>The name of the object is not correct.</nv:msg>
-      S:      </nv:failed>
-      S:     </nv:creData>
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1000">
+   S:      <msg>Command completed successfully</msg>
+   S:    </result>
+   S:    <resData>
+   S:     <nv:creData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:      <nv:failed>
+   S:        <nv:status s="nonCompliant"/>
+   S:        <nv:msg>The name of the object is not correct.</nv:msg>
+   S:      </nv:failed>
+   S:     </nv:creData>
+   S:    </resData>
+   S:    <trID>
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 20]
+Jiagui, et al.           Expires March 30, 2016                [Page 20]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
-      S:    </resData>
-      S:    <trID>
-      S:      <clTRID>ABC-12345</clTRID>
-      S:      <svTRID>54321-XYZ</svTRID>
-      S:    </trID>
-      S:  </response>
-      S:</epp>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54321-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
 
    An EPP error response MUST be returned if an <create> command cannot
    be processed for any reason.
@@ -1173,50 +1171,53 @@ Internet-Draft               EPP NV Mapping               September 2015
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 21]
+
+
+Jiagui, et al.           Expires March 30, 2016                [Page 21]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
-    Example <update> command:
+      Example <update> command:
 
-    C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-    C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-    C:  <command>
-    C:    <update>
-    C:      <nv:update xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-    C:        <nv:code>abc-123</nv:code>
-    C:        <nv:chg>
-    C:          <nv:authInfo>
-    C:            <nv:pw>2BARfoo</nv:pw>
-    C:          </nv:authInfo>
-    C:        </nv:chg>
-    C:      </nv:update>
-    C:    </update>
-    C:    <clTRID>ABC-12345</clTRID>
-    C:  </command>
-    C:</epp>
+   C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   C:  <command>
+   C:    <update>
+   C:      <nv:update xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   C:        <nv:code>abc-123</nv:code>
+   C:        <nv:chg>
+   C:          <nv:authInfo>
+   C:            <nv:pw>2BARfoo</nv:pw>
+   C:          </nv:authInfo>
+   C:        </nv:chg>
+   C:      </nv:update>
+   C:    </update>
+   C:    <clTRID>ABC-12345</clTRID>
+   C:  </command>
+   C:</epp>
 
-    When an <update> command has been processed successfully, a server
-    MUST respond with an EPP response with no <resData> element.
+      When an <update> command has been processed successfully,
+      a server MUST respond with an EPP response with no
+      <resData> element.
 
-    Example <update> response:
+      Example <update> response:
 
-    S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-    S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-    S:  <response>
-    S:    <result code="1000">
-    S:      <msg>Command completed successfully</msg>
-    S:    </result>
-    S:    <trID>
-    S:      <clTRID>ABC-12345</clTRID>
-    S:      <svTRID>54321-XYZ</svTRID>
-    S:    </trID>
-    S:  </response>
-    S:</epp>
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1000">
+   S:      <msg>Command completed successfully</msg>
+   S:    </result>
+   S:    <trID>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54321-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
 
-    An EPP error response MUST be returned if an <update> command cannot
-    be processed for any reason.
+      An EPP error response MUST be returned if an <update>
+      command cannot be processed for any reason.
 
 4.3.  Offline Review of Requested Actions
 
@@ -1225,15 +1226,15 @@ Internet-Draft               EPP NV Mapping               September 2015
    processing of the command is produced by the server, a server
    operator MAY perform an offline review of requested transform
    commands before completing the requested action.  In such situations,
-   the response from the server MUST clearly note that the transform
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 22]
+Jiagui, et al.           Expires March 30, 2016                [Page 22]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
+   the response from the server MUST clearly note that the transform
    command has been received and processed but that the requested action
    is pending.  The status of the corresponding object MUST clearly
    reflect processing of the pending action.  The server MUST notify the
@@ -1243,28 +1244,28 @@ Internet-Draft               EPP NV Mapping               September 2015
    are included here.  Note the result code and message returned in
    response to the <create> command.
 
-      S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-      S:  <response>
-      S:    <result code="1001">
-      S:      <msg>Command completed successfully; action pending</msg>
-      S:    </result>
-      S:    <resData>
-      S:      <nv:creData
-      S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-      S:        <nv:pending>
-      S:          <nv:code>abc-123</nv:code>
-      S:          <nv:status>pendingComplaint</nv:status>
-      S:          <nv:crDate>2015-09-03T22:00:00.0Z</nv:crDate>
-      S:        </nv:pending>
-      S:      </nv:creData>
-      S:    </resData>
-      S:    <trID>
-      S:      <clTRID>ABC-12345</clTRID>
-      S:      <svTRID>54321-XYZ</svTRID>
-      S:    </trID>
-      S:  </response>
-      S:</epp>
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1001">
+   S:      <msg>Command completed successfully; action pending</msg>
+   S:    </result>
+   S:    <resData>
+   S:      <nv:creData
+   S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:        <nv:pending>
+   S:          <nv:code>abc-123</nv:code>
+   S:          <nv:status s="pendingCompliant"/>
+   S:          <nv:crDate>2015-09-03T22:00:00.0Z</nv:crDate>
+   S:        </nv:pending>
+   S:      </nv:creData>
+   S:    </resData>
+   S:    <trID>
+   S:      <clTRID>ABC-12345</clTRID>
+   S:      <svTRID>54321-XYZ</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
 
    The status of the NV object after returning this response MUST
    include "pendingCompliant".  The server operator reviews the request
@@ -1284,8 +1285,7 @@ Internet-Draft               EPP NV Mapping               September 2015
 
 
 
-
-Jiagui, et al.           Expires March 29, 2016                [Page 23]
+Jiagui, et al.           Expires March 30, 2016                [Page 23]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
@@ -1303,32 +1303,32 @@ Internet-Draft               EPP NV Mapping               September 2015
 
       Example "review completed" service message:
 
-      S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-      S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-      S:  <response>
-      S:    <result code="1301">
-      S:      <msg>Command completed successfully; ack to dequeue</msg>
-      S:    </result>
-      S:    <msgQ count="5" id="12345">
-      S:      <qDate>2015-09-04T22:01:00.0Z</qDate>
-      S:      <msg>Pending action completed successfully.</msg>
-      S:    </msgQ>
-      S:    <resData>
-      S:      <nv:panData
-      S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-      S:        <nv:code>abc-123</nv:code>
-      S:        <nv:paStatus>complaint</nv:panStatus>
-      S:        <nv:msg>The object has passed verification,
-      S:                   signed code was generated.</nv:msg>
-      S:        <nv:paDate>2015-09-04T22:00:00.0Z</nv:paDate>
-      S:      </nv:panData>
-      S:    </resData>
-      S:    <trID>
-      S:      <clTRID>BCD-23456</clTRID>
-      S:      <svTRID>65432-WXY</svTRID>
-      S:    </trID>
-      S:  </response>
-      S:</epp>
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1301">
+   S:      <msg>Command completed successfully; ack to dequeue</msg>
+   S:    </result>
+   S:    <msgQ count="5" id="12345">
+   S:      <qDate>2015-09-04T22:01:00.0Z</qDate>
+   S:      <msg>Pending action completed successfully.</msg>
+   S:    </msgQ>
+   S:    <resData>
+   S:      <nv:panData
+   S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+   S:        <nv:code>abc-123</nv:code>
+   S:        <nv:paStatus s="compliant"/>
+   S:        <nv:msg>The object has passed verification,
+   S:          signed code was generated.</nv:msg>
+   S:        <nv:paDate>2015-09-04T22:00:00.0Z</nv:paDate>
+   S:      </nv:panData>
+   S:    </resData>
+   S:    <trID>
+   S:      <clTRID>BCD-23456</clTRID>
+   S:      <svTRID>65432-WXY</svTRID>
+   S:    </trID>
+   S:  </response>
+   S:</epp>
 
 5.  Formal Syntax
 
@@ -1341,39 +1341,40 @@ Internet-Draft               EPP NV Mapping               September 2015
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 24]
+Jiagui, et al.           Expires March 30, 2016                [Page 24]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
-   BEGIN
-
+      BEGIN
    <?xml version="1.0" encoding="UTF-8"?>
 
    <schema targetNamespace="urn:ietf:params:xml:ns:nv-1.0"
      xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"
      xmlns:epp="urn:ietf:params:xml:ns:epp-1.0"
      xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0"
-     xmlns:verificationCode="urn:ietf:params:xml:ns:verificationCode-1.0"
+     xmlns:verificationCode=
+       "urn:ietf:params:xml:ns:verificationCode-1.0"
      xmlns="http://www.w3.org/2001/XMLSchema"
      elementFormDefault="qualified">
 
    <annotation>
      <documentation>
-       Extensible Provisioning Protocol v1.0
-       Name Verification provisioning schema.
+        Extensible Provisioning Protocol v1.0
+        Name Verification provisioning schema.
      </documentation>
    </annotation>
 
    <!--
-        Import common element types.
+   Import common element types.
    -->
-  <import namespace="urn:ietf:params:xml:ns:eppcom-1.0"/>
-  <import namespace="urn:ietf:params:xml:ns:epp-1.0"/>
-  <import namespace="urn:ietf:params:xml:ns:verificationCode-1.0"/>
+   <import namespace="urn:ietf:params:xml:ns:eppcom-1.0"/>
+   <import namespace="urn:ietf:params:xml:ns:epp-1.0"/>
+   <import namespace=
+     "urn:ietf:params:xml:ns:verificationCode-1.0"/>
 
    <!--
-        Child elements found in EPP commands.
+   Child elements found in EPP commands.
    -->
    <element name="check" type="nv:mNameType"/>
    <element name="create" type="nv:createType"/>
@@ -1381,143 +1382,144 @@ Internet-Draft               EPP NV Mapping               September 2015
    <element name="update" type="nv:updateType"/>
 
    <!--
-        Child element of <check> command.
+   Child element of <check> command.
    -->
    <complexType name="mNameType">
     <sequence>
-      <element name="name" type="eppcom:labelType"
-       maxOccurs="unbounded"/>
+       <element name="name" type="eppcom:labelType"
+        maxOccurs="unbounded"/>
     </sequence>
    </complexType>
 
    <!--
-        Child elements of the <create> command.
+   Child elements of the <create> command.
    -->
-   <complexType name="createType">
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 25]
+Jiagui, et al.           Expires March 30, 2016                [Page 25]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
+   <complexType name="createType">
     <sequence>
-      <choice>
-        <element name="dnv" type="nv:dnvType"/>
-        <element name="rnv" type="nv:rnvType"/>
-      </choice>
-          <element name="authInfo" type="nv:authInfoChgType"/>
-         </sequence>
+       <choice>
+         <element name="dnv" type="nv:dnvType"/>
+         <element name="rnv" type="nv:rnvType"/>
+       </choice>
+     <element name="authInfo" type="nv:authInfoChgType"/>
+    </sequence>
    </complexType>
 
    <complexType name="dnvType">
     <sequence>
-      <element name="name" type="eppcom:labelType"/>
+       <element name="name" type="eppcom:labelType"/>
     </sequence>
    </complexType>
 
    <complexType name="rnvType">
     <sequence>
-      <element name="name" type="nv:nameType"/>
-      <element name="num" type="nv:nameType"/>
-      <element name="proofType" type="nv:proofEumType"/>
-      <element name="document" type="nv:documentType"
-       minOccurs="0", maxOccurs="unbounded"/>
+       <element name="name" type="nv:nameType"/>
+       <element name="num" type="nv:nameType"/>
+       <element name="proofType" type="nv:proofEumType"/>
+       <element name="document" type="nv:documentType"
+        minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
-         <attribute name="role" type="nv:roleType"
-      default="person"/>
+    <attribute name="role" type="nv:roleType"
+       default="person"/>
    </complexType>
 
    <simpleType name="proofEumType">
      <restriction base="token">
-       <enumeration value="poc"/>
-       <enumeration value="poe"/>
-       <enumeration value="poot"/>
+        <enumeration value="poc"/>
+        <enumeration value="poe"/>
+        <enumeration value="poot"/>
      </restriction>
    </simpleType>
 
-  <simpleType name="roleType">
-      <restriction base="token">
-        <enumeration value="person"/>
-        <enumeration value="org"/>
+   <simpleType name="roleType">
+       <restriction base="token">
+         <enumeration value="person"/>
+         <enumeration value="org"/>
     </restriction>
-  </simpleType>
-
-   <simpleType name="nameType">
-      <restriction base="token">
-         <minLength value="1"/>
-         <maxLength value="255"/>
-      </restriction>
    </simpleType>
 
+   <simpleType name="nameType">
+       <restriction base="token">
+           <minLength value="1"/>
+           <maxLength value="255"/>
+       </restriction>
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 26]
+
+Jiagui, et al.           Expires March 30, 2016                [Page 26]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
+   </simpleType>
+
    <complexType name="documentType">
     <sequence>
-      <element name="fileType" type="nv:fileType"/>
-      <element name="fileContent" type="base64Binary"/>
+       <element name="fileType" type="nv:fileType"/>
+       <element name="fileContent" type="base64Binary"/>
     </sequence>
    </complexType>
 
    <simpleType name="fileType">
      <restriction base="token">
-        <enumeration value="pdf"/>
-        <enumeration value="jpg"/>
+         <enumeration value="pdf"/>
+         <enumeration value="jpg"/>
      </restriction>
    </simpleType>
 
 
    <!--
-        Child elements of the <info> command.
+   Child elements of the <info> command.
    -->
    <complexType name="infoType">
     <sequence>
-      <element name="code" type="token"/>
-      <element name="authInfo" type="nv:authInfoChgType"
-            minOccurs="0"/>
+       <element name="code" type="token"/>
+       <element name="authInfo" type="nv:authInfoChgType"
+        minOccurs="0"/>
     </sequence>
-         <attribute name="type" type="nv:infoFormType"
-      default="signedCode"/>
+    <attribute name="type" type="nv:infoFormType"
+       default="signedCode"/>
    </complexType>
 
 
-  <simpleType name="infoFormType">
+   <simpleType name="infoFormType">
      <restriction base="token">
-       <enumeration value="input"/>
-       <enumeration value="signedCode"/>
+        <enumeration value="input"/>
+        <enumeration value="signedCode"/>
     </restriction>
-  </simpleType>
+   </simpleType>
 
    <!--
    Child elements of the <update> command.
    -->
    <complexType name="updateType">
     <sequence>
-      <element name="code" type="token"/>
-      <element name="chg" type="nv:chgType"/>
+       <element name="code" type="token"/>
+       <element name="chg" type="nv:chgType"/>
     </sequence>
    </complexType>
 
-   <!--
-   Data elements that can be changed.
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 27]
+Jiagui, et al.           Expires March 30, 2016                [Page 27]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
+   <!--
+   Data elements that can be changed.
    -->
    <complexType name="chgType">
     <sequence>
-      <element name="authInfo" type="nv:authInfoChgType"/>
+       <element name="authInfo" type="nv:authInfoChgType"/>
     </sequence>
    </complexType>
 
@@ -1526,13 +1528,13 @@ Internet-Draft               EPP NV Mapping               September 2015
    -->
    <complexType name="authInfoChgType">
     <choice>
-      <element name="pw" type="eppcom:pwAuthInfoType"/>
-      <element name="ext" type="eppcom:extAuthInfoType"/>
+       <element name="pw" type="eppcom:pwAuthInfoType"/>
+       <element name="ext" type="eppcom:extAuthInfoType"/>
     </choice>
    </complexType>
 
    <!--
-        Child response elements.
+   Child response elements.
    -->
    <element name="chkData" type="nv:chkDataType"/>
    <element name="creData" type="nv:creDataType"/>
@@ -1544,70 +1546,71 @@ Internet-Draft               EPP NV Mapping               September 2015
    -->
    <complexType name="chkDataType">
     <sequence>
-      <element name="cd" type="nv:checkType"
-       maxOccurs="unbounded"/>
+       <element name="cd" type="nv:checkType"
+        maxOccurs="unbounded"/>
     </sequence>
    </complexType>
 
    <complexType name="checkType">
     <sequence>
-      <element name="name" type="nv:checkNameType"/>
-      <element name="reason" type="eppcom:reasonType"
-       minOccurs="0"/>
+       <element name="name" type="nv:checkNameType"/>
+       <element name="reason" type="eppcom:reasonType"
+        minOccurs="0"/>
     </sequence>
    </complexType>
 
    <complexType name="checkNameType">
     <simpleContent>
-      <extension base="eppcom:labelType">
-        <attribute name="avail" type="boolean"
-         use="required"/>
+       <extension base="eppcom:labelType">
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 28]
+Jiagui, et al.           Expires March 30, 2016                [Page 28]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
-            <attribute name="restricted" type="boolean"/>
-      </extension>
+         <attribute name="avail" type="boolean"
+           use="required"/>
+        <attribute name="restricted" type="boolean"
+         default="0"/>
+       </extension>
     </simpleContent>
    </complexType>
 
    <!--
-        <create> response elements.
+   <create> response elements.
    -->
    <complexType name="creDataType">
     <choice>
-      <element name="success" type="nv:successType"/>
-      <element name="failed" type="nv:failedType"/>
-      <element name="pending" type="nv:pendingType"/>
+       <element name="success" type="nv:successType"/>
+       <element name="failed" type="nv:failedType"/>
+       <element name="pending" type="nv:pendingType"/>
     </choice>
    </complexType>
 
    <complexType name="successType">
     <sequence>
-          <element name="code" type="token"/>
-          <element name="status" type="nv:statusType"/>
-      <element name="crDate" type="dateTime"/>
-      <element name="encodedSignedCode"
-           type="verificationCode:encodedSignedCodeType"/>
+     <element name="code" type="nv:verificationCodeType"/>
+     <element name="status" type="nv:statusType"/>
+       <element name="crDate" type="dateTime"/>
+       <element name="encodedSignedCode"
+       type="verificationCode:encodedSignedCodeType"/>
     </sequence>
    </complexType>
 
    <complexType name="failedType">
     <sequence>
-      <element name="status" type="nv:statusType"/>
-      <element name="msg" type="token"/>
+       <element name="status" type="nv:statusType"/>
+       <element name="msg" type="token"/>
     </sequence>
    </complexType>
 
    <complexType name="pendingType">
     <sequence>
-      <element name="code" type="token"/>
-          <element name="status" type="nv:statusType"/>
-      <element name="crDate" type="dateTime"/>
+       <element name="code" type="token"/>
+     <element name="status" type="nv:statusType"/>
+       <element name="crDate" type="dateTime"/>
     </sequence>
    </complexType>
 
@@ -1615,44 +1618,52 @@ Internet-Draft               EPP NV Mapping               September 2015
    Pending action notification response elements.
    -->
    <complexType name="panDataType">
-    <sequence>
-      <element name="code" type="token"/>
-      <element name="paStatus" type="nv:statusType"/>
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 29]
+Jiagui, et al.           Expires March 30, 2016                [Page 29]
 
 Internet-Draft               EPP NV Mapping               September 2015
 
 
-      <element name="msg" type="token"/>
-      <element name="paDate" type="dateTime"/>
+    <sequence>
+       <element name="code" type="token"/>
+       <element name="paStatus" type="nv:statusType"/>
+       <element name="msg" type="token"/>
+       <element name="paDate" type="dateTime"/>
     </sequence>
    </complexType>
 
    <!--
-        <info> response elements.
+   <info> response elements.
    -->
    <complexType name="infDataType">
     <sequence>
      <choice>
-      <element name="signedCode" type="nv:signedCodeType"/>
-      <element name="input" type="nv:createType"/>
+       <element name="signedCode" type="nv:signedCodeType"/>
+       <element name="input" type="nv:createType"/>
      </choice>
-         <element name="authInfo" type="nv:authInfoChgType"/>
-        </sequence>
+   </sequence>
    </complexType>
 
    <complexType name="signedCodeType">
     <sequence>
-      <element name="code" type="token"/>
-      <element name="status" type="nv:statusType"
-       minOccurs="0"/>
-      <element name="authInfo" type="nv:authInfoChgType"/>
-      <element name="encodedSignedCode"
-           type="verificationCode:encodedSignedCodeType"/>
+       <element name="code" type="nv:verificationCodeType"/>
+       <element name="status" type="nv:statusType"
+        minOccurs="0"/>
+       <element name="authInfo" type="nv:authInfoChgType"/>
+       <element name="encodedSignedCode"
+       type="verificationCode:encodedSignedCodeType"/>
     </sequence>
+   </complexType>
+
+   <complexType name="verificationCodeType">
+     <simpleContent>
+       <extension base="token">
+         <attribute name="type" type="token"
+           use="required"/>
+       </extension>
+     </simpleContent>
    </complexType>
 
    <!--
@@ -1662,28 +1673,28 @@ Internet-Draft               EPP NV Mapping               September 2015
    -->
    <complexType name="statusType">
     <simpleContent>
-      <extension base="normalizedString">
-        <attribute name="s" type="nv:statusValueType"
-         use="required"/>
-        <attribute name="lang" type="language"
-         default="en"/>
-      </extension>
+       <extension base="normalizedString">
+
+
+
+Jiagui, et al.           Expires March 30, 2016                [Page 30]
+
+Internet-Draft               EPP NV Mapping               September 2015
+
+
+         <attribute name="s" type="nv:statusValueType"
+           use="required"/>
+         <attribute name="lang" type="language"
+           default="en"/>
+       </extension>
     </simpleContent>
    </complexType>
 
    <simpleType name="statusValueType">
     <restriction base="token">
-      <enumeration value="complaint"/>
-
-
-
-Jiagui, et al.           Expires March 29, 2016                [Page 30]
-
-Internet-Draft               EPP NV Mapping               September 2015
-
-
-      <enumeration value="nonComplaint"/>
-          <enumeration value="pendingComplaint"/>
+       <enumeration value="compliant"/>
+       <enumeration value="nonCompliant"/>
+     <enumeration value="pendingCompliant"/>
     </restriction>
    </simpleType>
 
@@ -1691,8 +1702,7 @@ Internet-Draft               EPP NV Mapping               September 2015
    End of schema.
    -->
    </schema>
-
-   END
+      END
 
 
 6.  Internationalization Considerations
@@ -1711,6 +1721,8 @@ Internet-Draft               EPP NV Mapping               September 2015
 
 7.  IANA Considerations
 
+7.1.  XML Namespace
+
    This document uses URNs to describe XML namespaces and XML schemas
    conforming to a registry mechanism described in [RFC3688].  IANA is
    requested to assignment the following two URI.
@@ -1718,6 +1730,13 @@ Internet-Draft               EPP NV Mapping               September 2015
    Registration request for the NV namespace:
 
    o  URI: urn:ietf:params:xml:ns:nv-1.0
+
+
+
+Jiagui, et al.           Expires March 30, 2016                [Page 31]
+
+Internet-Draft               EPP NV Mapping               September 2015
+
 
    o  Registrant Contact: See the "Author's Address" section of this
       document.
@@ -1731,14 +1750,30 @@ Internet-Draft               EPP NV Mapping               September 2015
    o  Registrant Contact: See the "Author's Address" section of this
       document.
 
-
-
-Jiagui, et al.           Expires March 29, 2016                [Page 31]
-
-Internet-Draft               EPP NV Mapping               September 2015
-
-
    o  XML: See the "Formal Syntax" section of this document.
+
+7.2.  EPP Extension Registry
+
+   The EPP extension described in this document should be registered by
+   the IANA in the EPP Extension Registry described in [RFC7451].  The
+   details of the registration are as follows:
+
+   Name of Extension: Extensible Provisioning Protocol (EPP) China Name
+   Verification Mapping
+
+   Document status: Informational
+
+   Reference: (insert reference to RFC version of this document)
+
+   Registrant Name and Email Address: IESG, <iesg@ietf.org>
+
+   TLDs: Any
+
+   IPR Disclosure: None
+
+   Status: Active
+
+   Notes: None
 
 8.  Security considerations
 
@@ -1746,6 +1781,18 @@ Internet-Draft               EPP NV Mapping               September 2015
    other security services or introduce any additional considerations
    beyond those described by [RFC5730] or those caused by the protocol
    layers used by EPP.
+
+
+
+
+
+
+
+
+Jiagui, et al.           Expires March 30, 2016                [Page 32]
+
+Internet-Draft               EPP NV Mapping               September 2015
+
 
 9.  Acknowledgements
 
@@ -1764,17 +1811,16 @@ Internet-Draft               EPP NV Mapping               September 2015
 11.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <http://www.rfc-editor.org/info/rfc2119>.
+              Requirement Levels", BCP 14, RFC 2119, March 1997.
 
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
-              DOI 10.17487/RFC3688, January 2004,
-              <http://www.rfc-editor.org/info/rfc3688>.
+              January 2004.
 
    [RFC5730]  Hollenbeck, S., "Extensible Provisioning Protocol (EPP)",
-              STD 69, RFC 5730, DOI 10.17487/RFC5730, August 2009,
-              <http://www.rfc-editor.org/info/rfc5730>.
+              STD 69, RFC 5730, August 2009.
+
+   [RFC7451]  Hollenbeck, S., "Extension Registry for the Extensible
+              Provisioning Protocol", RFC 7451, February 2015.
 
    [W3C.REC-xml-20040204]
               Bray, T., Paoli, J., Sperberg-McQueen, C., Maler, E., and
@@ -1782,17 +1828,6 @@ Internet-Draft               EPP NV Mapping               September 2015
               Edition)", World Wide Web Consortium FirstEdition REC-xml-
               20040204", February 2004,
               <http://www.w3.org/TR/2004/REC-xml-20040204>.
-
-
-
-
-
-
-
-Jiagui, et al.           Expires March 29, 2016                [Page 32]
-
-Internet-Draft               EPP NV Mapping               September 2015
-
 
    [W3C.REC-xmlschema-1-20041028]
               Thompson, H., Beech, D., Maloney, M., and N. Mendelsohn,
@@ -1806,6 +1841,14 @@ Internet-Draft               EPP NV Mapping               September 2015
               Second Edition", World Wide Web Consortium Recommendation
               REC-xmlschema-2-20041028", October 2004,
               <http://www.w3.org/TR/2004/REC-xmlschema-2-20041028>.
+
+
+
+
+Jiagui, et al.           Expires March 30, 2016                [Page 33]
+
+Internet-Draft               EPP NV Mapping               September 2015
+
 
 Authors' Addresses
 
@@ -1823,9 +1866,10 @@ Authors' Addresses
    VeriSign, Inc.
    12061 Bluemont Way
    Reston, VA  20190
-   USA
+   US
 
    Email: jgould@verisign.com
+   URI:   http://www.verisign.com
 
 
    Liu Hongyan
@@ -1845,4 +1889,16 @@ Authors' Addresses
 
 
 
-Jiagui, et al.           Expires March 29, 2016                [Page 33]
+
+
+
+
+
+
+
+
+
+
+
+
+Jiagui, et al.           Expires March 30, 2016                [Page 34]

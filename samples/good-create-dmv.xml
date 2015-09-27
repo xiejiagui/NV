@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <command>
+    <create>
+      <nv:create xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+       <nv:dnv>
+         <nv:name>example</nv:name>
+       </nv:dnv>
+       <nv:authInfo>
+         <nv:pw>2fooBAR</nv:pw>
+       </nv:authInfo>
+      </nv:create>
+    </create>
+    <clTRID>ABC-12345</clTRID>
+  </command>
+</epp>

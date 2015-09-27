@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <response>
+    <result code="1001">
+      <msg>Command completed successfully; action pending</msg>
+    </result>
+    <resData>
+      <nv:creData
+       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+        <nv:pending>
+          <nv:code>abc-123</nv:code>
+          <nv:status s="pendingCompliant"/>
+          <nv:crDate>2015-09-03T22:00:00.0Z</nv:crDate>
+        </nv:pending>
+      </nv:creData>
+    </resData>
+    <trID>
+      <clTRID>ABC-12345</clTRID>
+      <svTRID>54321-XYZ</svTRID>
+    </trID>
+  </response>
+</epp>

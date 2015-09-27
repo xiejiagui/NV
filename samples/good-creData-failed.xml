@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <response>
+    <result code="1000">
+      <msg>Command completed successfully</msg>
+    </result>
+    <resData>
+     <nv:creData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+      <nv:failed>
+        <nv:status s="nonCompliant"/>
+        <nv:msg>The name of the object is not correct.</nv:msg>
+      </nv:failed>
+     </nv:creData>
+    </resData>
+    <trID>
+      <clTRID>ABC-12345</clTRID>
+      <svTRID>54321-XYZ</svTRID>
+    </trID>
+  </response>
+</epp>

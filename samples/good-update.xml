@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <command>
+    <update>
+      <nv:update xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
+        <nv:code>abc-123</nv:code>
+        <nv:chg>
+          <nv:authInfo>
+            <nv:pw>2BARfoo</nv:pw>
+          </nv:authInfo>
+        </nv:chg>
+      </nv:update>
+    </update>
+    <clTRID>ABC-12345</clTRID>
+  </command>
+</epp>
