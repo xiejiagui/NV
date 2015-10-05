@@ -5,6 +5,8 @@
 <!ENTITY RFC3688 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3688.xml">
 <!ENTITY RFC5730 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5730.xml">
 <!ENTITY RFC7451 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7451.xml">
+<!ENTITY I-D.gould-eppext-verificationcode PUBLIC ''
+   'http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.gould-eppext-verificationcode.xml'>
 ]>
 
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
@@ -16,7 +18,7 @@
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
 
-<rfc category="info" docName="draft-xie-epp-nv-mapping-00" ipr="pre5378Trust200902">
+<rfc category="info" docName="draft-xie-eppext-nv-mapping-00" ipr="pre5378Trust200902">
   <!-- category values: std, bcp, info, exp, and historic -->
 
   <front>
@@ -76,7 +78,7 @@ Extensible Provisioning Protocol (EPP) China Name Verification Mapping
       </address>
     </author>       
                
-    <date month="September" year="2015" />
+    <date day="4" month="October" year="2015"/>
 
     <area>Internet</area>
 
@@ -88,7 +90,7 @@ Extensible Provisioning Protocol (EPP) China Name Verification Mapping
       <t>
 This document describes an Extensible Provisioning Protocol (EPP)
 for the provisioning and management of Name Verification (NV) stored in a shared
-central repository.  Specified in XML, the mapping defines EPP command 
+central repository in China.  Specified in XML, the mapping defines EPP command 
 syntax and semantics as applied to name verification.
       </t>
     </abstract>
@@ -107,6 +109,7 @@ The domain name verification, means to verify the domain label is in
 compliance with laws, rules and regulations.  The real name
 verification, means to verify that the registrant really exists and is authorized to register a domain name.			
       </t>
+<t>The verification of this document meets the requirements in China, but MAY be applicable outside of China.</t>  
       <t>
 In order to meet above requirements of the domain name registration, this document describes the 
 Extensible Provisioning Protocol (EPP) Name Verification (NV) Mapping. This document is specified 
@@ -169,26 +172,28 @@ Name Verification(NV), represents DNV, RNV or both of them.
             </t>	
 
 <t>
-Verification Code, which is described in "verisign_epp-extension_verificationcode",is 
+Verification Code, which is described in <xref target="I-D.gould-eppext-verificationcode"/> ,is 
 a formatted token, referred to as the Verification Code Token, 
 that is digitally signed by a Verification Service Provider (VSP) using XML Signature
 in "W3C.CR-xmldsig-core2-20120124".
 </t>
 
 <t>
-Signed Code, which is described in "verisign_epp-extension_verificationcode", 
+Signed Code, which is described in <xref target="I-D.gould-eppext-verificationcode"/>, 
 is the XML Signature format of the Verification Code.
 </t>	
 
 <t>
-Encoded Signed Code,  which is described in "verisign_epp-extension_verificationcode", 
+Encoded Signed Code,  which is described in <xref target="I-D.gould-eppext-verificationcode"/>, 
 is the "base64" encoded XML Signature format of the Verification Code.
 </t>		
 <t>
-Prohibited Name(PN),TBD.
+Prohibited Name(PN), is a domain label that is prohibited from registration.
 </t>
 <t>
-Reserved Name(RN),TBD.
+Restricted Name(RN), is a domain label that is restricted from registration.  Additional 
+information is needed during Domain Name Verification (DMV) to authorize the registration of 
+a Restricted Name.
 </t>	
           </list>          
       </t>
@@ -216,9 +221,8 @@ Reserved Name(RN),TBD.
           <list style="symbols">
 		  <t>
 		  pendingCompliant.  The object verification is not complete and 
-		  is pending complete.  
-		  Please refer to section 4.3.  Offline Review of Requested Actions
-		  (reference) for details on handling offline review of of 
+		  is pending completion.  
+		  Please refer to <xref target="offlineReview"/> for details on handling offline review of  
 		  NV objects with the pendingComplaint status.
 		  </t>
 		  <t>
@@ -429,8 +433,8 @@ reason.
                <t>
    A &lt;nv:code&gt; element that contains the Verification Code Token value.
    An "type" attribute MUST be used to identify the type of the query(Signed Code or Input Data).
-   If the type is "signedCode",the response of the server MUST be the Signed Code of the verification code.
-  If the type is "input",the response of the server MUST be the verification input data and the verification status.
+   If the type is "signedCode", the successful response of the server MUST be the Signed Code of the verification code.
+  If the type is "input", the successful response of the server MUST be the verification input data and the verification status.
                </t>      
 <t>
 An OPTIONAL &lt;nv:authInfo&gt; element that contains authorization
@@ -515,11 +519,11 @@ the Signed Code Form that contains the following child elements:
       current status associated with the NV.
 	</t> 
 <t>
-A &lt;verificationCode:encodedSignedCode&gt; element include:
+A &lt;nv:encodedSignedCode&gt; element include:
    <list style="symbols">
 <t>
 A &lt;verificationCode:code&gt;element that is an "base64" encoded form of the digitally signed
-&lt;verificationCode:signedCode&gt;.
+&lt;verificationCode:signedCode&gt; as defined in <xref target="I-D.gould-eppext-verificationcode"/>.
 				</t>
                </list>  
 </t>			   
@@ -634,7 +638,7 @@ The &lt;nv:dnv&gt; element is used for a DNV object and contains the following c
    A &lt;nv:name&gt; element that contains the label of the domain.
    </t>
    <t>
-   An OPTIONAL &lt;nv:rnvCode&gt; element containing the Verification Code Token value of a RNV object used for verification of a Reserved Name.  
+   An OPTIONAL &lt;nv:rnvCode&gt; element containing the Verification Code Token value of a RNV object used for verification of a Restricted Name.  
     </t>
    </list>
    </t>	
@@ -821,7 +825,7 @@ The &lt;nv:dnv&gt; element is used for a DNV object and contains the following c
    A &lt;nv:name&gt; element that contains the label of the domain.
    </t>
    <t>
-    An OPTIONAL &lt;nv:rnvCode&gt; element containing the Verification Code Token value of a RNV object used for verification of a Reserved Name. 
+    An OPTIONAL &lt;nv:rnvCode&gt; element containing the Verification Code Token value of a RNV object used for verification of a Restricted Name. 
    </t>
    </list>
    </t>
@@ -958,12 +962,12 @@ C:</epp>
 A  &lt;nv:crDate&gt; element that contains the date and time of nv object creation.
 </t> 
 <t>
-A &lt;verificationCode:encodedSignedCode&gt; element include:
+A &lt;nv:encodedSignedCode&gt; element include:
  
    <list style="symbols">
 <t>
 A &lt;verificationCode:code&gt;element that is an "base64" encoded form of the digitally signed
-&lt;verificationCode:signedCode&gt;.
+&lt;verificationCode:signedCode&gt; as defined in <xref target="I-D.gould-eppext-verificationcode"/>.
 				</t>
                </list>  
 </t>
@@ -1201,7 +1205,7 @@ S:</epp>
       </figure> 
 </section>	
       </section>
-	  <section  title="Offline Review of Requested Actions">
+	  <section  anchor="offlineReview" title="Offline Review of Requested Actions">
 	  <t>
    Commands are processed by a server in the order they are received
    from a client.  Though an immediate response confirming receipt and
@@ -1781,7 +1785,9 @@ End of schema.
 			&RFC2119;
 			&RFC3688;				
 			&RFC5730;
-         &RFC7451;      
+         &RFC7451;   
+         &I-D.gould-eppext-verificationcode;
+         
 	  <reference anchor="W3C.REC-xml-20040204"
                  target="http://www.w3.org/TR/2004/REC-xml-20040204">
         <front>
