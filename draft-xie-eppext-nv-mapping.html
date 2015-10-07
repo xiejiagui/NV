@@ -410,7 +410,7 @@
 
   <meta name="dct.creator" content="Jiagui, X., Gould, J., and L. Hongyan" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-xie-eppext-nv-mapping-00" />
-  <meta name="dct.issued" scheme="ISO8601" content="2015-10-4" />
+  <meta name="dct.issued" scheme="ISO8601" content="2015-10-7" />
   <meta name="dct.abstract" content="This document describes an Extensible Provisioning Protocol (EPP) for the provisioning and management of Name Verification (NV) stored in a shared central repository in China.  Specified in XML, the mapping defines EPP command syntax and semantics as applied to name verification.  " />
   <meta name="description" content="This document describes an Extensible Provisioning Protocol (EPP) for the provisioning and management of Name Verification (NV) stored in a shared central repository in China.  Specified in XML, the mapping defines EPP command syntax and semantics as applied to name verification.  " />
 
@@ -434,7 +434,7 @@
   <td class="right">J. Gould</td>
 </tr>
 <tr>
-  <td class="left">Expires: April 6, 2016</td>
+  <td class="left">Expires: April 9, 2016</td>
   <td class="right">VeriSign, Inc.</td>
 </tr>
 <tr>
@@ -447,7 +447,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">October 4, 2015</td>
+  <td class="right">October 7, 2015</td>
 </tr>
 
     	
@@ -467,7 +467,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on April 6, 2016.</p>
+<p>This Internet-Draft will expire on April 9, 2016.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -533,11 +533,12 @@
   <li>Domain Name Verification(DNV), represents the verification of the domain's label is in compliance with laws, rules and regulations.  </li>
   <li>Real Name Verification(RNV), represents the verification of the registrant(real name) is in compliance with laws, rules and regulations.  </li>
   <li>Name Verification(NV), represents DNV, RNV or both of them.  </li>
+  <li>Verification Service Provider(VSP), collects the proof of materials for Name Verification(NV) and performs the verification.  </li>
   <li>Verification Code, which is described in <a href="#I-D.gould-eppext-verificationcode">[I-D.gould-eppext-verificationcode]</a> ,is a formatted token, referred to as the Verification Code Token, that is digitally signed by a Verification Service Provider (VSP) using XML Signature in "W3C.CR-xmldsig-core2-20120124".  </li>
   <li>Signed Code, which is described in <a href="#I-D.gould-eppext-verificationcode">[I-D.gould-eppext-verificationcode]</a>, is the XML Signature format of the Verification Code.  </li>
   <li>Encoded Signed Code,  which is described in <a href="#I-D.gould-eppext-verificationcode">[I-D.gould-eppext-verificationcode]</a>, is the "base64" encoded XML Signature format of the Verification Code.  </li>
   <li>Prohibited Name(PN), is a domain label that is prohibited from registration.  </li>
-  <li>Restricted Name(RN), is a domain label that is restricted from registration.  Additional information is needed during Domain Name Verification (DMV) to authorize the registration of a Restricted Name.  </li>
+  <li>Restricted Name(RN), is a domain label that is restricted from registration.  Additional information is needed during Domain Name Verification(DNV) to authorize the registration of a Restricted Name.  </li>
 </ul>
 
 <p> </p>
@@ -553,7 +554,7 @@
 
 <p> </p>
 <h1 id="rfc.section.3.3"><a href="#rfc.section.3.3">3.3.</a> Name Verification Proofs</h1>
-<p id="rfc.section.3.3.p.1">When doing name verification, some verification service providers(VSP) MAY need to collect the proof materials to verify the real name of a registrant. The proof of materials were defined and listed below.  </p>
+<p id="rfc.section.3.3.p.1">When performing name verification, some Verification Service Providers(VSP) MAY need to collect the proof of materials to verify the real name of a registrant. The proof of materials is defined and listed below.  </p>
 <p/>
 
 <ul>
@@ -598,7 +599,7 @@ C:&lt;/epp&gt;
 <p/>
 
 <ul>
-  <li>A &lt;nv:name&gt; element that contains the queried domain label.  This element MUST contain an "avail" attribute whose value indicates object availability (can it be created or not) at the moment the &lt;check&gt; command was completed.  A value of "1" or "true" means that the object can be created.  A value of "0" or "false" means that the object can not be created. This element SHOULD contain an "restricted" attribute whose value indicates this name is an RN or not, with a default value of "0".  A value of "1" or "true" means that the object is an RN Name.  A value of "0" or "false" means that the object is not restricted.  </li>
+  <li>A &lt;nv:name&gt; element that contains the queried domain label.  This element MUST contain an "avail" attribute whose value indicates object availability (can it be created or not) at the moment the &lt;check&gt; command was completed.  A value of "1" or "true" means that the object can be created.  A value of "0" or "false" means that the object can not be created. This element SHOULD contain a "restricted" attribute whose value indicates this name is a RN or not, with a default value of "0".  A value of "1" or "true" means that the object is a RN Name.  A value of "0" or "false" means that the object is not restricted.  </li>
   <li>An OPTIONAL &lt;nv:reason&gt; element that MAY be provided when an object cannot be created.  If present, this element contains server-specific text to help explain why the object cannot be created.  This text MUST be represented in the response language previously negotiated with the client; an OPTIONAL "lang" attribute MAY be present to identify the language if the negotiated value is something other than the default value of "en" (English).  </li>
 </ul>
 
@@ -634,7 +635,7 @@ S:    &lt;/trID&gt;
 S:  &lt;/response&gt;
 S:&lt;/epp&gt;
     	</pre>
-<p id="rfc.section.4.1.1.p.6">An EPP error response MUST be returned if an &lt;check&gt; command cannot be processed for any reason.  </p>
+<p id="rfc.section.4.1.1.p.6">An EPP error response MUST be returned if a &lt;check&gt; command cannot be processed for any reason.  </p>
 <h1 id="rfc.section.4.1.2"><a href="#rfc.section.4.1.2">4.1.2.</a> EPP &lt;info&gt; Command</h1>
 <p id="rfc.section.4.1.2.p.1">The EPP &lt;info&gt; command is used to retrieve information associated with a NV object. The response to this command MAY vary depending on the identity of the querying client, and server policy towards unauthorized clients.  If the querying client is the sponsoring client, all available information MUST be returned. If the querying client is not the sponsoring client but the client provides valid authorization information, all available information MUST be returned. If the querying client is not the sponsoring client and the client does not provide valid authorization information, server policy determines which OPTIONAL elements are returned.  </p>
 <p id="rfc.section.4.1.2.p.2">In addition to the standard EPP command elements, the &lt;info&gt; command MUST contain a &lt;nv:info&gt; element that identifies the NV namespace.  The &lt;nv:info&gt; element contains the following child elements: </p>
@@ -701,7 +702,7 @@ C:&lt;/epp&gt;
 <ul>
   <li>A &lt;nv:code&gt; element that contains the Verification Code Token value of the signed code with the "type" attribute to indicate the type of NV object.  The "type" attribute value of "domain" indicates a DNV object and "real-name" indicates a RNV object.  </li>
   <li>An &lt;nv:status&gt; elements that contain the current status associated with the NV.  </li>
-  <li>A &lt;nv:encodedSignedCode&gt; element include: <ul><li>A &lt;verificationCode:code&gt;element that is an "base64" encoded form of the digitally signed &lt;verificationCode:signedCode&gt; as defined in <a href="#I-D.gould-eppext-verificationcode">[I-D.gould-eppext-verificationcode]</a>.  </li></ul><p> </p></li>
+  <li>A &lt;nv:encodedSignedCode&gt; element include: <ul><li>A &lt;verificationCode:code&gt;element that is a "base64" encoded form of the digitally signed &lt;verificationCode:signedCode&gt; as defined in <a href="#I-D.gould-eppext-verificationcode">[I-D.gould-eppext-verificationcode]</a>.  </li></ul><p> </p></li>
 </ul>
 
 <p> </p>
@@ -840,14 +841,14 @@ S:&lt;/epp&gt;
 <ul>
   <li>A &lt;nv:name&gt; element that contains the full name of the contact.  </li>
   <li>A &lt;nv:num&gt; element that contains the citizen or the organization ID of the contact.  </li>
-  <li>A &lt;nv:proofType&gt; element that contains the proof material type of the of the contact.  </li>
-  <li>Zero or more &lt;nv:document&gt; element that contains the following child elements: <ul><li>A &lt;nv:fileType&gt; element contains the type of the file.  </li><li>A &lt;nv:fileContent&gt; element contains the "base64" encoded content of the file.  </li></ul><p> </p></li>
+  <li>A &lt;nv:proofType&gt; element that contains the proof material type of the contact.  </li>
+  <li>Zero or more &lt;nv:document&gt; elements that contains the following child elements: <ul><li>A &lt;nv:fileType&gt; element contains the type of the file.  </li><li>A &lt;nv:fileContent&gt; element contains the "base64" encoded content of the file.  </li></ul><p> </p></li>
 </ul>
 
 <p> </p>
 <pre>     
 
-   Example &lt;info&gt; response of an RNV person:
+   Example &lt;info&gt; response of a RNV person:
 
 S:&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
 S:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
@@ -881,7 +882,7 @@ S:    &lt;/trID&gt;
 S:  &lt;/response&gt;
 S:&lt;/epp&gt;
    
-   Example &lt;info&gt; response of an RNV organization:
+   Example &lt;info&gt; response of a RNV organization:
 
 S:&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
 S:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
@@ -926,7 +927,7 @@ S:&lt;/epp&gt;
 
 <ul>
   <li>The &lt;nv:dnv&gt; element is used for a DNV object and contains the following child elements: <ul><li>A &lt;nv:name&gt; element that contains the label of the domain.  </li><li>An OPTIONAL &lt;nv:rnvCode&gt; element containing the Verification Code Token value of a RNV object used for verification of a Restricted Name.  </li></ul><p> </p></li>
-  <li>The &lt;nv:rnv&gt; element is used for a RNV object.  The "role" attribute MUST be used to identify the role of the RNV object with the possible values of "person" or "organization".  The &lt;nv:rnv&gt; element contains the following child elements: <ul><li>A &lt;nv:name&gt; element that contains the full name of the contact.  </li><li>A &lt;nv:num&gt; element that contains the citizen or the organization ID of the contact.  </li><li>A &lt;nv:proofType&gt; element that contains the proof material type of the of the contact.  </li><li>Zero or more &lt;nv:document&gt; element that contains the following child elements: <ul><li>A &lt;nv:fileType&gt; element contains the type of the file.  </li><li>A &lt;nv:fileContent&gt; element contains the "base64" encoded content of the file.  </li></ul><p> </p></li></ul><p> </p></li>
+  <li>The &lt;nv:rnv&gt; element is used for a RNV object.  The "role" attribute MUST be used to identify the role of the RNV object with the possible values of "person" or "organization".  The &lt;nv:rnv&gt; element contains the following child elements: <ul><li>A &lt;nv:name&gt; element that contains the full name of the contact.  </li><li>A &lt;nv:num&gt; element that contains the citizen or the organization ID of the contact.  </li><li>A &lt;nv:proofType&gt; element that contains the proof material type of the contact.  </li><li>Zero or more &lt;nv:document&gt; elements that contains the following child elements: <ul><li>A &lt;nv:fileType&gt; element contains the type of the file.  </li><li>A &lt;nv:fileContent&gt; element contains the "base64" encoded content of the file.  </li></ul><p> </p></li></ul><p> </p></li>
 </ul>
 
 <p> </p>
@@ -1006,7 +1007,7 @@ C:&lt;/epp&gt;
 <p/>
 
 <ul>
-  <li>The &lt;nv:success&gt; element contains the following child elements: <ul><li>A &lt;nv:code&gt; element that contains the id of the verification code with the required "type" attribute that defines the type of the verification code.  </li><li>Zero or more OPTIONAL &lt;nv:status&gt; elements that contain the current status descriptors associated with the NV.  </li><li>A  &lt;nv:crDate&gt; element that contains the date and time of nv object creation.  </li><li>A &lt;nv:encodedSignedCode&gt; element include: <ul><li>A &lt;verificationCode:code&gt;element that is an "base64" encoded form of the digitally signed &lt;verificationCode:signedCode&gt; as defined in <a href="#I-D.gould-eppext-verificationcode">[I-D.gould-eppext-verificationcode]</a>.  </li></ul><p> </p></li></ul><p> </p></li>
+  <li>The &lt;nv:success&gt; element contains the following child elements: <ul><li>A &lt;nv:code&gt; element that contains the id of the verification code with the required "type" attribute that defines the type of the verification code.  </li><li>Zero or more OPTIONAL &lt;nv:status&gt; elements that contain the current status descriptors associated with the NV.  </li><li>A  &lt;nv:crDate&gt; element that contains the date and time of nv object creation.  </li><li>A &lt;nv:encodedSignedCode&gt; element include: <ul><li>A &lt;verificationCode:code&gt;element that is a "base64" encoded form of the digitally signed &lt;verificationCode:signedCode&gt; as defined in <a href="#I-D.gould-eppext-verificationcode">[I-D.gould-eppext-verificationcode]</a>.  </li></ul><p> </p></li></ul><p> </p></li>
   <li>The &lt;nv:failed&gt; element contains the following child elements: <ul><li>Zero or more OPTIONAL &lt;nv:status&gt; elements that contain the current status descriptors associated with the NV.  </li><li>A &lt;nv:msg&gt; element containing a human-readable description of the reason of the failure.  The language of the response is identified via an OPTIONAL "lang" attribute.  If not specified, the default attribute value MUST be "en" (English).  </li></ul><p> </p></li>
 </ul>
 
@@ -1121,7 +1122,7 @@ S:    &lt;/trID&gt;
 S:  &lt;/response&gt;
 S:&lt;/epp&gt;
     	</pre>
-<p id="rfc.section.4.2.1.p.4">An EPP error response MUST be returned if an &lt;create&gt; command cannot be processed for any reason.  </p>
+<p id="rfc.section.4.2.1.p.4">An EPP error response MUST be returned if a &lt;create&gt; command cannot be processed for any reason.  </p>
 <h1 id="rfc.section.4.2.2"><a href="#rfc.section.4.2.2">4.2.2.</a> EPP &lt;delete&gt; Command</h1>
 <p id="rfc.section.4.2.2.p.1">Delete semantics do not apply to Name Verification (NV) objects, so there is no mapping defined for the EPP &lt;delete&gt; command.  </p>
 <h1 id="rfc.section.4.2.3"><a href="#rfc.section.4.2.3">4.2.3.</a> EPP &lt;renew&gt; Command</h1>
@@ -1213,7 +1214,7 @@ S:    &lt;/trID&gt;
 S:  &lt;/response&gt;
 S:&lt;/epp&gt;
     	</pre>
-<p id="rfc.section.4.3.p.3">The status of the NV object after returning this response MUST include "pendingCompliant".  The server operator reviews the request offline, and informs the client of the outcome of the review either by queuing a service message for retrieval via the &lt;poll&gt; command or by using an out-of-band mechanism to inform the client of the request.  </p>
+<p id="rfc.section.4.3.p.3">The status of the NV object after returning this response MUST include "pendingCompliant".  The server operator reviews the request offline, and informs the client of the outcome of the review either by queuing a service message for retrieval via the &lt;poll&gt; command or by using an out-of-band mechanism to inform the client of the outcome of the review.  </p>
 <p id="rfc.section.4.3.p.4">The service message MUST contain text that describes the notification in the child &lt;msg&gt; element of the response &lt;msgQ&gt; element.  In addition, the EPP &lt;resData&gt; element MUST contain a child &lt;nv:panData&gt; element that identifies the NV namespace.  The &lt;nv:panData&gt; element contains the following child elements: </p>
 
 <ul class="empty">
