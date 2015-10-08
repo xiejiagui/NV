@@ -5,10 +5,10 @@
 Internet Engineering Task Force                                X. Jiagui
 Internet-Draft                                                  Teleinfo
 Intended status: Informational                                  J. Gould
-Expires: April 6, 2016                                    VeriSign, Inc.
+Expires: April 9, 2016                                    VeriSign, Inc.
                                                               L. Hongyan
                                                                 Teleinfo
-                                                         October 4, 2015
+                                                         October 7, 2015
 
 
  Extensible Provisioning Protocol (EPP) China Name Verification Mapping
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on April 6, 2016.
+   This Internet-Draft will expire on April 9, 2016.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Jiagui, et al.            Expires April 6, 2016                 [Page 1]
+Jiagui, et al.            Expires April 9, 2016                 [Page 1]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Jiagui, et al.            Expires April 6, 2016                 [Page 2]
+Jiagui, et al.            Expires April 9, 2016                 [Page 2]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -165,7 +165,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                 [Page 3]
+Jiagui, et al.            Expires April 9, 2016                 [Page 3]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -184,6 +184,9 @@ Internet-Draft               EPP NV Mapping                 October 2015
       regulations.
 
    o  Name Verification(NV), represents DNV, RNV or both of them.
+
+   o  Verification Service Provider(VSP), collects the proof of
+      materials for Name Verification(NV) and performs the verification.
 
    o  Verification Code, which is described in
       [I-D.gould-eppext-verificationcode] ,is a formatted token,
@@ -204,7 +207,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
    o  Restricted Name(RN), is a domain label that is restricted from
       registration.  Additional information is needed during Domain Name
-      Verification (DMV) to authorize the registration of a Restricted
+      Verification(DNV) to authorize the registration of a Restricted
       Name.
 
 3.2.  Object Attributes
@@ -216,16 +219,15 @@ Internet-Draft               EPP NV Mapping                 October 2015
    Syntax" section of this document and in the appropriate normative
    references.
 
-   o  Status Values.  A NV object MUST always have one associated status
-      value.  The Status value can be set only by the server.  The
 
 
-
-Jiagui, et al.            Expires April 6, 2016                 [Page 4]
+Jiagui, et al.            Expires April 9, 2016                 [Page 4]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
 
+   o  Status Values.  A NV object MUST always have one associated status
+      value.  The Status value can be set only by the server.  The
       status value MAY be accompanied by a string of human-readable text
       that describes the rationale for the status applied to the object.
       The status of an object MAY change as a result of an action
@@ -257,9 +259,9 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 3.3.  Name Verification Proofs
 
-   When doing name verification, some verification service
-   providers(VSP) MAY need to collect the proof materials to verify the
-   real name of a registrant.  The proof of materials were defined and
+   When performing name verification, some Verification Service
+   Providers(VSP) MAY need to collect the proof of materials to verify
+   the real name of a registrant.  The proof of materials is defined and
    listed below.
 
    o  Proof of Citizen(POC), in this document the POC represents the
@@ -275,9 +277,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-
-
-Jiagui, et al.            Expires April 6, 2016                 [Page 5]
+Jiagui, et al.            Expires April 9, 2016                 [Page 5]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -333,7 +333,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                 [Page 6]
+Jiagui, et al.            Expires April 9, 2016                 [Page 6]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -343,11 +343,11 @@ Internet-Draft               EPP NV Mapping                 October 2015
       object availability (can it be created or not) at the moment the
       <check> command was completed.  A value of "1" or "true" means
       that the object can be created.  A value of "0" or "false" means
-      that the object can not be created.  This element SHOULD contain
-      an "restricted" attribute whose value indicates this name is an RN
-      or not, with a default value of "0".  A value of "1" or "true"
-      means that the object is an RN Name.  A value of "0" or "false"
-      means that the object is not restricted.
+      that the object can not be created.  This element SHOULD contain a
+      "restricted" attribute whose value indicates this name is a RN or
+      not, with a default value of "0".  A value of "1" or "true" means
+      that the object is a RN Name.  A value of "0" or "false" means
+      that the object is not restricted.
 
    o  An OPTIONAL <nv:reason> element that MAY be provided when an
       object cannot be created.  If present, this element contains
@@ -389,7 +389,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                 [Page 7]
+Jiagui, et al.            Expires April 9, 2016                 [Page 7]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -424,8 +424,8 @@ Internet-Draft               EPP NV Mapping                 October 2015
    S:  </response>
    S:</epp>
 
-   An EPP error response MUST be returned if an <check> command cannot
-   be processed for any reason.
+   An EPP error response MUST be returned if a <check> command cannot be
+   processed for any reason.
 
 4.1.2.  EPP <info> Command
 
@@ -445,7 +445,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                 [Page 8]
+Jiagui, et al.            Expires April 9, 2016                 [Page 8]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -501,7 +501,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                 [Page 9]
+Jiagui, et al.            Expires April 9, 2016                 [Page 9]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -557,7 +557,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 10]
+Jiagui, et al.            Expires April 9, 2016                [Page 10]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -583,7 +583,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
    o  A <nv:encodedSignedCode> element include:
 
-      *  A <verificationCode:code>element that is an "base64" encoded
+      *  A <verificationCode:code>element that is a "base64" encoded
          form of the digitally signed <verificationCode:signedCode> as
          defined in [I-D.gould-eppext-verificationcode].
 
@@ -613,7 +613,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 11]
+Jiagui, et al.            Expires April 9, 2016                [Page 11]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -669,7 +669,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 12]
+Jiagui, et al.            Expires April 9, 2016                [Page 12]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -725,7 +725,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 13]
+Jiagui, et al.            Expires April 9, 2016                [Page 13]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -769,9 +769,9 @@ Internet-Draft               EPP NV Mapping                 October 2015
       ID of the contact.
 
    o  A <nv:proofType> element that contains the proof material type of
-      the of the contact.
+      the contact.
 
-   o  Zero or more <nv:document> element that contains the following
+   o  Zero or more <nv:document> elements that contains the following
       child elements:
 
       *  A <nv:fileType> element contains the type of the file.
@@ -781,12 +781,12 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 14]
+Jiagui, et al.            Expires April 9, 2016                [Page 14]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
 
-      Example <info> response of an RNV person:
+      Example <info> response of a RNV person:
 
    S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
    S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
@@ -820,7 +820,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
    S:  </response>
    S:</epp>
 
-      Example <info> response of an RNV organization:
+      Example <info> response of a RNV organization:
 
    S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
    S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
@@ -837,7 +837,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 15]
+Jiagui, et al.            Expires April 9, 2016                [Page 15]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -893,7 +893,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 16]
+Jiagui, et al.            Expires April 9, 2016                [Page 16]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -921,9 +921,9 @@ Internet-Draft               EPP NV Mapping                 October 2015
          organization ID of the contact.
 
       *  A <nv:proofType> element that contains the proof material type
-         of the of the contact.
+         of the contact.
 
-      *  Zero or more <nv:document> element that contains the following
+      *  Zero or more <nv:document> elements that contains the following
          child elements:
 
          +  A <nv:fileType> element contains the type of the file.
@@ -949,7 +949,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 17]
+Jiagui, et al.            Expires April 9, 2016                [Page 17]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1005,7 +1005,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 18]
+Jiagui, et al.            Expires April 9, 2016                [Page 18]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1038,7 +1038,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
       *  A <nv:encodedSignedCode> element include:
 
-         +  A <verificationCode:code>element that is an "base64" encoded
+         +  A <verificationCode:code>element that is a "base64" encoded
             form of the digitally signed <verificationCode:signedCode>
             as defined in [I-D.gould-eppext-verificationcode].
 
@@ -1061,7 +1061,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 19]
+Jiagui, et al.            Expires April 9, 2016                [Page 19]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1117,7 +1117,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 20]
+Jiagui, et al.            Expires April 9, 2016                [Page 20]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1173,7 +1173,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 21]
+Jiagui, et al.            Expires April 9, 2016                [Page 21]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1185,7 +1185,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
    S:  </response>
    S:</epp>
 
-   An EPP error response MUST be returned if an <create> command cannot
+   An EPP error response MUST be returned if a <create> command cannot
    be processed for any reason.
 
 4.2.2.  EPP <delete> Command
@@ -1229,7 +1229,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 22]
+Jiagui, et al.            Expires April 9, 2016                [Page 22]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1285,7 +1285,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 23]
+Jiagui, et al.            Expires April 9, 2016                [Page 23]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1327,8 +1327,8 @@ Internet-Draft               EPP NV Mapping                 October 2015
    include "pendingCompliant".  The server operator reviews the request
    offline, and informs the client of the outcome of the review either
    by queuing a service message for retrieval via the <poll> command or
-   by using an out-of-band mechanism to inform the client of the
-   request.
+   by using an out-of-band mechanism to inform the client of the outcome
+   of the review.
 
    The service message MUST contain text that describes the notification
    in the child <msg> element of the response <msgQ> element.  In
@@ -1341,7 +1341,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 24]
+Jiagui, et al.            Expires April 9, 2016                [Page 24]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1397,7 +1397,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 25]
+Jiagui, et al.            Expires April 9, 2016                [Page 25]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1453,7 +1453,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 26]
+Jiagui, et al.            Expires April 9, 2016                [Page 26]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1509,7 +1509,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 27]
+Jiagui, et al.            Expires April 9, 2016                [Page 27]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1565,7 +1565,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 28]
+Jiagui, et al.            Expires April 9, 2016                [Page 28]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1621,7 +1621,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 29]
+Jiagui, et al.            Expires April 9, 2016                [Page 29]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1677,7 +1677,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 30]
+Jiagui, et al.            Expires April 9, 2016                [Page 30]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1733,7 +1733,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 31]
+Jiagui, et al.            Expires April 9, 2016                [Page 31]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1789,7 +1789,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 32]
+Jiagui, et al.            Expires April 9, 2016                [Page 32]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1845,7 +1845,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 33]
+Jiagui, et al.            Expires April 9, 2016                [Page 33]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1901,7 +1901,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 34]
+Jiagui, et al.            Expires April 9, 2016                [Page 34]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1957,4 +1957,4 @@ Authors' Addresses
 
 
 
-Jiagui, et al.            Expires April 6, 2016                [Page 35]
+Jiagui, et al.            Expires April 9, 2016                [Page 35]

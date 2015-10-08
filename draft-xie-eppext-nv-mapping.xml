@@ -78,7 +78,7 @@ Extensible Provisioning Protocol (EPP) China Name Verification Mapping
       </address>
     </author>       
                
-    <date day="4" month="October" year="2015"/>
+    <date day="7" month="October" year="2015"/>
 
     <area>Internet</area>
 
@@ -170,6 +170,9 @@ compliance with laws, rules and regulations.
 		             <t>
 Name Verification(NV), represents DNV, RNV or both of them.
             </t>	
+		      <t>
+Verification Service Provider(VSP), collects the proof of materials for Name Verification(NV) and performs the verification.  
+            </t>	
 
 <t>
 Verification Code, which is described in <xref target="I-D.gould-eppext-verificationcode"/> ,is 
@@ -192,7 +195,7 @@ Prohibited Name(PN), is a domain label that is prohibited from registration.
 </t>
 <t>
 Restricted Name(RN), is a domain label that is restricted from registration.  Additional 
-information is needed during Domain Name Verification (DMV) to authorize the registration of 
+information is needed during Domain Name Verification(DNV) to authorize the registration of 
 a Restricted Name.
 </t>	
           </list>          
@@ -258,8 +261,8 @@ a Restricted Name.
     
 <section title="Name Verification Proofs">
 <t>
-When doing name verification, some verification service providers(VSP) MAY need to collect
-the proof materials to verify the real name of a registrant. The proof of materials were defined 
+When performing name verification, some Verification Service Providers(VSP) MAY need to collect
+the proof of materials to verify the real name of a registrant. The proof of materials is defined 
 and listed below.
 </t>
 <t>
@@ -351,10 +354,10 @@ A &lt;nv:name&gt; element that contains the queried domain label.  This element 
       created or not) at the moment the &lt;check&gt; command was
       completed.  A value of "1" or "true" means that the object can be
       created.  A value of "0" or "false" means that the object can
-      not be created. This element SHOULD contain an "restricted"
-      attribute whose value indicates this name is an RN or not, 
+      not be created. This element SHOULD contain a "restricted"
+      attribute whose value indicates this name is a RN or not, 
 	  with a default value of "0".  A value of "1" or "true" 
-      means that the object is an RN Name.  A value of "0" or "false" means 
+      means that the object is a RN Name.  A value of "0" or "false" means 
       that the object is not restricted. 
 </t>
 <t>
@@ -403,7 +406,7 @@ S:</epp>
     	]]></artwork>
       </figure> 
 <t>
-An EPP error response MUST be returned if an &lt;check&gt; command cannot be processed for any 
+An EPP error response MUST be returned if a &lt;check&gt; command cannot be processed for any 
 reason.
 </t>	  
 </section>
@@ -522,7 +525,7 @@ the Signed Code Form that contains the following child elements:
 A &lt;nv:encodedSignedCode&gt; element include:
    <list style="symbols">
 <t>
-A &lt;verificationCode:code&gt;element that is an "base64" encoded form of the digitally signed
+A &lt;verificationCode:code&gt;element that is a "base64" encoded form of the digitally signed
 &lt;verificationCode:signedCode&gt; as defined in <xref target="I-D.gould-eppext-verificationcode"/>.
 				</t>
                </list>  
@@ -692,10 +695,10 @@ S:</epp>
       A &lt;nv:num&gt; element that contains the citizen or the organization ID of the contact.
    </t>
 <t>
- A &lt;nv:proofType&gt; element that contains the proof material type of the of the contact.
+ A &lt;nv:proofType&gt; element that contains the proof material type of the contact.
 </t>
          <t>
-    Zero or more &lt;nv:document&gt; element that contains the following child elements:
+    Zero or more &lt;nv:document&gt; elements that contains the following child elements:
 
    <list style="symbols">
    <t>
@@ -711,7 +714,7 @@ S:</epp>
  			<figure>
  			<artwork><![CDATA[     
 
-   Example <info> response of an RNV person:
+   Example <info> response of a RNV person:
 
 S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
@@ -745,7 +748,7 @@ S:    </trID>
 S:  </response>
 S:</epp>
    
-   Example <info> response of an RNV organization:
+   Example <info> response of a RNV organization:
 
 S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
@@ -842,10 +845,10 @@ The &lt;nv:dnv&gt; element is used for a DNV object and contains the following c
       A &lt;nv:num&gt; element that contains the citizen or the organization ID of the contact.
    </t>
    <t>
- A &lt;nv:proofType&gt; element that contains the proof material type of the of the contact.
+ A &lt;nv:proofType&gt; element that contains the proof material type of the contact.
 </t>
          <t>
-      Zero or more &lt;nv:document&gt; element that contains the following child elements:
+      Zero or more &lt;nv:document&gt; elements that contains the following child elements:
 
    <list style="symbols">
    <t>
@@ -966,7 +969,7 @@ A &lt;nv:encodedSignedCode&gt; element include:
  
    <list style="symbols">
 <t>
-A &lt;verificationCode:code&gt;element that is an "base64" encoded form of the digitally signed
+A &lt;verificationCode:code&gt;element that is a "base64" encoded form of the digitally signed
 &lt;verificationCode:signedCode&gt; as defined in <xref target="I-D.gould-eppext-verificationcode"/>.
 				</t>
                </list>  
@@ -1108,7 +1111,7 @@ S:</epp>
     	]]></artwork>
       </figure> 
 <t>
-An EPP error response MUST be returned if an &lt;create&gt; command cannot be processed for any 
+An EPP error response MUST be returned if a &lt;create&gt; command cannot be processed for any 
 reason.
 </t>	  
       	</section>
@@ -1255,7 +1258,7 @@ The status of the NV object after returning this response MUST
    offline, and informs the client of the outcome of the review either
    by queuing a service message for retrieval via the &lt;poll&gt; command or
    by using an out-of-band mechanism to inform the client of the
-   request.
+   outcome of the review.
 </t>
 <t>
  The service message MUST contain text that describes the notification
