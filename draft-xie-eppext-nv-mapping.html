@@ -542,7 +542,7 @@
 </ul>
 
 <p> </p>
-<h1 id="rfc.section.3.2"><a href="#rfc.section.3.2">3.2.</a> Object Attributes</h1>
+<h1 id="rfc.section.3.2"><a href="#rfc.section.3.2">3.2.</a> <a href="#objectAttributes" id="objectAttributes">Object Attributes</a></h1>
 <p id="rfc.section.3.2.p.1">An EPP NV object has attributes and associated values that can be viewed and modified by the sponsoring client or the server.  This section describes each attribute type in detail.  The formal syntax for the attribute values described here can be found in the "Formal Syntax" section of this document and in the appropriate normative references.  </p>
 <p/>
 
@@ -701,7 +701,7 @@ C:&lt;/epp&gt;
 
 <ul>
   <li>A &lt;nv:code&gt; element that contains the Verification Code Token value of the signed code with the "type" attribute to indicate the type of NV object.  The "type" attribute value of "domain" indicates a DNV object and "real-name" indicates a RNV object.  </li>
-  <li>An &lt;nv:status&gt; elements that contain the current status associated with the NV.  </li>
+  <li>An OPTIONAL &lt;nv:status&gt; element that contains the current status using the status values defined in <a href="#objectAttributes">Section 3.2</a>.  </li>
   <li>A &lt;nv:encodedSignedCode&gt; element include: <ul><li>A &lt;verificationCode:code&gt;element that is a "base64" encoded form of the digitally signed &lt;verificationCode:signedCode&gt; as defined in <a href="#I-D.gould-eppext-verificationcode">[I-D.gould-eppext-verificationcode]</a>.  </li></ul><p> </p></li>
 </ul>
 
@@ -1007,7 +1007,7 @@ C:&lt;/epp&gt;
 <p/>
 
 <ul>
-  <li>The &lt;nv:success&gt; element contains the following child elements: <ul><li>A &lt;nv:code&gt; element that contains the id of the verification code with the required "type" attribute that defines the type of the verification code.  </li><li>Zero or more OPTIONAL &lt;nv:status&gt; elements that contain the current status descriptors associated with the NV.  </li><li>A  &lt;nv:crDate&gt; element that contains the date and time of nv object creation.  </li><li>A &lt;nv:encodedSignedCode&gt; element include: <ul><li>A &lt;verificationCode:code&gt;element that is a "base64" encoded form of the digitally signed &lt;verificationCode:signedCode&gt; as defined in <a href="#I-D.gould-eppext-verificationcode">[I-D.gould-eppext-verificationcode]</a>.  </li></ul><p> </p></li></ul><p> </p></li>
+  <li>The &lt;nv:success&gt; element contains the following child elements: <ul><li>A &lt;nv:code&gt; element that contains the id of the verification code with the required "type" attribute that defines the type of the verification code.  </li><li>A &lt;nv:status&gt; element that contains the current status using the status values defined in <a href="#objectAttributes">Section 3.2</a>.  </li><li>A  &lt;nv:crDate&gt; element that contains the date and time of nv object creation.  </li><li>A &lt;nv:encodedSignedCode&gt; element include: <ul><li>A &lt;verificationCode:code&gt;element that is a "base64" encoded form of the digitally signed &lt;verificationCode:signedCode&gt; as defined in <a href="#I-D.gould-eppext-verificationcode">[I-D.gould-eppext-verificationcode]</a>.  </li></ul><p> </p></li></ul><p> </p></li>
   <li>The &lt;nv:failed&gt; element contains the following child elements: <ul><li>Zero or more OPTIONAL &lt;nv:status&gt; elements that contain the current status descriptors associated with the NV.  </li><li>A &lt;nv:msg&gt; element containing a human-readable description of the reason of the failure.  The language of the response is identified via an OPTIONAL "lang" attribute.  If not specified, the default attribute value MUST be "en" (English).  </li></ul><p> </p></li>
 </ul>
 

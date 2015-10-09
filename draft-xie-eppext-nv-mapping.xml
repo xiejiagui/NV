@@ -201,7 +201,7 @@ a Restricted Name.
           </list>          
       </t>
 	  </section>
-	  <section title="Object Attributes">
+	  <section title="Object Attributes" anchor="objectAttributes">
 	  <t>
 	An EPP NV object has attributes and associated values that can be
    viewed and modified by the sponsoring client or the server.  This
@@ -518,8 +518,8 @@ the Signed Code Form that contains the following child elements:
 	The "type" attribute value of "domain" indicates a DNV object and "real-name" indicates a RNV object.
 	</t>
 	<t>
-	 An &lt;nv:status&gt; elements that contain the
-      current status associated with the NV.
+	 An OPTIONAL &lt;nv:status&gt; element that contains the
+      current status using the status values defined in <xref target="objectAttributes"/>.
 	</t> 
 <t>
 A &lt;nv:encodedSignedCode&gt; element include:
@@ -958,8 +958,8 @@ C:</epp>
    verification code.
    </t>
    <t>
-	 Zero or more OPTIONAL &lt;nv:status&gt; elements that contain the
-      current status descriptors associated with the NV.
+	 A &lt;nv:status&gt; element that contains the
+      current status using the status values defined in <xref target="objectAttributes"/>.
 </t>   
 	<t>
 A  &lt;nv:crDate&gt; element that contains the date and time of nv object creation.

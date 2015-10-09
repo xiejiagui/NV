@@ -578,8 +578,8 @@ Internet-Draft               EPP NV Mapping                 October 2015
       type of NV object.  The "type" attribute value of "domain"
       indicates a DNV object and "real-name" indicates a RNV object.
 
-   o  An <nv:status> elements that contain the current status associated
-      with the NV.
+   o  An OPTIONAL <nv:status> element that contains the current status
+      using the status values defined in Section 3.2.
 
    o  A <nv:encodedSignedCode> element include:
 
@@ -1035,8 +1035,8 @@ Internet-Draft               EPP NV Mapping                 October 2015
          code with the required "type" attribute that defines the type
          of the verification code.
 
-      *  Zero or more OPTIONAL <nv:status> elements that contain the
-         current status descriptors associated with the NV.
+      *  A <nv:status> element that contains the current status using
+         the status values defined in Section 3.2.
 
       *  A <nv:crDate> element that contains the date and time of nv
          object creation.
