@@ -5,10 +5,10 @@
 Internet Engineering Task Force                                X. Jiagui
 Internet-Draft                                                  Teleinfo
 Intended status: Informational                                  J. Gould
-Expires: April 9, 2016                                    VeriSign, Inc.
+Expires: April 11, 2016                                   VeriSign, Inc.
                                                               L. Hongyan
                                                                 Teleinfo
-                                                         October 7, 2015
+                                                         October 9, 2015
 
 
  Extensible Provisioning Protocol (EPP) China Name Verification Mapping
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on April 9, 2016.
+   This Internet-Draft will expire on April 11, 2016.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Jiagui, et al.            Expires April 9, 2016                 [Page 1]
+Jiagui, et al.           Expires April 11, 2016                 [Page 1]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Jiagui, et al.            Expires April 9, 2016                 [Page 2]
+Jiagui, et al.           Expires April 11, 2016                 [Page 2]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -165,7 +165,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                 [Page 3]
+Jiagui, et al.           Expires April 11, 2016                 [Page 3]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -221,7 +221,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                 [Page 4]
+Jiagui, et al.           Expires April 11, 2016                 [Page 4]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -277,7 +277,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                 [Page 5]
+Jiagui, et al.           Expires April 11, 2016                 [Page 5]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -333,7 +333,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                 [Page 6]
+Jiagui, et al.           Expires April 11, 2016                 [Page 6]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -389,7 +389,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                 [Page 7]
+Jiagui, et al.           Expires April 11, 2016                 [Page 7]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -445,7 +445,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                 [Page 8]
+Jiagui, et al.           Expires April 11, 2016                 [Page 8]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -501,7 +501,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                 [Page 9]
+Jiagui, et al.           Expires April 11, 2016                 [Page 9]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -557,7 +557,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 10]
+Jiagui, et al.           Expires April 11, 2016                [Page 10]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -613,7 +613,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 11]
+Jiagui, et al.           Expires April 11, 2016                [Page 11]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -669,7 +669,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 12]
+Jiagui, et al.           Expires April 11, 2016                [Page 12]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -725,7 +725,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 13]
+Jiagui, et al.           Expires April 11, 2016                [Page 13]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -759,7 +759,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
    The <nv:rnv> element is used for a RNV object.  The "role" attribute
    MUST be used to identify the role of the RNV object with the possible
-   values of "person" or "organization".
+   values of "person" or "org".
 
    The <nv:rnv> element contains the following child elements:
 
@@ -781,7 +781,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 14]
+Jiagui, et al.           Expires April 11, 2016                [Page 14]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -837,7 +837,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 15]
+Jiagui, et al.           Expires April 11, 2016                [Page 15]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -893,7 +893,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 16]
+Jiagui, et al.           Expires April 11, 2016                [Page 16]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -912,8 +912,8 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
    o  The <nv:rnv> element is used for a RNV object.  The "role"
       attribute MUST be used to identify the role of the RNV object with
-      the possible values of "person" or "organization".  The <nv:rnv>
-      element contains the following child elements:
+      the possible values of "person" or "org".  The <nv:rnv> element
+      contains the following child elements:
 
       *  A <nv:name> element that contains the full name of the contact.
 
@@ -949,7 +949,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 17]
+Jiagui, et al.           Expires April 11, 2016                [Page 17]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1005,7 +1005,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 18]
+Jiagui, et al.           Expires April 11, 2016                [Page 18]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1061,7 +1061,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 19]
+Jiagui, et al.           Expires April 11, 2016                [Page 19]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1117,7 +1117,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 20]
+Jiagui, et al.           Expires April 11, 2016                [Page 20]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1173,7 +1173,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 21]
+Jiagui, et al.           Expires April 11, 2016                [Page 21]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1229,7 +1229,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 22]
+Jiagui, et al.           Expires April 11, 2016                [Page 22]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1285,7 +1285,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 23]
+Jiagui, et al.           Expires April 11, 2016                [Page 23]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1341,7 +1341,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 24]
+Jiagui, et al.           Expires April 11, 2016                [Page 24]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1397,7 +1397,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 25]
+Jiagui, et al.           Expires April 11, 2016                [Page 25]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1453,7 +1453,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 26]
+Jiagui, et al.           Expires April 11, 2016                [Page 26]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1509,7 +1509,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 27]
+Jiagui, et al.           Expires April 11, 2016                [Page 27]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1565,7 +1565,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 28]
+Jiagui, et al.           Expires April 11, 2016                [Page 28]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1621,7 +1621,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 29]
+Jiagui, et al.           Expires April 11, 2016                [Page 29]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1677,7 +1677,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 30]
+Jiagui, et al.           Expires April 11, 2016                [Page 30]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1733,7 +1733,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 31]
+Jiagui, et al.           Expires April 11, 2016                [Page 31]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1789,7 +1789,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 32]
+Jiagui, et al.           Expires April 11, 2016                [Page 32]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1845,7 +1845,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 33]
+Jiagui, et al.           Expires April 11, 2016                [Page 33]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1901,7 +1901,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 34]
+Jiagui, et al.           Expires April 11, 2016                [Page 34]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1957,4 +1957,4 @@ Authors' Addresses
 
 
 
-Jiagui, et al.            Expires April 9, 2016                [Page 35]
+Jiagui, et al.           Expires April 11, 2016                [Page 35]

@@ -78,7 +78,7 @@ Extensible Provisioning Protocol (EPP) China Name Verification Mapping
       </address>
     </author>       
                
-    <date day="7" month="October" year="2015"/>
+    <date day="9" month="October" year="2015"/>
 
     <area>Internet</area>
 
@@ -682,7 +682,7 @@ S:</epp>
                <t>
 	The &lt;nv:rnv&gt; element is used for a RNV object.
 	The "role" attribute MUST be used to identify the role of the RNV object with the possible values of "person"
-	or "organization".
+	or "org".
 	</t>
 	<t>
 	The &lt;nv:rnv&gt; element contains the following child elements:  		   
@@ -836,7 +836,7 @@ The &lt;nv:dnv&gt; element is used for a DNV object and contains the following c
    <t>
    The &lt;nv:rnv&gt; element is used for a RNV object.  
    The "role" attribute MUST be used to identify the role of the RNV object with the possible 
-   values of "person" or "organization".  The &lt;nv:rnv&gt; element contains the following child elements:
+   values of "person" or "org".  The &lt;nv:rnv&gt; element contains the following child elements:
    <list style="symbols">
       <t>
       A &lt;nv:name&gt; element that contains the full name of the contact.

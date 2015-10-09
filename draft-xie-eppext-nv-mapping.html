@@ -410,7 +410,7 @@
 
   <meta name="dct.creator" content="Jiagui, X., Gould, J., and L. Hongyan" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-xie-eppext-nv-mapping-00" />
-  <meta name="dct.issued" scheme="ISO8601" content="2015-10-7" />
+  <meta name="dct.issued" scheme="ISO8601" content="2015-10-9" />
   <meta name="dct.abstract" content="This document describes an Extensible Provisioning Protocol (EPP) for the provisioning and management of Name Verification (NV) stored in a shared central repository in China.  Specified in XML, the mapping defines EPP command syntax and semantics as applied to name verification.  " />
   <meta name="description" content="This document describes an Extensible Provisioning Protocol (EPP) for the provisioning and management of Name Verification (NV) stored in a shared central repository in China.  Specified in XML, the mapping defines EPP command syntax and semantics as applied to name verification.  " />
 
@@ -434,7 +434,7 @@
   <td class="right">J. Gould</td>
 </tr>
 <tr>
-  <td class="left">Expires: April 9, 2016</td>
+  <td class="left">Expires: April 11, 2016</td>
   <td class="right">VeriSign, Inc.</td>
 </tr>
 <tr>
@@ -447,7 +447,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">October 7, 2015</td>
+  <td class="right">October 9, 2015</td>
 </tr>
 
     	
@@ -467,7 +467,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on April 9, 2016.</p>
+<p>This Internet-Draft will expire on April 11, 2016.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -835,7 +835,7 @@ S:    &lt;/trID&gt;
 S:  &lt;/response&gt;
 S:&lt;/epp&gt;
      	</pre>
-<p id="rfc.section.4.1.2.p.9">The &lt;nv:rnv&gt; element is used for a RNV object.  The "role" attribute MUST be used to identify the role of the RNV object with the possible values of "person" or "organization".  </p>
+<p id="rfc.section.4.1.2.p.9">The &lt;nv:rnv&gt; element is used for a RNV object.  The "role" attribute MUST be used to identify the role of the RNV object with the possible values of "person" or "org".  </p>
 <p id="rfc.section.4.1.2.p.10">The &lt;nv:rnv&gt; element contains the following child elements: </p>
 
 <ul>
@@ -927,7 +927,7 @@ S:&lt;/epp&gt;
 
 <ul>
   <li>The &lt;nv:dnv&gt; element is used for a DNV object and contains the following child elements: <ul><li>A &lt;nv:name&gt; element that contains the label of the domain.  </li><li>An OPTIONAL &lt;nv:rnvCode&gt; element containing the Verification Code Token value of a RNV object used for verification of a Restricted Name.  </li></ul><p> </p></li>
-  <li>The &lt;nv:rnv&gt; element is used for a RNV object.  The "role" attribute MUST be used to identify the role of the RNV object with the possible values of "person" or "organization".  The &lt;nv:rnv&gt; element contains the following child elements: <ul><li>A &lt;nv:name&gt; element that contains the full name of the contact.  </li><li>A &lt;nv:num&gt; element that contains the citizen or the organization ID of the contact.  </li><li>A &lt;nv:proofType&gt; element that contains the proof material type of the contact.  </li><li>Zero or more &lt;nv:document&gt; elements that contains the following child elements: <ul><li>A &lt;nv:fileType&gt; element contains the type of the file.  </li><li>A &lt;nv:fileContent&gt; element contains the "base64" encoded content of the file.  </li></ul><p> </p></li></ul><p> </p></li>
+  <li>The &lt;nv:rnv&gt; element is used for a RNV object.  The "role" attribute MUST be used to identify the role of the RNV object with the possible values of "person" or "org".  The &lt;nv:rnv&gt; element contains the following child elements: <ul><li>A &lt;nv:name&gt; element that contains the full name of the contact.  </li><li>A &lt;nv:num&gt; element that contains the citizen or the organization ID of the contact.  </li><li>A &lt;nv:proofType&gt; element that contains the proof material type of the contact.  </li><li>Zero or more &lt;nv:document&gt; elements that contains the following child elements: <ul><li>A &lt;nv:fileType&gt; element contains the type of the file.  </li><li>A &lt;nv:fileContent&gt; element contains the "base64" encoded content of the file.  </li></ul><p> </p></li></ul><p> </p></li>
 </ul>
 
 <p> </p>
