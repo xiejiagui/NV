@@ -1049,8 +1049,8 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
    o  The <nv:failed> element contains the following child elements:
 
-      *  Zero or more OPTIONAL <nv:status> elements that contain the
-         current status descriptors associated with the NV.
+      *  A <nv:status> element that contains the current status using
+         the status values defined in Section 3.2.
 
       *  A <nv:msg> element containing a human-readable description of
          the reason of the failure.  The language of the response is

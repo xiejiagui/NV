@@ -982,8 +982,8 @@ A &lt;verificationCode:code&gt;element that is a "base64" encoded form of the di
  
    <list style="symbols">
    <t>
-	 Zero or more OPTIONAL &lt;nv:status&gt; elements that contain the
-      current status descriptors associated with the NV.
+	 A &lt;nv:status&gt; element that contains the
+      current status using the status values defined in <xref target="objectAttributes"/>.
 </t>
 <t>
       A &lt;nv:msg&gt; element containing a human-readable description of the
