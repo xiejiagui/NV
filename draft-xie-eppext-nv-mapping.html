@@ -553,14 +553,14 @@
 </ul>
 
 <p> </p>
-<h1 id="rfc.section.3.3"><a href="#rfc.section.3.3">3.3.</a> Name Verification Proofs</h1>
-<p id="rfc.section.3.3.p.1">When performing name verification, some Verification Service Providers(VSP) MAY need to collect the proof of materials to verify the real name of a registrant. The proof of materials is defined and listed below.  </p>
+<h1 id="rfc.section.3.3"><a href="#rfc.section.3.3">3.3.</a> <a href="#nameVerificationProofs" id="nameVerificationProofs">Name Verification Proofs</a></h1>
+<p id="rfc.section.3.3.p.1">When performing name verification, some Verification Service Providers(VSP) MAY need to collect the proof of materials to verify the real name of a registrant. The proof of materials is defined with the following enumerated values: </p>
 <p/>
 
 <ul>
-  <li>Proof of Citizen(POC), in this document the POC represents the citizen's identification card(ID) material.  </li>
-  <li>Proof of Enterprise(POE), in this document the POE represents the Organization Code Certificate(OCC) or Business License(BL) material.  </li>
-  <li>Proof of Other Types(POOT),in this document the POOT represents other certificate materials except the POC and POE.  </li>
+  <li>"poc" for Proof of Citizen(POC).  The POC represents the citizen's identification card(ID) material.  </li>
+  <li>"poe" for Proof of Enterprise(POE).  The POE represents the Organization Code Certificate(OCC) or Business License(BL) material.  </li>
+  <li>"poot" for Proof of Other Types(POOT).  The POOT represents other certificate materials except the POC and POE.  </li>
 </ul>
 
 <p> </p>
@@ -841,7 +841,7 @@ S:&lt;/epp&gt;
 <ul>
   <li>A &lt;nv:name&gt; element that contains the full name of the contact.  </li>
   <li>A &lt;nv:num&gt; element that contains the citizen or the organization ID of the contact.  </li>
-  <li>A &lt;nv:proofType&gt; element that contains the proof material type of the contact.  </li>
+  <li>A &lt;nv:proofType&gt; element that contains the proof material type of the contact based on the enumerated values defined in <a href="#nameVerificationProofs">Name Verification Proofs</a> <cite title="NONE">[nameVerificationProofs]</cite>.  </li>
   <li>Zero or more &lt;nv:document&gt; elements that contains the following child elements: <ul><li>A &lt;nv:fileType&gt; element contains the type of the file.  </li><li>A &lt;nv:fileContent&gt; element contains the "base64" encoded content of the file.  </li></ul><p> </p></li>
 </ul>
 
@@ -927,7 +927,7 @@ S:&lt;/epp&gt;
 
 <ul>
   <li>The &lt;nv:dnv&gt; element is used for a DNV object and contains the following child elements: <ul><li>A &lt;nv:name&gt; element that contains the label of the domain.  </li><li>An OPTIONAL &lt;nv:rnvCode&gt; element containing the Verification Code Token value of a RNV object used for verification of a Restricted Name.  </li></ul><p> </p></li>
-  <li>The &lt;nv:rnv&gt; element is used for a RNV object.  The "role" attribute MUST be used to identify the role of the RNV object with the possible values of "person" or "org".  The &lt;nv:rnv&gt; element contains the following child elements: <ul><li>A &lt;nv:name&gt; element that contains the full name of the contact.  </li><li>A &lt;nv:num&gt; element that contains the citizen or the organization ID of the contact.  </li><li>A &lt;nv:proofType&gt; element that contains the proof material type of the contact.  </li><li>Zero or more &lt;nv:document&gt; elements that contains the following child elements: <ul><li>A &lt;nv:fileType&gt; element contains the type of the file.  </li><li>A &lt;nv:fileContent&gt; element contains the "base64" encoded content of the file.  </li></ul><p> </p></li></ul><p> </p></li>
+  <li>The &lt;nv:rnv&gt; element is used for a RNV object.  The "role" attribute MUST be used to identify the role of the RNV object with the possible values of "person" or "org".  The &lt;nv:rnv&gt; element contains the following child elements: <ul><li>A &lt;nv:name&gt; element that contains the full name of the contact.  </li><li>A &lt;nv:num&gt; element that contains the citizen or the organization ID of the contact.  </li><li>A &lt;nv:proofType&gt; element that contains the proof material type of the contact based on the enumerated values defined in <a href="#nameVerificationProofs">Name Verification Proofs</a> <cite title="NONE">[nameVerificationProofs]</cite>.  </li><li>Zero or more &lt;nv:document&gt; elements that contains the following child elements: <ul><li>A &lt;nv:fileType&gt; element contains the type of the file.  </li><li>A &lt;nv:fileContent&gt; element contains the "base64" encoded content of the file.  </li></ul><p> </p></li></ul><p> </p></li>
 </ul>
 
 <p> </p>
@@ -1606,7 +1606,7 @@ End of schema.
 <p id="rfc.section.7.2.p.8">Status: Active </p>
 <p id="rfc.section.7.2.p.9">Notes: None </p>
 <h1 id="rfc.section.8"><a href="#rfc.section.8">8.</a> <a href="#security" id="security">Security considerations</a></h1>
-<p id="rfc.section.8.p.1">The object mapping described in this document does not provide any other security services or introduce any additional considerations beyond those described by <a href="#RFC5730">[RFC5730]</a> or those caused by the protocol layers used by EPP.  </p>
+<p id="rfc.section.8.p.1">Verification Code Tokens are digitally signed using XML Signature technology.  The security considerations described in Section 12 of the W3C XML Signature Syntax and Processing Candidate Recommendation <a href="#W3C.CR-xmldsig-core2-20120124">[W3C.CR-xmldsig-core2-20120124]</a> apply to this specification as well.  The object mapping described in this document does not provide any other security services or introduce any additional considerations beyond those described by <a href="#RFC5730">[RFC5730]</a> or those caused by the protocol layers used by EPP.  </p>
 <h1 id="rfc.section.9"><a href="#rfc.section.9">9.</a> <a href="#Acknowledgements" id="Acknowledgements">Acknowledgements</a></h1>
 <p id="rfc.section.9.p.1">The authors especially thank the author of <a href="#RFC5730">[RFC5730]</a>.  </p>
 <p id="rfc.section.9.p.2">Useful comments and contributions were made by TBD.  </p>
@@ -1652,6 +1652,12 @@ End of schema.
         <b id="RFC7451">[RFC7451]</b>
       </td>
       <td class="top"><a>Hollenbeck, S.</a>, "<a href="http://tools.ietf.org/html/rfc7451">Extension Registry for the Extensible Provisioning Protocol</a>", RFC 7451, February 2015.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="W3C.CR-xmldsig-core2-20120124">[W3C.CR-xmldsig-core2-20120124]</b>
+      </td>
+      <td class="top"><a>Bartel, M.</a>, <a>Boyer, J.</a>, <a>Fox, B.</a>, <a>LaMacchia, B.</a> and <a>E. Simon</a>, "<a href="http://www.w3.org/TR/2012/CR-xmldsig-core2-20120124/">"XML Signature Syntax and Processing Version 2.0", W3C Candidate Recommendation 24 January 2012</a>", January 2012.</td>
     </tr>
     <tr>
       <td class="reference">

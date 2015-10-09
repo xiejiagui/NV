@@ -93,13 +93,13 @@ Table of Contents
        4.2.3.  EPP <renew> Command . . . . . . . . . . . . . . . . .  22
        4.2.4.  EPP <transfer> Command  . . . . . . . . . . . . . . .  22
        4.2.5.  EPP <update> Command  . . . . . . . . . . . . . . . .  22
-     4.3.  Offline Review of Requested Actions . . . . . . . . . . .  23
-   5.  Formal Syntax . . . . . . . . . . . . . . . . . . . . . . . .  25
+     4.3.  Offline Review of Requested Actions . . . . . . . . . . .  24
+   5.  Formal Syntax . . . . . . . . . . . . . . . . . . . . . . . .  26
    6.  Internationalization Considerations . . . . . . . . . . . . .  32
-   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  32
-     7.1.  XML Namespace . . . . . . . . . . . . . . . . . . . . . .  32
+   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  33
+     7.1.  XML Namespace . . . . . . . . . . . . . . . . . . . . . .  33
      7.2.  EPP Extension Registry  . . . . . . . . . . . . . . . . .  33
-   8.  Security considerations . . . . . . . . . . . . . . . . . . .  33
+   8.  Security considerations . . . . . . . . . . . . . . . . . . .  34
    9.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  34
    10. Change History  . . . . . . . . . . . . . . . . . . . . . . .  34
      10.1.  draft-xie-epp-nv-mapping-00: Version 00  . . . . . . . .  34
@@ -261,18 +261,18 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
    When performing name verification, some Verification Service
    Providers(VSP) MAY need to collect the proof of materials to verify
-   the real name of a registrant.  The proof of materials is defined and
-   listed below.
+   the real name of a registrant.  The proof of materials is defined
+   with the following enumerated values:
 
-   o  Proof of Citizen(POC), in this document the POC represents the
-      citizen's identification card(ID) material.
+   o  "poc" for Proof of Citizen(POC).  The POC represents the citizen's
+      identification card(ID) material.
 
-   o  Proof of Enterprise(POE), in this document the POE represents the
+   o  "poe" for Proof of Enterprise(POE).  The POE represents the
       Organization Code Certificate(OCC) or Business License(BL)
       material.
 
-   o  Proof of Other Types(POOT),in this document the POOT represents
-      other certificate materials except the POC and POE.
+   o  "poot" for Proof of Other Types(POOT).  The POOT represents other
+      certificate materials except the POC and POE.
 
 
 
@@ -769,21 +769,25 @@ Internet-Draft               EPP NV Mapping                 October 2015
       ID of the contact.
 
    o  A <nv:proofType> element that contains the proof material type of
-      the contact.
+      the contact based on the enumerated values defined in Name
+      Verification Proofs (Section 3.3).
 
    o  Zero or more <nv:document> elements that contains the following
       child elements:
 
       *  A <nv:fileType> element contains the type of the file.
 
-      *  A <nv:fileContent> element contains the "base64" encoded
-         content of the file.
+
 
 
 
 Jiagui, et al.           Expires April 11, 2016                [Page 14]
 
 Internet-Draft               EPP NV Mapping                 October 2015
+
+
+      *  A <nv:fileContent> element contains the "base64" encoded
+         content of the file.
 
 
       Example <info> response of a RNV person:
@@ -830,10 +834,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    S:    </result>
    S:    <resData>
    S:      <nv:infData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   S:       <nv:input>
-   S:        <nv:rnv role="org">
-   S:         <nv:name>John Xie</nv:name>
-   S:         <nv:num>1234567890</nv:num>
 
 
 
@@ -842,6 +842,10 @@ Jiagui, et al.           Expires April 11, 2016                [Page 15]
 Internet-Draft               EPP NV Mapping                 October 2015
 
 
+   S:       <nv:input>
+   S:        <nv:rnv role="org">
+   S:         <nv:name>John Xie</nv:name>
+   S:         <nv:num>1234567890</nv:num>
    S:         <nv:proofType>poe</nv:proofType>
    S:         <nv:document>
    S:          <nv:fileType>jpg</nv:fileType>
@@ -886,10 +890,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    The EPP <create> command provides a transform operation that allows a
    client to create an NV object.  In addition to the standard EPP
    command elements, the <create> command MUST contain a <nv:create>
-   element that identifies the NV namespace.  The <nv:create> elements
-   contains a choice of two different child elements dependent on the
-   type of NV object to create.  The <nv:dnv> child element is used to
-   create a DNV object and the <nv:rnv> child element is used to create
 
 
 
@@ -898,6 +898,10 @@ Jiagui, et al.           Expires April 11, 2016                [Page 16]
 Internet-Draft               EPP NV Mapping                 October 2015
 
 
+   element that identifies the NV namespace.  The <nv:create> elements
+   contains a choice of two different child elements dependent on the
+   type of NV object to create.  The <nv:dnv> child element is used to
+   create a DNV object and the <nv:rnv> child element is used to create
    a RNV object.  AN <nv:authInfo> element contains authorization
    information to be associated with the NV object.
 
@@ -921,7 +925,8 @@ Internet-Draft               EPP NV Mapping                 October 2015
          organization ID of the contact.
 
       *  A <nv:proofType> element that contains the proof material type
-         of the contact.
+         of the contact based on the enumerated values defined in Name
+         Verification Proofs (Section 3.3).
 
       *  Zero or more <nv:document> elements that contains the following
          child elements:
@@ -941,11 +946,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    C:       <nv:dnv>
    C:         <nv:name>example</nv:name>
    C:       </nv:dnv>
-   C:       <nv:authInfo>
-   C:         <nv:pw>2fooBAR</nv:pw>
-   C:       </nv:authInfo>
-   C:      </nv:create>
-   C:    </create>
 
 
 
@@ -954,6 +954,11 @@ Jiagui, et al.           Expires April 11, 2016                [Page 17]
 Internet-Draft               EPP NV Mapping                 October 2015
 
 
+   C:       <nv:authInfo>
+   C:         <nv:pw>2fooBAR</nv:pw>
+   C:       </nv:authInfo>
+   C:      </nv:create>
+   C:    </create>
    C:    <clTRID>ABC-12345</clTRID>
    C:  </command>
    C:</epp>
@@ -997,11 +1002,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    C:        <nv:proofType>poe</nv:proofType>
    C:        <nv:document>
    C:         <nv:fileType>jpg</nv:fileType>
-   C:         <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
-   C:         </nv:fileContent>
-   C:        </nv:document>
-   C:       </nv:rnv>
-   C:       <nv:authInfo>
 
 
 
@@ -1010,6 +1010,11 @@ Jiagui, et al.           Expires April 11, 2016                [Page 18]
 Internet-Draft               EPP NV Mapping                 October 2015
 
 
+   C:         <nv:fileContent>EABQRAQAAAAAAAAAAAAAAAAAAAAD
+   C:         </nv:fileContent>
+   C:        </nv:document>
+   C:       </nv:rnv>
+   C:       <nv:authInfo>
    C:         <nv:pw>2fooBAR</nv:pw>
    C:       </nv:authInfo>
    C:      </nv:create>
@@ -1054,11 +1059,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
       Example <create> response of success:
 
-   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-   S:  <response>
-   S:    <result code="1000">
-
 
 
 Jiagui, et al.           Expires April 11, 2016                [Page 19]
@@ -1066,6 +1066,10 @@ Jiagui, et al.           Expires April 11, 2016                [Page 19]
 Internet-Draft               EPP NV Mapping                 October 2015
 
 
+   S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+   S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+   S:  <response>
+   S:    <result code="1000">
    S:      <msg>Command completed successfully</msg>
    S:    </result>
    S:    <resData>
@@ -1110,10 +1114,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    S:UVlEVlFRS0V3NVdZV3hwWkdGMGIzSWdWRTFEU0RFaAogTUI4R0ExVUVBeE1ZVm1G
    S:c2FXUmhkRzl5SUZSTlEwZ2dWRVZUVkNCRFJWSlVNSUlCSWpBTkJna3Foa2lHOXcw
    S:QgogQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBby9jd3ZYaGJWWWwwUkRXV3ZveWVa
-   S:cEVUVlpWVmNNQ292VVZOZy9zdwogV2ludU1nRVdnVlFGcnoweEEwNHBFaFhDRlZ2
-   S:NGV2YlVwZWtKNWJ1cVUxZ21ReU9zQ0tRbGhPSFRkUGp2a0M1dQogcERxYTUxRmxr
-   S:MFRNYU1rSVFqczdhVUtDbUE0Ukc0dFRUR0svRWpSMWl4OC9EMGdIWVZSbGR5MVlQ
-   S:ck1QK291NwogNWJPVm5Jb3MrSGlmckF0ckl2NHFFcXdMTDRGVFpBVXBhQ2EyQm1n
 
 
 
@@ -1122,6 +1122,10 @@ Jiagui, et al.           Expires April 11, 2016                [Page 20]
 Internet-Draft               EPP NV Mapping                 October 2015
 
 
+   S:cEVUVlpWVmNNQ292VVZOZy9zdwogV2ludU1nRVdnVlFGcnoweEEwNHBFaFhDRlZ2
+   S:NGV2YlVwZWtKNWJ1cVUxZ21ReU9zQ0tRbGhPSFRkUGp2a0M1dQogcERxYTUxRmxr
+   S:MFRNYU1rSVFqczdhVUtDbUE0Ukc0dFRUR0svRWpSMWl4OC9EMGdIWVZSbGR5MVlQ
+   S:ck1QK291NwogNWJPVm5Jb3MrSGlmckF0ckl2NHFFcXdMTDRGVFpBVXBhQ2EyQm1n
    S:WGZ5MkNTUlFieEQ1T3IxZ2NTYTN2dXJoNQogc1BNQ054cWFYbUlYbVFpcFMrRHVF
    S:QnFNTTh0bGRhTjdSWW9qVUVLckdWc05rNWk5eTIvN3NqbjF6eXlVUGY3dgogTDRH
    S:Z0RZcWhKWVdWNjFEblhneC9KZDZDV3h2c25ERjZzY3NjUXpVVEVsK2h5d0lEQVFB
@@ -1166,10 +1170,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    S:     <nv:creData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
    S:      <nv:failed>
    S:        <nv:status s="nonCompliant"/>
-   S:        <nv:msg>The name of the object is not correct.</nv:msg>
-   S:      </nv:failed>
-   S:     </nv:creData>
-   S:    </resData>
 
 
 
@@ -1178,6 +1178,10 @@ Jiagui, et al.           Expires April 11, 2016                [Page 21]
 Internet-Draft               EPP NV Mapping                 October 2015
 
 
+   S:        <nv:msg>The name of the object is not correct.</nv:msg>
+   S:      </nv:failed>
+   S:     </nv:creData>
+   S:    </resData>
    S:    <trID>
    S:      <clTRID>ABC-12345</clTRID>
    S:      <svTRID>54321-XYZ</svTRID>
@@ -1221,10 +1225,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
    o  A <nv:authInfo> element that contains authorization information
       associated with the NV object.  This mapping includes a password-
-      based authentication mechanism, but the schema allows new
-      mechanisms to be defined in new schemas.
-
-
 
 
 
@@ -1233,6 +1233,9 @@ Jiagui, et al.           Expires April 11, 2016                [Page 22]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
+
+      based authentication mechanism, but the schema allows new
+      mechanisms to be defined in new schemas.
 
       Example <update> command:
 
@@ -1275,13 +1278,10 @@ Internet-Draft               EPP NV Mapping                 October 2015
       An EPP error response MUST be returned if an <update>
       command cannot be processed for any reason.
 
-4.3.  Offline Review of Requested Actions
 
-   Commands are processed by a server in the order they are received
-   from a client.  Though an immediate response confirming receipt and
-   processing of the command is produced by the server, a server
-   operator MAY perform an offline review of requested transform
-   commands before completing the requested action.  In such situations,
+
+
+
 
 
 
@@ -1290,6 +1290,13 @@ Jiagui, et al.           Expires April 11, 2016                [Page 23]
 Internet-Draft               EPP NV Mapping                 October 2015
 
 
+4.3.  Offline Review of Requested Actions
+
+   Commands are processed by a server in the order they are received
+   from a client.  Though an immediate response confirming receipt and
+   processing of the command is produced by the server, a server
+   operator MAY perform an offline review of requested transform
+   commands before completing the requested action.  In such situations,
    the response from the server MUST clearly note that the transform
    command has been received and processed but that the requested action
    is pending.  The status of the corresponding object MUST clearly
@@ -1330,13 +1337,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    by using an out-of-band mechanism to inform the client of the outcome
    of the review.
 
-   The service message MUST contain text that describes the notification
-   in the child <msg> element of the response <msgQ> element.  In
-   addition, the EPP <resData> element MUST contain a child <nv:panData>
-   element that identifies the NV namespace.  The <nv:panData> element
-   contains the following child elements:
-
-      A <nv:code> element that contains the code of the a NV object.
 
 
 
@@ -1345,6 +1345,14 @@ Jiagui, et al.           Expires April 11, 2016                [Page 24]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
+
+   The service message MUST contain text that describes the notification
+   in the child <msg> element of the response <msgQ> element.  In
+   addition, the EPP <resData> element MUST contain a child <nv:panData>
+   element that identifies the NV namespace.  The <nv:panData> element
+   contains the following child elements:
+
+      A <nv:code> element that contains the code of the a NV object.
 
       A <nv:paStatus> element that contains the current status
       descriptors associated with the NV.
@@ -1386,6 +1394,14 @@ Internet-Draft               EPP NV Mapping                 October 2015
    S:  </response>
    S:</epp>
 
+
+
+
+Jiagui, et al.           Expires April 11, 2016                [Page 25]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
+
 5.  Formal Syntax
 
    An EPP object NV mapping is specified in XML Schema notation.  The
@@ -1394,13 +1410,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    instances.  The BEGIN and END tags are not part of the schema; they
    are used to note the beginning and ending of the schema for URI
    registration purposes.
-
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 25]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
 
       BEGIN
    <?xml version="1.0" encoding="UTF-8"?>
@@ -1441,6 +1450,14 @@ Internet-Draft               EPP NV Mapping                 October 2015
    Child element of <check> command.
    -->
    <complexType name="mNameType">
+
+
+
+Jiagui, et al.           Expires April 11, 2016                [Page 26]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
+
     <sequence>
        <element name="name" type="eppcom:labelType"
         maxOccurs="unbounded"/>
@@ -1450,14 +1467,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    <!--
    Child elements of the <create> command.
    -->
-
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 26]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
-
    <complexType name="createType">
     <sequence>
        <choice>
@@ -1497,6 +1506,14 @@ Internet-Draft               EPP NV Mapping                 October 2015
    <simpleType name="roleType">
        <restriction base="token">
          <enumeration value="person"/>
+
+
+
+Jiagui, et al.           Expires April 11, 2016                [Page 27]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
+
          <enumeration value="org"/>
     </restriction>
    </simpleType>
@@ -1506,14 +1523,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
            <minLength value="1"/>
            <maxLength value="255"/>
        </restriction>
-
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 27]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
-
    </simpleType>
 
    <complexType name="documentType">
@@ -1553,6 +1562,14 @@ Internet-Draft               EPP NV Mapping                 October 2015
    </simpleType>
 
    <!--
+
+
+
+Jiagui, et al.           Expires April 11, 2016                [Page 28]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
+
    Child elements of the <update> command.
    -->
    <complexType name="updateType">
@@ -1561,14 +1578,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
        <element name="chg" type="nv:chgType"/>
     </sequence>
    </complexType>
-
-
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 28]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
 
    <!--
    Data elements that can be changed.
@@ -1609,6 +1618,14 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
    <complexType name="checkType">
     <sequence>
+
+
+
+Jiagui, et al.           Expires April 11, 2016                [Page 29]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
+
        <element name="name" type="nv:checkNameType"/>
        <element name="reason" type="eppcom:reasonType"
         minOccurs="0"/>
@@ -1618,14 +1635,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    <complexType name="checkNameType">
     <simpleContent>
        <extension base="eppcom:labelType">
-
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 29]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
-
          <attribute name="avail" type="boolean"
            use="required"/>
         <attribute name="restricted" type="boolean"
@@ -1665,6 +1674,14 @@ Internet-Draft               EPP NV Mapping                 October 2015
    <complexType name="pendingType">
     <sequence>
        <element name="code" type="token"/>
+
+
+
+Jiagui, et al.           Expires April 11, 2016                [Page 30]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
+
      <element name="status" type="nv:statusType"/>
        <element name="crDate" type="dateTime"/>
     </sequence>
@@ -1674,14 +1691,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    Pending action notification response elements.
    -->
    <complexType name="panDataType">
-
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 30]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
-
     <sequence>
        <element name="code" type="token"/>
        <element name="paStatus" type="nv:statusType"/>
@@ -1722,6 +1731,13 @@ Internet-Draft               EPP NV Mapping                 October 2015
      </simpleContent>
    </complexType>
 
+
+
+Jiagui, et al.           Expires April 11, 2016                [Page 31]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
+
    <!--
    Status is a combination of attributes and an optional
    human-readable message that may be expressed in languages other
@@ -1730,14 +1746,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    <complexType name="statusType">
     <simpleContent>
        <extension base="normalizedString">
-
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 31]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
-
          <attribute name="s" type="nv:statusValueType"
            use="required"/>
          <attribute name="lang" type="language"
@@ -1775,6 +1783,17 @@ Internet-Draft               EPP NV Mapping                 October 2015
    used to represent higher-layer domain and core protocol structures
    present in an XML instance that includes this extension.
 
+
+
+
+
+
+
+Jiagui, et al.           Expires April 11, 2016                [Page 32]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
+
 7.  IANA Considerations
 
 7.1.  XML Namespace
@@ -1786,13 +1805,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    Registration request for the NV namespace:
 
    o  URI: urn:ietf:params:xml:ns:nv-1.0
-
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 32]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
 
    o  Registrant Contact: See the "Author's Address" section of this
       document.
@@ -1831,24 +1843,23 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
    Notes: None
 
-8.  Security considerations
-
-   The object mapping described in this document does not provide any
-   other security services or introduce any additional considerations
-   beyond those described by [RFC5730] or those caused by the protocol
-   layers used by EPP.
-
-
-
-
-
-
 
 
 Jiagui, et al.           Expires April 11, 2016                [Page 33]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
+
+8.  Security considerations
+
+   Verification Code Tokens are digitally signed using XML Signature
+   technology.  The security considerations described in Section 12 of
+   the W3C XML Signature Syntax and Processing Candidate Recommendation
+   [W3C.CR-xmldsig-core2-20120124] apply to this specification as well.
+   The object mapping described in this document does not provide any
+   other security services or introduce any additional considerations
+   beyond those described by [RFC5730] or those caused by the protocol
+   layers used by EPP.
 
 9.  Acknowledgements
 
@@ -1883,6 +1894,25 @@ Internet-Draft               EPP NV Mapping                 October 2015
    [RFC7451]  Hollenbeck, S., "Extension Registry for the Extensible
               Provisioning Protocol", RFC 7451, February 2015.
 
+
+
+
+
+
+
+
+Jiagui, et al.           Expires April 11, 2016                [Page 34]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
+
+   [W3C.CR-xmldsig-core2-20120124]
+              Bartel, M., Boyer, J., Fox, B., LaMacchia, B., and E.
+              Simon, ""XML Signature Syntax and Processing Version 2.0",
+              W3C Candidate Recommendation 24 January 2012", January
+              2012,
+              <http://www.w3.org/TR/2012/CR-xmldsig-core2-20120124/>.
+
    [W3C.REC-xml-20040204]
               Bray, T., Paoli, J., Sperberg-McQueen, C., Maler, E., and
               F. Yergeau, ""Extensible Markup Language (XML) 1.0 (Third
@@ -1896,15 +1926,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
               Wide Web Consortium Recommendation REC-xmlschema-
               1-20041028", October 2004,
               <http://www.w3.org/TR/2004/REC-xmlschema-1-20041028>.
-
-
-
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 34]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
 
    [W3C.REC-xmlschema-2-20041028]
               Biron, P. and A. Malhotra, ""XML Schema Part 2: Datatypes
@@ -1934,6 +1955,13 @@ Authors' Addresses
    URI:   http://www.verisign.com
 
 
+
+
+Jiagui, et al.           Expires April 11, 2016                [Page 35]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
+
    Liu Hongyan
    Teleinfo
    1#-21,gaolizhang Street,Haidian District
@@ -1957,4 +1985,32 @@ Authors' Addresses
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 35]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Jiagui, et al.           Expires April 11, 2016                [Page 36]
