@@ -1871,7 +1871,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
    RFC Editor: Please remove this section.
 
-10.1.  draft-xie-epp-nv-mapping-00: Version 00
+10.1.  draft-xie-eppext-nv-mapping-00: Version 00
 
    o  First draft.
 
