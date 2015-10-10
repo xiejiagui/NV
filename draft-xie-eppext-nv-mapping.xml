@@ -78,7 +78,7 @@ Extensible Provisioning Protocol (EPP) China Name Verification Mapping
       </address>
     </author>       
                
-    <date day="7" month="October" year="2015"/>
+    <date day="9" month="October" year="2015"/>
 
     <area>Internet</area>
 
@@ -201,7 +201,7 @@ a Restricted Name.
           </list>          
       </t>
 	  </section>
-	  <section title="Object Attributes">
+	  <section title="Object Attributes" anchor="objectAttributes">
 	  <t>
 	An EPP NV object has attributes and associated values that can be
    viewed and modified by the sponsoring client or the server.  This
@@ -259,23 +259,23 @@ a Restricted Name.
       </t>
 	  </section>
     
-<section title="Name Verification Proofs">
+<section title="Name Verification Proofs" anchor="nameVerificationProofs">
 <t>
 When performing name verification, some Verification Service Providers(VSP) MAY need to collect
 the proof of materials to verify the real name of a registrant. The proof of materials is defined 
-and listed below.
+with the following enumerated values:
 </t>
 <t>
 <list style="symbols">
 <t>
-Proof of Citizen(POC), in this document the POC represents the citizen's identification card(ID) material.
+"poc" for Proof of Citizen(POC).  The POC represents the citizen's identification card(ID) material.
 </t>
 <t>
-Proof of Enterprise(POE), in this document the POE represents the Organization Code Certificate(OCC) or
+"poe" for Proof of Enterprise(POE).  The POE represents the Organization Code Certificate(OCC) or
 Business License(BL) material.
 </t>
 <t>
-Proof of Other Types(POOT),in this document the POOT represents other certificate materials except the POC and POE.
+"poot" for Proof of Other Types(POOT).  The POOT represents other certificate materials except the POC and POE.
 </t>
 </list>
 </t>
@@ -518,8 +518,8 @@ the Signed Code Form that contains the following child elements:
 	The "type" attribute value of "domain" indicates a DNV object and "real-name" indicates a RNV object.
 	</t>
 	<t>
-	 An &lt;nv:status&gt; elements that contain the
-      current status associated with the NV.
+	 An OPTIONAL &lt;nv:status&gt; element that contains the
+      current status using the status values defined in <xref target="objectAttributes"/>.
 	</t> 
 <t>
 A &lt;nv:encodedSignedCode&gt; element include:
@@ -682,7 +682,7 @@ S:</epp>
                <t>
 	The &lt;nv:rnv&gt; element is used for a RNV object.
 	The "role" attribute MUST be used to identify the role of the RNV object with the possible values of "person"
-	or "organization".
+	or "org".
 	</t>
 	<t>
 	The &lt;nv:rnv&gt; element contains the following child elements:  		   
@@ -695,7 +695,7 @@ S:</epp>
       A &lt;nv:num&gt; element that contains the citizen or the organization ID of the contact.
    </t>
 <t>
- A &lt;nv:proofType&gt; element that contains the proof material type of the contact.
+ A &lt;nv:proofType&gt; element that contains the proof material type of the contact based on the enumerated values defined in <xref target="nameVerificationProofs">Name Verification Proofs</xref>.  
 </t>
          <t>
     Zero or more &lt;nv:document&gt; elements that contains the following child elements:
@@ -836,7 +836,7 @@ The &lt;nv:dnv&gt; element is used for a DNV object and contains the following c
    <t>
    The &lt;nv:rnv&gt; element is used for a RNV object.  
    The "role" attribute MUST be used to identify the role of the RNV object with the possible 
-   values of "person" or "organization".  The &lt;nv:rnv&gt; element contains the following child elements:
+   values of "person" or "org".  The &lt;nv:rnv&gt; element contains the following child elements:
    <list style="symbols">
       <t>
       A &lt;nv:name&gt; element that contains the full name of the contact.
@@ -845,7 +845,7 @@ The &lt;nv:dnv&gt; element is used for a DNV object and contains the following c
       A &lt;nv:num&gt; element that contains the citizen or the organization ID of the contact.
    </t>
    <t>
- A &lt;nv:proofType&gt; element that contains the proof material type of the contact.
+ A &lt;nv:proofType&gt; element that contains the proof material type of the contact based on the enumerated values defined in <xref target="nameVerificationProofs">Name Verification Proofs</xref>.  
 </t>
          <t>
       Zero or more &lt;nv:document&gt; elements that contains the following child elements:
@@ -958,8 +958,8 @@ C:</epp>
    verification code.
    </t>
    <t>
-	 Zero or more OPTIONAL &lt;nv:status&gt; elements that contain the
-      current status descriptors associated with the NV.
+	 A &lt;nv:status&gt; element that contains the
+      current status using the status values defined in <xref target="objectAttributes"/>.
 </t>   
 	<t>
 A  &lt;nv:crDate&gt; element that contains the date and time of nv object creation.
@@ -982,8 +982,8 @@ A &lt;verificationCode:code&gt;element that is a "base64" encoded form of the di
  
    <list style="symbols">
    <t>
-	 Zero or more OPTIONAL &lt;nv:status&gt; elements that contain the
-      current status descriptors associated with the NV.
+	 A &lt;nv:status&gt; element that contains the
+      current status using the status values defined in <xref target="objectAttributes"/>.
 </t>
 <t>
       A &lt;nv:msg&gt; element containing a human-readable description of the
@@ -1751,6 +1751,9 @@ End of schema.
 	
     <section title="Security considerations" anchor="security">
       <t>
+   Verification Code Tokens are digitally signed using XML Signature technology. 
+   The security considerations described in Section 12 of the W3C XML Signature Syntax and Processing Candidate Recommendation <xref target="W3C.CR-xmldsig-core2-20120124"/> 
+   apply to this specification as well. 
    The object mapping described in this document does not provide any
    other security services or introduce any additional considerations
    beyond those described by <xref target="RFC5730"></xref> or those caused by the protocol
@@ -1790,6 +1793,30 @@ End of schema.
 			&RFC5730;
          &RFC7451;   
          &I-D.gould-eppext-verificationcode;
+         
+	  <reference anchor="W3C.CR-xmldsig-core2-20120124"
+                 target="http://www.w3.org/TR/2012/CR-xmldsig-core2-20120124/">
+        <front>
+          <title>"XML Signature Syntax and Processing Version 2.0", 
+          W3C Candidate Recommendation 24 January 2012</title>
+          <author initials="M" surname="Bartel">
+            <organization></organization>
+          </author>
+          <author initials="J" surname="Boyer">
+            <organization></organization>
+          </author>
+          <author initials="B" surname="Fox">
+            <organization></organization>
+          </author>
+          <author initials="B" surname="LaMacchia">
+            <organization></organization>
+          </author>           
+          <author initials="E" surname="Simon">
+            <organization></organization>
+          </author>                     
+          <date month="January" year="2012" />
+        </front>
+      </reference>
          
 	  <reference anchor="W3C.REC-xml-20040204"
                  target="http://www.w3.org/TR/2004/REC-xml-20040204">
