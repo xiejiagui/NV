@@ -58,6 +58,7 @@ Child elements of the <create> command.
 <complexType name="dnvType">
  <sequence>
 	<element name="name" type="eppcom:labelType"/>
+    <element name="rnvCode" type="token" minOccurs=0/>
  </sequence>
 </complexType>
 
@@ -238,7 +239,7 @@ Pending action notification response elements.
 -->
 <complexType name="panDataType">
  <sequence>
-	<element name="code" type="token"/>
+	<element name="code" type="nv:verificationCodeType"/>
 	<element name="paStatus" type="nv:statusType"/>
 	<element name="msg" type="token"/>
 	<element name="paDate" type="dateTime"/>
