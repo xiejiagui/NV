@@ -8,7 +8,9 @@
      <nv:creData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
       <nv:failed>
         <nv:status s="nonCompliant"/>
-        <nv:msg>The name of the object is not correct.</nv:msg>
+        <nv:msg lang="en">
+        The name of the object is not correct.
+        </nv:msg>
       </nv:failed>
      </nv:creData>
     </resData>

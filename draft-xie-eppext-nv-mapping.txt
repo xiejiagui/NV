@@ -5,14 +5,14 @@
 Internet Engineering Task Force                                X. Jiagui
 Internet-Draft                                                  Teleinfo
 Intended status: Informational                                  J. Gould
-Expires: April 11, 2016                                   VeriSign, Inc.
+Expires: April 22, 2016                                   VeriSign, Inc.
                                                               L. Hongyan
                                                                 Teleinfo
-                                                         October 9, 2015
+                                                        October 20, 2015
 
 
  Extensible Provisioning Protocol (EPP) China Name Verification Mapping
-                     draft-xie-eppext-nv-mapping-00
+                     draft-xie-eppext-nv-mapping-01
 
 Abstract
 
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on April 11, 2016.
+   This Internet-Draft will expire on April 22, 2016.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Jiagui, et al.           Expires April 11, 2016                 [Page 1]
+Jiagui, et al.           Expires April 22, 2016                 [Page 1]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -95,21 +95,21 @@ Table of Contents
        4.2.5.  EPP <update> Command  . . . . . . . . . . . . . . . .  22
      4.3.  Offline Review of Requested Actions . . . . . . . . . . .  24
    5.  Formal Syntax . . . . . . . . . . . . . . . . . . . . . . . .  26
-   6.  Internationalization Considerations . . . . . . . . . . . . .  32
+   6.  Internationalization Considerations . . . . . . . . . . . . .  33
    7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  33
      7.1.  XML Namespace . . . . . . . . . . . . . . . . . . . . . .  33
-     7.2.  EPP Extension Registry  . . . . . . . . . . . . . . . . .  33
+     7.2.  EPP Extension Registry  . . . . . . . . . . . . . . . . .  34
    8.  Security considerations . . . . . . . . . . . . . . . . . . .  34
-   9.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  34
-   10. Change History  . . . . . . . . . . . . . . . . . . . . . . .  34
-     10.1.  draft-xie-epp-nv-mapping-00: Version 00  . . . . . . . .  34
-   11. Normative References  . . . . . . . . . . . . . . . . . . . .  34
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  35
+   9.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  35
+   10. Change History  . . . . . . . . . . . . . . . . . . . . . . .  35
+     10.1.  draft-xie-eppext-nv-mapping-00: Version 00 . . . . . . .  35
+     10.2.  Change from 01 to 02 . . . . . . . . . . . . . . . . . .  35
+   11. Normative References  . . . . . . . . . . . . . . . . . . . .  35
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  36
 
 
 
-
-Jiagui, et al.           Expires April 11, 2016                 [Page 2]
+Jiagui, et al.           Expires April 22, 2016                 [Page 2]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -165,7 +165,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                 [Page 3]
+Jiagui, et al.           Expires April 22, 2016                 [Page 3]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -221,7 +221,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                 [Page 4]
+Jiagui, et al.           Expires April 22, 2016                 [Page 4]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -277,7 +277,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                 [Page 5]
+Jiagui, et al.           Expires April 22, 2016                 [Page 5]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -333,7 +333,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                 [Page 6]
+Jiagui, et al.           Expires April 22, 2016                 [Page 6]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -389,7 +389,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                 [Page 7]
+Jiagui, et al.           Expires April 22, 2016                 [Page 7]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -445,7 +445,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                 [Page 8]
+Jiagui, et al.           Expires April 22, 2016                 [Page 8]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -501,7 +501,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                 [Page 9]
+Jiagui, et al.           Expires April 22, 2016                 [Page 9]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -557,7 +557,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 10]
+Jiagui, et al.           Expires April 22, 2016                [Page 10]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -613,7 +613,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 11]
+Jiagui, et al.           Expires April 22, 2016                [Page 11]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -669,7 +669,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 12]
+Jiagui, et al.           Expires April 22, 2016                [Page 12]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -725,7 +725,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 13]
+Jiagui, et al.           Expires April 22, 2016                [Page 13]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -781,7 +781,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 14]
+Jiagui, et al.           Expires April 22, 2016                [Page 14]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -837,7 +837,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 15]
+Jiagui, et al.           Expires April 22, 2016                [Page 15]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -893,7 +893,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 16]
+Jiagui, et al.           Expires April 22, 2016                [Page 16]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -949,7 +949,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 17]
+Jiagui, et al.           Expires April 22, 2016                [Page 17]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1005,7 +1005,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 18]
+Jiagui, et al.           Expires April 22, 2016                [Page 18]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1061,7 +1061,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 19]
+Jiagui, et al.           Expires April 22, 2016                [Page 19]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1117,7 +1117,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 20]
+Jiagui, et al.           Expires April 22, 2016                [Page 20]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1173,12 +1173,14 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 21]
+Jiagui, et al.           Expires April 22, 2016                [Page 21]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
 
-   S:        <nv:msg>The name of the object is not correct.</nv:msg>
+   S:        <nv:msg lang="en">
+   S:        The name of the object is not correct.
+   S:        </nv:msg>
    S:      </nv:failed>
    S:     </nv:creData>
    S:    </resData>
@@ -1223,17 +1225,17 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
    A <nv:chg> element contains the following child elements:
 
-   o  A <nv:authInfo> element that contains authorization information
-      associated with the NV object.  This mapping includes a password-
 
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 22]
+Jiagui, et al.           Expires April 22, 2016                [Page 22]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
 
+   o  A <nv:authInfo> element that contains authorization information
+      associated with the NV object.  This mapping includes a password-
       based authentication mechanism, but the schema allows new
       mechanisms to be defined in new schemas.
 
@@ -1283,9 +1285,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 23]
+Jiagui, et al.           Expires April 22, 2016                [Page 23]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1317,7 +1317,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
    S:      <nv:creData
    S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
    S:        <nv:pending>
-   S:          <nv:code>abc-123</nv:code>
+   S:          <nv:code type="domain">abc-123</nv:code>
    S:          <nv:status s="pendingCompliant"/>
    S:          <nv:crDate>2015-09-03T22:00:00.0Z</nv:crDate>
    S:        </nv:pending>
@@ -1341,7 +1341,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 24]
+Jiagui, et al.           Expires April 22, 2016                [Page 24]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1352,7 +1352,9 @@ Internet-Draft               EPP NV Mapping                 October 2015
    element that identifies the NV namespace.  The <nv:panData> element
    contains the following child elements:
 
-      A <nv:code> element that contains the code of the a NV object.
+      A <nv:code> element that contains the id of the verification code
+      with the required "type" attribute that defines the type of the
+      verification code.
 
       A <nv:paStatus> element that contains the current status
       descriptors associated with the NV.
@@ -1364,6 +1366,41 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
       A <nv:paDate> element that contains the date and time describing
       when review of the requested action was completed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Jiagui, et al.           Expires April 22, 2016                [Page 25]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
 
       Example "review completed" service message:
 
@@ -1380,7 +1417,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
    S:    <resData>
    S:      <nv:panData
    S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-   S:        <nv:code>abc-123</nv:code>
+   S:        <nv:code type="domain">abc-123</nv:code>
    S:        <nv:paStatus s="compliant"/>
    S:        <nv:msg>The object has passed verification,
    S:          signed code was generated.</nv:msg>
@@ -1393,14 +1430,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    S:    </trID>
    S:  </response>
    S:</epp>
-
-
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 25]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
 
 5.  Formal Syntax
 
@@ -1421,6 +1450,14 @@ Internet-Draft               EPP NV Mapping                 October 2015
      xmlns:verificationCode=
        "urn:ietf:params:xml:ns:verificationCode-1.0"
      xmlns="http://www.w3.org/2001/XMLSchema"
+
+
+
+Jiagui, et al.           Expires April 22, 2016                [Page 26]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
+
      elementFormDefault="qualified">
 
    <annotation>
@@ -1450,14 +1487,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    Child element of <check> command.
    -->
    <complexType name="mNameType">
-
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 26]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
-
     <sequence>
        <element name="name" type="eppcom:labelType"
         maxOccurs="unbounded"/>
@@ -1477,9 +1506,19 @@ Internet-Draft               EPP NV Mapping                 October 2015
     </sequence>
    </complexType>
 
+
+
+
+Jiagui, et al.           Expires April 22, 2016                [Page 27]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
+
    <complexType name="dnvType">
     <sequence>
        <element name="name" type="eppcom:labelType"/>
+       <element name="rnvCode" type="token"
+         minOccurs="0"/>
     </sequence>
    </complexType>
 
@@ -1506,14 +1545,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    <simpleType name="roleType">
        <restriction base="token">
          <enumeration value="person"/>
-
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 27]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
-
          <enumeration value="org"/>
     </restriction>
    </simpleType>
@@ -1531,6 +1562,13 @@ Internet-Draft               EPP NV Mapping                 October 2015
        <element name="fileContent" type="base64Binary"/>
     </sequence>
    </complexType>
+
+
+
+Jiagui, et al.           Expires April 22, 2016                [Page 28]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
 
    <simpleType name="fileType">
      <restriction base="token">
@@ -1562,14 +1600,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    </simpleType>
 
    <!--
-
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 28]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
-
    Child elements of the <update> command.
    -->
    <complexType name="updateType">
@@ -1587,6 +1617,14 @@ Internet-Draft               EPP NV Mapping                 October 2015
        <element name="authInfo" type="nv:authInfoChgType"/>
     </sequence>
    </complexType>
+
+
+
+
+Jiagui, et al.           Expires April 22, 2016                [Page 29]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
 
    <!--
    Data elements of authInfoChgType.
@@ -1618,14 +1656,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
    <complexType name="checkType">
     <sequence>
-
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 29]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
-
        <element name="name" type="nv:checkNameType"/>
        <element name="reason" type="eppcom:reasonType"
         minOccurs="0"/>
@@ -1644,6 +1674,14 @@ Internet-Draft               EPP NV Mapping                 October 2015
    </complexType>
 
    <!--
+
+
+
+Jiagui, et al.           Expires April 22, 2016                [Page 30]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
+
    <create> response elements.
    -->
    <complexType name="creDataType">
@@ -1667,21 +1705,13 @@ Internet-Draft               EPP NV Mapping                 October 2015
    <complexType name="failedType">
     <sequence>
        <element name="status" type="nv:statusType"/>
-       <element name="msg" type="token"/>
+       <element name="msg" type="nv:msgType"/>
     </sequence>
    </complexType>
 
    <complexType name="pendingType">
     <sequence>
-       <element name="code" type="token"/>
-
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 30]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
-
+       <element name="code" type="nv:verificationCodeType"/>
      <element name="status" type="nv:statusType"/>
        <element name="crDate" type="dateTime"/>
     </sequence>
@@ -1692,14 +1722,22 @@ Internet-Draft               EPP NV Mapping                 October 2015
    -->
    <complexType name="panDataType">
     <sequence>
-       <element name="code" type="token"/>
+       <element name="code" type="nv:verificationCodeType"/>
        <element name="paStatus" type="nv:statusType"/>
-       <element name="msg" type="token"/>
+       <element name="msg" type="nv:msgType"/>
        <element name="paDate" type="dateTime"/>
     </sequence>
    </complexType>
 
    <!--
+
+
+
+Jiagui, et al.           Expires April 22, 2016                [Page 31]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
+
    <info> response elements.
    -->
    <complexType name="infDataType">
@@ -1731,13 +1769,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
      </simpleContent>
    </complexType>
 
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 31]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
-
    <!--
    Status is a combination of attributes and an optional
    human-readable message that may be expressed in languages other
@@ -1748,6 +1779,23 @@ Internet-Draft               EPP NV Mapping                 October 2015
        <extension base="normalizedString">
          <attribute name="s" type="nv:statusValueType"
            use="required"/>
+         <attribute name="lang" type="language"
+           default="en"/>
+       </extension>
+    </simpleContent>
+   </complexType>
+
+   <complexType name="msgType">
+
+
+
+Jiagui, et al.           Expires April 22, 2016                [Page 32]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
+
+    <simpleContent>
+       <extension base="normalizedString">
          <attribute name="lang" type="language"
            default="en"/>
        </extension>
@@ -1783,17 +1831,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
    used to represent higher-layer domain and core protocol structures
    present in an XML instance that includes this extension.
 
-
-
-
-
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 32]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
-
 7.  IANA Considerations
 
 7.1.  XML Namespace
@@ -1805,6 +1842,13 @@ Internet-Draft               EPP NV Mapping                 October 2015
    Registration request for the NV namespace:
 
    o  URI: urn:ietf:params:xml:ns:nv-1.0
+
+
+
+Jiagui, et al.           Expires April 22, 2016                [Page 33]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
 
    o  Registrant Contact: See the "Author's Address" section of this
       document.
@@ -1843,13 +1887,6 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
    Notes: None
 
-
-
-Jiagui, et al.           Expires April 11, 2016                [Page 33]
-
-Internet-Draft               EPP NV Mapping                 October 2015
-
-
 8.  Security considerations
 
    Verification Code Tokens are digitally signed using XML Signature
@@ -1860,6 +1897,14 @@ Internet-Draft               EPP NV Mapping                 October 2015
    other security services or introduce any additional considerations
    beyond those described by [RFC5730] or those caused by the protocol
    layers used by EPP.
+
+
+
+
+Jiagui, et al.           Expires April 22, 2016                [Page 34]
+
+Internet-Draft               EPP NV Mapping                 October 2015
+
 
 9.  Acknowledgements
 
@@ -1874,6 +1919,17 @@ Internet-Draft               EPP NV Mapping                 October 2015
 10.1.  draft-xie-eppext-nv-mapping-00: Version 00
 
    o  First draft.
+
+10.2.  Change from 01 to 02
+
+   1.  Made the <nv:code> element of the panDataType and pendingType
+       require the "type" attribute in the XML schema.
+
+   2.  Fixed the XML schema to include the <nv:rnvCode> OPTIONAL
+       element.
+
+   3.  Added the support for the OPTIONAL "lang" attribute for the
+       <nv:msg> element of the <nv:failed> and <nv:panData> elements.
 
 11.  Normative References
 
@@ -1901,7 +1957,7 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 34]
+Jiagui, et al.           Expires April 22, 2016                [Page 35]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -1957,7 +2013,7 @@ Authors' Addresses
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 35]
+Jiagui, et al.           Expires April 22, 2016                [Page 36]
 
 Internet-Draft               EPP NV Mapping                 October 2015
 
@@ -2013,4 +2069,4 @@ Internet-Draft               EPP NV Mapping                 October 2015
 
 
 
-Jiagui, et al.           Expires April 11, 2016                [Page 36]
+Jiagui, et al.           Expires April 22, 2016                [Page 37]

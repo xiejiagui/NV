@@ -8,7 +8,7 @@
       <nv:creData
        xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
         <nv:pending>
-          <nv:code>abc-123</nv:code>
+          <nv:code type="domain">abc-123</nv:code>
           <nv:status s="pendingCompliant"/>
           <nv:crDate>2015-09-03T22:00:00.0Z</nv:crDate>
         </nv:pending>

@@ -400,7 +400,8 @@
 <link href="#rfc.section.8" rel="Chapter" title="8 Security considerations"/>
 <link href="#rfc.section.9" rel="Chapter" title="9 Acknowledgements"/>
 <link href="#rfc.section.10" rel="Chapter" title="10 Change History"/>
-<link href="#rfc.section.10.1" rel="Chapter" title="10.1 draft-xie-epp-nv-mapping-00: Version 00"/>
+<link href="#rfc.section.10.1" rel="Chapter" title="10.1 draft-xie-eppext-nv-mapping-00: Version 00"/>
+<link href="#rfc.section.10.2" rel="Chapter" title="10.2 Change from 01 to 02 "/>
 <link href="#rfc.references" rel="Chapter" title="11 Normative References"/>
 <link href="#rfc.authors" rel="Chapter"/>
 
@@ -409,8 +410,8 @@
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Jiagui, X., Gould, J., and L. Hongyan" />
-  <meta name="dct.identifier" content="urn:ietf:id:draft-xie-eppext-nv-mapping-00" />
-  <meta name="dct.issued" scheme="ISO8601" content="2015-10-9" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-xie-eppext-nv-mapping-01" />
+  <meta name="dct.issued" scheme="ISO8601" content="2015-10-20" />
   <meta name="dct.abstract" content="This document describes an Extensible Provisioning Protocol (EPP) for the provisioning and management of Name Verification (NV) stored in a shared central repository in China.  Specified in XML, the mapping defines EPP command syntax and semantics as applied to name verification.  " />
   <meta name="description" content="This document describes an Extensible Provisioning Protocol (EPP) for the provisioning and management of Name Verification (NV) stored in a shared central repository in China.  Specified in XML, the mapping defines EPP command syntax and semantics as applied to name verification.  " />
 
@@ -434,7 +435,7 @@
   <td class="right">J. Gould</td>
 </tr>
 <tr>
-  <td class="left">Expires: April 11, 2016</td>
+  <td class="left">Expires: April 22, 2016</td>
   <td class="right">VeriSign, Inc.</td>
 </tr>
 <tr>
@@ -447,7 +448,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">October 9, 2015</td>
+  <td class="right">October 20, 2015</td>
 </tr>
 
     	
@@ -455,7 +456,7 @@
   </table>
 
   <p class="title">Extensible Provisioning Protocol (EPP) China Name Verification Mapping <br />
-  <span class="filename">draft-xie-eppext-nv-mapping-00</span></p>
+  <span class="filename">draft-xie-eppext-nv-mapping-01</span></p>
   
   <h1 id="rfc.abstract">
   <a href="#rfc.abstract">Abstract</a>
@@ -467,7 +468,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on April 11, 2016.</p>
+<p>This Internet-Draft will expire on April 22, 2016.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -506,7 +507,8 @@
 <li>8.   <a href="#rfc.section.8">Security considerations</a></li>
 <li>9.   <a href="#rfc.section.9">Acknowledgements</a></li>
 <li>10.   <a href="#rfc.section.10">Change History</a></li>
-<li>10.1.   <a href="#rfc.section.10.1">draft-xie-epp-nv-mapping-00: Version 00</a></li>
+<li>10.1.   <a href="#rfc.section.10.1">draft-xie-eppext-nv-mapping-00: Version 00</a></li>
+<li>10.2.   <a href="#rfc.section.10.2">Change from 01 to 02 </a></li>
 <li>11.   <a href="#rfc.references">Normative References</a></li>
 <li><a href="#rfc.authors">Authors' Addresses</a></li>
 
@@ -1111,7 +1113,9 @@ S:    &lt;resData&gt;
 S:     &lt;nv:creData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"&gt;
 S:      &lt;nv:failed&gt;
 S:        &lt;nv:status s="nonCompliant"/&gt;
-S:        &lt;nv:msg&gt;The name of the object is not correct.&lt;/nv:msg&gt;
+S:        &lt;nv:msg lang="en"&gt;
+S:        The name of the object is not correct.
+S:        &lt;/nv:msg&gt;
 S:      &lt;/nv:failed&gt;
 S:     &lt;/nv:creData&gt;
 S:    &lt;/resData&gt;
@@ -1201,7 +1205,7 @@ S:    &lt;resData&gt;
 S:      &lt;nv:creData
 S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"&gt;
 S:        &lt;nv:pending&gt;
-S:          &lt;nv:code&gt;abc-123&lt;/nv:code&gt;
+S:          &lt;nv:code type="domain"&gt;abc-123&lt;/nv:code&gt;
 S:          &lt;nv:status s="pendingCompliant"/&gt;
 S:          &lt;nv:crDate&gt;2015-09-03T22:00:00.0Z&lt;/nv:crDate&gt;
 S:        &lt;/nv:pending&gt;
@@ -1218,7 +1222,7 @@ S:&lt;/epp&gt;
 <p id="rfc.section.4.3.p.4">The service message MUST contain text that describes the notification in the child &lt;msg&gt; element of the response &lt;msgQ&gt; element.  In addition, the EPP &lt;resData&gt; element MUST contain a child &lt;nv:panData&gt; element that identifies the NV namespace.  The &lt;nv:panData&gt; element contains the following child elements: </p>
 
 <ul class="empty">
-  <li>A &lt;nv:code&gt; element that contains the code of the a NV object.  </li>
+  <li>A &lt;nv:code&gt; element that contains the id of the verification code with the required "type" attribute that defines the type of the verification code.</li>
   <li>A &lt;nv:paStatus&gt; element that contains the current status descriptors associated with the NV.  </li>
   <li>A &lt;nv:msg&gt; element containing a human-readable description of the result.  The language of the response is identified via an OPTIONAL "lang" attribute.  If not specified, the default attribute value MUST be "en" (English).  </li>
   <li>A &lt;nv:paDate&gt; element that contains the date and time describing when review of the requested action was completed.  </li>
@@ -1241,7 +1245,7 @@ S:    &lt;/msgQ&gt;
 S:    &lt;resData&gt;
 S:      &lt;nv:panData
 S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"&gt;
-S:        &lt;nv:code&gt;abc-123&lt;/nv:code&gt;
+S:        &lt;nv:code type="domain"&gt;abc-123&lt;/nv:code&gt;
 S:        &lt;nv:paStatus s="compliant"/&gt;
 S:        &lt;nv:msg&gt;The object has passed verification,
 S:			signed code was generated.&lt;/nv:msg&gt;
@@ -1319,6 +1323,8 @@ Child elements of the &lt;create&gt; command.
 &lt;complexType name="dnvType"&gt;
  &lt;sequence&gt;
 	&lt;element name="name" type="eppcom:labelType"/&gt;
+    &lt;element name="rnvCode" type="token" 
+      minOccurs="0"/&gt;
  &lt;/sequence&gt;
 &lt;/complexType&gt;
 
@@ -1482,13 +1488,13 @@ Child response elements.
 &lt;complexType name="failedType"&gt;
  &lt;sequence&gt;
 	&lt;element name="status" type="nv:statusType"/&gt;
-	&lt;element name="msg" type="token"/&gt;
+	&lt;element name="msg" type="nv:msgType"/&gt;
  &lt;/sequence&gt;
 &lt;/complexType&gt;
 
 &lt;complexType name="pendingType"&gt;
  &lt;sequence&gt;
-	&lt;element name="code" type="token"/&gt;
+	&lt;element name="code" type="nv:verificationCodeType"/&gt;
   &lt;element name="status" type="nv:statusType"/&gt;
 	&lt;element name="crDate" type="dateTime"/&gt;
  &lt;/sequence&gt;
@@ -1499,9 +1505,9 @@ Pending action notification response elements.
 --&gt;
 &lt;complexType name="panDataType"&gt;
  &lt;sequence&gt;
-	&lt;element name="code" type="token"/&gt;
+	&lt;element name="code" type="nv:verificationCodeType"/&gt;
 	&lt;element name="paStatus" type="nv:statusType"/&gt;
-	&lt;element name="msg" type="token"/&gt;
+	&lt;element name="msg" type="nv:msgType"/&gt;
 	&lt;element name="paDate" type="dateTime"/&gt;
  &lt;/sequence&gt;
 &lt;/complexType&gt;
@@ -1548,6 +1554,15 @@ than English.
 	&lt;extension base="normalizedString"&gt;
 	  &lt;attribute name="s" type="nv:statusValueType"
 		use="required"/&gt;
+	  &lt;attribute name="lang" type="language"
+		default="en"/&gt;
+	&lt;/extension&gt;
+ &lt;/simpleContent&gt;
+&lt;/complexType&gt;
+
+&lt;complexType name="msgType"&gt;
+ &lt;simpleContent&gt;
+	&lt;extension base="normalizedString"&gt;
 	  &lt;attribute name="lang" type="language"
 		default="en"/&gt;
 	&lt;/extension&gt;
@@ -1620,6 +1635,14 @@ End of schema.
 </ul>
 
 <p> </p>
+<h1 id="rfc.section.10.2"><a href="#rfc.section.10.2">10.2.</a> <a href="#version-01-to-02" id="version-01-to-02">Change from 01 to 02 </a></h1>
+<p/>
+
+<ol>
+  <li>Made the &lt;nv:code&gt; element of the panDataType and pendingType require the "type" attribute in the XML schema.</li>
+  <li>Fixed the XML schema to include the &lt;nv:rnvCode&gt; OPTIONAL element.</li>
+  <li>Added the support for the OPTIONAL "lang" attribute for the &lt;nv:msg&gt; element of the &lt;nv:failed&gt; and &lt;nv:panData&gt; elements.</li>
+</ol>
 <h1 id="rfc.references"><a href="#rfc.references">11.</a> Normative References</h1>
 <table>
   <tbody>
