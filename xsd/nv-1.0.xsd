@@ -58,7 +58,8 @@ Child elements of the <create> command.
 <complexType name="dnvType">
  <sequence>
 	<element name="name" type="eppcom:labelType"/>
-    <element name="rnvCode" type="token" minOccurs=0/>
+    <element name="rnvCode" type="token" 
+      minOccurs="0"/>
  </sequence>
 </complexType>
 
@@ -222,13 +223,13 @@ Child response elements.
 <complexType name="failedType">
  <sequence>
 	<element name="status" type="nv:statusType"/>
-	<element name="msg" type="token"/>
+	<element name="msg" type="nv:msgType"/>
  </sequence>
 </complexType>
 
 <complexType name="pendingType">
  <sequence>
-	<element name="code" type="token"/>
+	<element name="code" type="nv:verificationCodeType"/>
   <element name="status" type="nv:statusType"/>
 	<element name="crDate" type="dateTime"/>
  </sequence>
@@ -241,7 +242,7 @@ Pending action notification response elements.
  <sequence>
 	<element name="code" type="nv:verificationCodeType"/>
 	<element name="paStatus" type="nv:statusType"/>
-	<element name="msg" type="token"/>
+	<element name="msg" type="nv:msgType"/>
 	<element name="paDate" type="dateTime"/>
  </sequence>
 </complexType>
@@ -288,6 +289,15 @@ than English.
 	<extension base="normalizedString">
 	  <attribute name="s" type="nv:statusValueType"
 		use="required"/>
+	  <attribute name="lang" type="language"
+		default="en"/>
+	</extension>
+ </simpleContent>
+</complexType>
+
+<complexType name="msgType">
+ <simpleContent>
+	<extension base="normalizedString">
 	  <attribute name="lang" type="language"
 		default="en"/>
 	</extension>

@@ -18,7 +18,7 @@
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
 
-<rfc category="info" docName="draft-xie-eppext-nv-mapping-00" ipr="pre5378Trust200902">
+<rfc category="info" docName="draft-xie-eppext-nv-mapping-01" ipr="pre5378Trust200902">
   <!-- category values: std, bcp, info, exp, and historic -->
 
   <front>
@@ -78,7 +78,7 @@ Extensible Provisioning Protocol (EPP) China Name Verification Mapping
       </address>
     </author>       
                
-    <date day="9" month="October" year="2015"/>
+    <date day="20" month="October" year="2015"/>
 
     <area>Internet</area>
 
@@ -1098,7 +1098,9 @@ S:    <resData>
 S:     <nv:creData xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
 S:      <nv:failed>
 S:        <nv:status s="nonCompliant"/>
-S:        <nv:msg>The name of the object is not correct.</nv:msg>
+S:        <nv:msg lang="en">
+S:        The name of the object is not correct.
+S:        </nv:msg>
 S:      </nv:failed>
 S:     </nv:creData>
 S:    </resData>
@@ -1238,7 +1240,7 @@ S:    <resData>
 S:      <nv:creData
 S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
 S:        <nv:pending>
-S:          <nv:code>abc-123</nv:code>
+S:          <nv:code type="domain">abc-123</nv:code>
 S:          <nv:status s="pendingCompliant"/>
 S:          <nv:crDate>2015-09-03T22:00:00.0Z</nv:crDate>
 S:        </nv:pending>
@@ -1267,8 +1269,9 @@ The status of the NV object after returning this response MUST
    element that identifies the NV namespace.  The &lt;nv:panData&gt; element contains the following child elements:
    <list>
    <t>
-A &lt;nv:code&gt; element that contains the code of the a NV object.   
-   </t>
+   A &lt;nv:code&gt; element that contains the id of the verification code 
+   with the required "type" attribute that defines the type of the 
+   verification code.</t>
          <t>
  A &lt;nv:paStatus&gt; element that contains the
       current status descriptors associated with the NV.
@@ -1303,7 +1306,7 @@ S:    </msgQ>
 S:    <resData>
 S:      <nv:panData
 S:       xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-S:        <nv:code>abc-123</nv:code>
+S:        <nv:code type="domain">abc-123</nv:code>
 S:        <nv:paStatus s="compliant"/>
 S:        <nv:msg>The object has passed verification,
 S:			signed code was generated.</nv:msg>
@@ -1392,6 +1395,8 @@ Child elements of the <create> command.
 <complexType name="dnvType">
  <sequence>
 	<element name="name" type="eppcom:labelType"/>
+    <element name="rnvCode" type="token" 
+      minOccurs="0"/>
  </sequence>
 </complexType>
 
@@ -1555,13 +1560,13 @@ Child response elements.
 <complexType name="failedType">
  <sequence>
 	<element name="status" type="nv:statusType"/>
-	<element name="msg" type="token"/>
+	<element name="msg" type="nv:msgType"/>
  </sequence>
 </complexType>
 
 <complexType name="pendingType">
  <sequence>
-	<element name="code" type="token"/>
+	<element name="code" type="nv:verificationCodeType"/>
   <element name="status" type="nv:statusType"/>
 	<element name="crDate" type="dateTime"/>
  </sequence>
@@ -1572,9 +1577,9 @@ Pending action notification response elements.
 -->
 <complexType name="panDataType">
  <sequence>
-	<element name="code" type="token"/>
+	<element name="code" type="nv:verificationCodeType"/>
 	<element name="paStatus" type="nv:statusType"/>
-	<element name="msg" type="token"/>
+	<element name="msg" type="nv:msgType"/>
 	<element name="paDate" type="dateTime"/>
  </sequence>
 </complexType>
@@ -1621,6 +1626,15 @@ than English.
 	<extension base="normalizedString">
 	  <attribute name="s" type="nv:statusValueType"
 		use="required"/>
+	  <attribute name="lang" type="language"
+		default="en"/>
+	</extension>
+ </simpleContent>
+</complexType>
+
+<complexType name="msgType">
+ <simpleContent>
+	<extension base="normalizedString">
 	  <attribute name="lang" type="language"
 		default="en"/>
 	</extension>
@@ -1783,6 +1797,13 @@ End of schema.
           </list>          
         </t>
       </section>
+		 <section title="Change from 01 to 02 " anchor="version-01-to-02">
+			<t><list style="numbers">
+			  <t>Made the &lt;nv:code&gt; element of the panDataType and pendingType require the "type" attribute in the XML schema.</t>
+			  <t>Fixed the XML schema to include the &lt;nv:rnvCode&gt; OPTIONAL element.</t>
+			  <t>Added the support for the OPTIONAL "lang" attribute for the &lt;nv:msg&gt; element of the &lt;nv:failed&gt; and &lt;nv:panData&gt; elements.</t>
+			</list></t>
+		 </section>
     </section>            
   </middle>
 
