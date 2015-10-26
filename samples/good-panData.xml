@@ -11,7 +11,7 @@
     <resData>
       <nv:panData
        xmlns:nv="urn:ietf:params:xml:ns:nv-1.0">
-        <nv:code>abc-123</nv:code>
+        <nv:code type="domain">abc-123</nv:code>
         <nv:paStatus s="compliant"/>
         <nv:msg>The object has passed verification,
 			signed code was generated.</nv:msg>
