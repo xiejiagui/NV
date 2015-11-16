@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema targetNamespace="urn:ietf:params:xml:ns:nv-1.0"
+  xmlns:nv="urn:ietf:params:xml:ns:nv-1.0"
+  xmlns:epp="urn:ietf:params:xml:ns:epp-1.0"
+  xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0"
+  xmlns:verificationCode=
+    "urn:ietf:params:xml:ns:verificationCode-1.0"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified">
+
+<annotation>
+  <documentation>
+	 Extensible Provisioning Protocol v1.0
+	 Name Verification provisioning schema.
+  </documentation>
+</annotation>
+
+<!--
+Import common element types.
+-->
+<import namespace="urn:ietf:params:xml:ns:eppcom-1.0" schemaLocation="eppcom-1.0.xsd"/>
+<import namespace="urn:ietf:params:xml:ns:epp-1.0" schemaLocation="epp-1.0.xsd"/>
+<import namespace="urn:ietf:params:xml:ns:verificationCode-1.0" schemaLocation="verificationCode-1.0.xsd"/>
+
+<!--
+Child elements found in EPP commands.
+-->
+<element name="check" type="nv:mNameType"/>
+<element name="create" type="nv:createType"/>
+<element name="info" type="nv:infoType"/>
+<element name="update" type="nv:updateType"/>
+
+<!--
+Child element of <check> command.
+-->
+<complexType name="mNameType">
+ <sequence>
+	<element name="name" type="eppcom:labelType"
+	 maxOccurs="unbounded"/>
+ </sequence>
+</complexType>
+
+<!--
+Child elements of the <create> command.
+-->
+<complexType name="createType">
+ <sequence>
+	<choice>
+	  <element name="dnv" type="nv:dnvType"/>
+	  <element name="rnv" type="nv:rnvType"/>
+	</choice>
+  <element name="authInfo" type="nv:authInfoChgType"/>	
+ </sequence>  
+</complexType>
+
+<complexType name="dnvType">
+ <sequence>
+	<element name="name" type="eppcom:labelType"/>
+    <element name="rnvCode" type="token" 
+      minOccurs="0"/>
+ </sequence>
+</complexType>
+
+<complexType name="rnvType">
+ <sequence>
+	<element name="name" type="nv:nameType"/>
+	<element name="num" type="nv:nameType"/>
+	<element name="proofType" type="nv:proofEumType"/>
+	<element name="document" type="nv:documentType"
+	 minOccurs="0" maxOccurs="unbounded"/>
+ </sequence>
+ <attribute name="role" type="nv:roleType" 
+	default="person"/>
+</complexType>
+
+<simpleType name="proofEumType">
+  <restriction base="token">
+	 <enumeration value="poc"/>
+	 <enumeration value="poe"/>
+	 <enumeration value="poot"/>
+  </restriction>
+</simpleType>
+
+<simpleType name="roleType">
+	<restriction base="token">
+	  <enumeration value="person"/>
+	  <enumeration value="org"/>
+ </restriction>
+</simpleType>    
+
+<simpleType name="nameType">
+	<restriction base="token">
+		<minLength value="1"/>
+		<maxLength value="255"/>
+	</restriction>
+</simpleType>
+
+<complexType name="documentType">
+ <sequence>
+	<element name="fileType" type="nv:fileType"/>
+	<element name="fileContent" type="base64Binary"/>
+ </sequence>
+</complexType>
+
+<simpleType name="fileType">
+  <restriction base="token">
+	  <enumeration value="pdf"/>
+	  <enumeration value="jpg"/>
+  </restriction>
+</simpleType>
+
+
+<!--
+Child elements of the <info> command.
+-->
+<complexType name="infoType">
+ <sequence>
+	<element name="code" type="token"/>
+	<element name="authInfo" type="nv:authInfoChgType"
+	 minOccurs="0"/>	  
+ </sequence>
+ <attribute name="type" type="nv:infoFormType" 
+	default="signedCode"/>
+</complexType>
+  
+	
+<simpleType name="infoFormType">
+  <restriction base="token">
+	 <enumeration value="input"/>
+	 <enumeration value="signedCode"/>
+ </restriction>
+</simpleType> 
+
+<!--
+Child elements of the <update> command.
+-->
+<complexType name="updateType">
+ <sequence>
+	<element name="code" type="token"/>
+	<element name="chg" type="nv:chgType"/>
+ </sequence>
+</complexType>
+
+<!--
+Data elements that can be changed.
+-->
+<complexType name="chgType">
+ <sequence>
+	<element name="authInfo" type="nv:authInfoChgType"/>
+ </sequence>
+</complexType>
+
+<!--
+Data elements of authInfoChgType.
+-->
+<complexType name="authInfoChgType">
+ <choice>
+	<element name="pw" type="eppcom:pwAuthInfoType"/>
+	<element name="ext" type="eppcom:extAuthInfoType"/>
+ </choice>
+</complexType>
+
+<!--
+Child response elements.
+-->
+<element name="chkData" type="nv:chkDataType"/>
+<element name="creData" type="nv:creDataType"/>
+<element name="panData" type="nv:panDataType"/>
+<element name="infData" type="nv:infDataType"/>
+
+<!--
+<check> response elements.
+-->
+<complexType name="chkDataType">
+ <sequence>
+	<element name="cd" type="nv:checkType"
+	 maxOccurs="unbounded"/>
+ </sequence>
+</complexType>
+
+<complexType name="checkType">
+ <sequence>
+	<element name="name" type="nv:checkNameType"/>
+	<element name="reason" type="eppcom:reasonType"
+	 minOccurs="0"/>
+ </sequence>
+</complexType>
+
+<complexType name="checkNameType">
+ <simpleContent>
+	<extension base="eppcom:labelType">
+	  <attribute name="avail" type="boolean"
+		use="required"/>
+	 <attribute name="restricted" type="boolean" 
+	  default="0"/>	 
+	</extension>
+ </simpleContent>
+</complexType>
+
+<!--
+<create> response elements.
+-->
+<complexType name="creDataType">
+ <choice>
+	<element name="success" type="nv:successType"/>
+	<element name="failed" type="nv:failedType"/>
+	<element name="pending" type="nv:pendingType"/>
+ </choice>
+</complexType>
+
+<complexType name="successType">
+ <sequence>
+  <element name="code" type="nv:verificationCodeType"/>
+  <element name="status" type="nv:statusType"/>
+	<element name="crDate" type="dateTime"/>
+	<element name="encodedSignedCode" 
+	type="verificationCode:encodedSignedCodeType"/>
+ </sequence>
+</complexType>
+
+<complexType name="failedType">
+ <sequence>
+	<element name="status" type="nv:statusType"/>
+	<element name="msg" type="nv:msgType"/>
+ </sequence>
+</complexType>
+
+<complexType name="pendingType">
+ <sequence>
+	<element name="code" type="nv:verificationCodeType"/>
+  <element name="status" type="nv:statusType"/>
+	<element name="crDate" type="dateTime"/>
+ </sequence>
+</complexType>
+
+<!--
+Pending action notification response elements.
+-->
+<complexType name="panDataType">
+ <sequence>
+	<element name="code" type="nv:verificationCodeType"/>
+	<element name="paStatus" type="nv:statusType"/>
+	<element name="msg" type="nv:msgType"/>
+	<element name="paDate" type="dateTime"/>
+ </sequence>
+</complexType>
+
+<!--
+<info> response elements.
+-->
+<complexType name="infDataType">
+ <sequence>
+  <choice>
+	<element name="signedCode" type="nv:signedCodeType"/>
+	<element name="input" type="nv:createType"/>
+  </choice>
+</sequence>
+</complexType>
+
+<complexType name="signedCodeType">
+ <sequence>
+	<element name="code" type="nv:verificationCodeType"/>
+	<element name="status" type="nv:statusType"
+	 minOccurs="0"/>
+	<element name="authInfo" type="nv:authInfoChgType"/>	   
+	<element name="encodedSignedCode" 
+	type="verificationCode:encodedSignedCodeType"/>
+ </sequence>
+</complexType>
+
+<complexType name="verificationCodeType">
+  <simpleContent>
+    <extension base="token">
+      <attribute name="type" type="token" 
+        use="required"/>
+    </extension>
+  </simpleContent>
+</complexType>
+
+<!--
+Status is a combination of attributes and an optional
+human-readable message that may be expressed in languages other
+than English.
+-->
+<complexType name="statusType">
+ <simpleContent>
+	<extension base="normalizedString">
+	  <attribute name="s" type="nv:statusValueType"
+		use="required"/>
+	  <attribute name="lang" type="language"
+		default="en"/>
+	</extension>
+ </simpleContent>
+</complexType>
+
+<complexType name="msgType">
+ <simpleContent>
+	<extension base="normalizedString">
+	  <attribute name="lang" type="language"
+		default="en"/>
+	</extension>
+ </simpleContent>
+</complexType>
+
+<simpleType name="statusValueType">
+ <restriction base="token">
+	<enumeration value="compliant"/>
+	<enumeration value="nonCompliant"/>
+  <enumeration value="pendingCompliant"/>
+ </restriction>
+</simpleType>
+
+<!--
+End of schema.
+-->
+</schema>
