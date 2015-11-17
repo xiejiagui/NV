@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema targetNamespace="urn:ietf:params:xml:ns:verificationCode-1.0"
+	xmlns:verificationCode="urn:ietf:params:xml:ns:verificationCode-1.0"
+	xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+
+	<annotation>
+		<documentation>
+			Extensible Provisioning Protocol v1.0
+			Verification Code Extension.
+		</documentation>
+	</annotation>
+	<import namespace="http://www.w3.org/2000/09/xmldsig#"
+		schemaLocation="xmldsig-core-schema.xsd" />
+
+	<!-- Abstract signed code for replacement via substitution. -->
+	<element name="abstractSignedCode" type="verificationCode:abstractSignedCodeType"
+		abstract="true" />
+	<!-- Empty type for use in extending for a signed code -->
+
+	<complexType name="abstractSignedCodeType" />
+	<!-- Definition of concrete signed code -->
+	<element name="signedCode" type="verificationCode:signedCodeType"
+		substitutionGroup="verificationCode:abstractSignedCode" />
+	<complexType name="signedCodeType">
+		<complexContent>
+			<extension base="verificationCode:abstractSignedCodeType">
+				<sequence>
+					<element name="code" type="verificationCode:verificationCodeType" />
+					<element ref="dsig:Signature" />
+				</sequence>
+				<attribute name="id" type="ID" use="required" />
+				<attribute name="type" type="token" />
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="verificationCodeType">
+		<simpleContent>
+			<extension base="token" />
+		</simpleContent>
+	</complexType>
+
+	<!-- Definition of an encoded signed code -->
+
+	<element name="encodedSignedCode" type="verificationCode:encodedSignedCodeListType" />
+	<complexType name="encodedSignedCodeListType">
+		<sequence>
+			<element name="code" type="verificationCode:encodedSignedCodeType"
+				minOccurs="1" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<complexType name="encodedSignedCodeType">
+		<simpleContent>
+			<extension base="token">
+				<attribute name="encoding" type="token" default="base64" />
+			</extension>
+		</simpleContent>
+	</complexType>
+</schema>

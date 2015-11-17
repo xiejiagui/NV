@@ -16,6 +16,10 @@ import javax.xml.transform.stream.StreamResult;
 import org.apache.commons.codec.binary.Base64;
 import org.w3c.dom.Element;
 
+/**
+ * @author vinson
+ * 
+ */
 public class Base64Util {
 
 	public static void main(String[] args) {
